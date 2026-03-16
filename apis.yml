@@ -123,8 +123,8 @@ description: >-
   With its vector database at the core, Pinecone is the leading knowledge
   platform for building accurate, secure, and scalable AI applications.
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 specificationVersion: '0.16'
 type: Contract
 position: Consuming

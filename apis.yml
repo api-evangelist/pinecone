@@ -19,12 +19,12 @@ apis:
       - name: API reference - Pinecone Docs
         description: >-
           Use the Inference API to generate vector embeddings and rerank results
-          using models hosted on Pinecones infrastructure.
+          using models hosted on Pinecones infrastructure.
         url: https://docs.pinecone.io/reference/api/introduction#inference-api
         type: Documentation
     description: >-
       Use the Inference API to generate vector embeddings and rerank results
-      using models hosted on Pinecones infrastructure.
+      using models hosted on Pinecones infrastructure.
   - aid: pinecone:pinecone-assistant-api
     name: Pinecone Assistant API
     tags: []

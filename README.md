@@ -1,65 +1,76 @@
-# Introduction - Pinecone Docs (pinecone)
+# Pinecone (pinecone)
 
-With its vector database at the core, Pinecone is the leading knowledge platform for building accurate, secure, and scalable AI applications.
+With its vector database at the core, Pinecone is the leading knowledge platform for building accurate, secure, and scalable AI applications. The Pinecone APIs cover Database (vector storage and search), Inference (embeddings and reranking), Assistant (RAG over documents), and Admin (organization and project management).
 
-**URL:** [Visit APIs.json URL](https://example.com/apis/introduction-pinecone-docs.yml)
+**APIs.json:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Contract
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Vector Databases
+- Vector Databases
+- AI
+- Embeddings
+- RAG
 
 ## Timestamps
 
-- **Created:** 2024/7/2 
-- **Modified:** 2025-01-01 
+- **Created:** 2024-07-02
+- **Modified:** 2026-04-28
 
 ## APIs
 
-### Pinecone Database API
-Use the Database API to store and query records in Pinecone Database.
+### Pinecone Database Control API
 
-**Human URL:** [https://docs.pinecone.io/reference/api/introduction#database-api](https://docs.pinecone.io/reference/api/introduction#database-api)
+Use the Database Control API to manage indexes, collections, and backups in Pinecone Database. The control plane handles lifecycle and configuration of vector storage resources.
 
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction
+- **Base URL:** `https://api.pinecone.io`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-db-control-openapi.yaml)
 
-#### Tags:
+### Pinecone Database Data API
 
- - No Tags
+Use the Database Data API to upsert, query, fetch, update, and delete vector records in Pinecone indexes. The data plane is the high-throughput interface for real-time vector search.
 
-#### Properties
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction
+- **Base URL:** `https://{index_host}`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-db-data-openapi.yaml)
 
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#database-api)
 ### Pinecone Inference API
-Use the Inference API to generate vector embeddings and rerank results using models hosted on Pinecones infrastructure.
 
-**Human URL:** [https://docs.pinecone.io/reference/api/introduction#inference-api](https://docs.pinecone.io/reference/api/introduction#inference-api)
+Use the Inference API to generate vector embeddings and rerank results using models hosted on Pinecone's infrastructure.
 
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction#inference-api
+- **Base URL:** `https://api.pinecone.io`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction#inference-api) | [OpenAPI](openapi/pinecone-inference-openapi.yaml)
 
-#### Tags:
+### Pinecone Assistant Control API
 
- - No Tags
+Use the Assistant Control API to create and manage Pinecone Assistants for retrieval-augmented generation (RAG) over your documents.
 
-#### Properties
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction#assistant-api
+- **Base URL:** `https://api.pinecone.io`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction#assistant-api) | [OpenAPI](openapi/pinecone-assistant-control-openapi.yaml)
 
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#inference-api)
-### Pinecone Assistant API
-Use the Assistant API to upload documents, ask questions, and receive responses that reference your documents. This is known as retrieval-augmented generation (RAG).
+### Pinecone Assistant Data API
 
-**Human URL:** [https://docs.pinecone.io/reference/api/introduction#assistant-api](https://docs.pinecone.io/reference/api/introduction#assistant-api)
+Use the Assistant Data API to upload documents to a Pinecone Assistant, ask questions, and receive responses grounded in those documents.
 
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction#assistant-api
+- **Base URL:** `https://prod-1-data.ke.pinecone.io`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction#assistant-api) | [OpenAPI](openapi/pinecone-assistant-data-openapi.yaml)
 
-#### Tags:
+### Pinecone Admin API
 
- - No Tags
+Use the Admin API to manage Pinecone organizations, projects, API keys, and service accounts at the platform level.
 
-#### Properties
-
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#assistant-api)
+- **Human URL:** https://docs.pinecone.io/reference/api/introduction
+- **Base URL:** `https://api.pinecone.io`
+- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-admin-openapi.yaml)
 
 ## Common Properties
 
@@ -68,22 +79,21 @@ Use the Assistant API to upload documents, ask questions, and receive responses 
 - [Blog](https://www.pinecone.io/blog/)
 - [Newsroom](https://www.pinecone.io/newsroom/news/)
 - [Documentation](https://docs.pinecone.io/guides/get-started/overview)
-- [GettingStarted](https://docs.pinecone.io/guides/get-started/overview)
+- [Getting Started](https://docs.pinecone.io/guides/get-started/overview)
 - [Features](https://docs.pinecone.io/guides/get-started/key-features)
 - [Glossary](https://docs.pinecone.io/guides/get-started/glossary)
 - [Examples](https://docs.pinecone.io/examples/notebooks)
 - [Integrations](https://docs.pinecone.io/integrations/overview)
 - [ChangeLog](https://docs.pinecone.io/release-notes/2024)
 - [Status](https://status.pinecone.io/)
-- [Login](https://login.pinecone.io/login?state=hKFo2SBFZWNrT0ZKdjdjUW1wcW1OLVQzTGdfSi1FTkxtZk82WaFupWxvZ2luo3RpZNkgQlVNQ2Rfa2lmM3NUV0ptc2l1ZnlRXzBoemxrNDYwNUOjY2lk2SBUOEkyaEc2Q2FaazUwT05McWhmN3h6a1I0WmhMcVM0Qw&client=T8I2hG6CaZk50ONLqhf7xzkR4ZhLqS4C&protocol=oauth2&audience=https%3A%2F%2Fus-central1-production-console.cloudfunctions.net%2Fapi%2Fv1&scope=openid%20profile%20email%20read%3Acurrent_user&redirect_uri=https%3A%2F%2Fapp.pinecone.io&sessionType=signup&response_type=code&response_mode=query&nonce=aWkueDFDQVY0bk9tNDU1dTJkSTVrNnhfU1M1YXNIS1ZYR3RDdVZHNlR4VA%3D%3D&code_challenge=7fmcJ3woX9-j06vsPLge2h5yfALjJqjvIEFk3hxdX18&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtcmVhY3QiLCJ2ZXJzaW9uIjoiMS4xMi4xIn0%3D)
+- [Login](https://app.pinecone.io)
 - [Security](https://www.pinecone.io/security/)
-- [TermsOfService](https://www.pinecone.io/legal/)
-- [PrivacyPolicy](https://www.pinecone.io/privacy/)
+- [Terms of Service](https://www.pinecone.io/legal/)
+- [Privacy Policy](https://www.pinecone.io/privacy/)
 - [SDKs](https://docs.pinecone.io/reference/pinecone-sdks)
+- [Spec Repository](https://github.com/pinecone-io/pinecone-api)
 
 ## Maintainers
 
-**FN:** API Evangelist
-
-**Email:** info@apievangelist.com
-
+- **FN:** Kin Lane
+- **Email:** kin@apievangelist.com

@@ -165,6 +165,8 @@ common:
     url: https://docs.pinecone.io/reference/pinecone-sdks
   - type: Repository
     url: https://github.com/pinecone-io/pinecone-api
+integrations:
+  - name: Agent Skills
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

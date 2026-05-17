@@ -4,7 +4,7 @@ description: With its vector database at the core, Pinecone is the leading knowl
   accurate, secure, and scalable AI applications. The Pinecone APIs cover Database (vector storage and
   search), Inference (embeddings and reranking), Assistant (RAG over documents), and Admin (organization
   and project management).
-type: Contract
+kind: contract
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/introduction-pinecone-docs.png
@@ -151,7 +151,7 @@ common:
     url: https://docs.pinecone.io/integrations/overview
   - type: ChangeLog
     url: https://docs.pinecone.io/release-notes/2024
-  - type: Status
+  - type: StatusPage
     url: https://status.pinecone.io/
   - type: Login
     url: https://app.pinecone.io

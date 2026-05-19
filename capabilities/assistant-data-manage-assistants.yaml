@@ -1,0 +1,436 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pinecone Assistant Data Plane API — Manage Assistants
+  description: 'Pinecone Assistant Data Plane API — Manage Assistants. 7 operations. Lead operation: Chat with an assistant.
+    Self-contained Naftiko capability covering one Pinecone business surface.'
+  tags:
+  - Pinecone
+  - Manage Assistants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PINECONE_API_KEY: PINECONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: assistant-data-manage-assistants
+    baseUri: https://{assistant_host}
+    description: Pinecone Assistant Data Plane API — Manage Assistants business capability. Self-contained, no shared references.
+    resources:
+    - name: chat-assistant_name
+      path: /chat/{assistant_name}
+      operations:
+      - name: chatassistant
+        method: POST
+        description: Chat with an assistant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to be described.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: chat-assistant_name-chat-completions
+      path: /chat/{assistant_name}/chat/completions
+      operations:
+      - name: chatcompletionassistant
+        method: POST
+        description: Chat through an OpenAI-compatible interface
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to be described.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: chat-assistant_name-context
+      path: /chat/{assistant_name}/context
+      operations:
+      - name: contextassistant
+        method: POST
+        description: Retrieve context from an assistant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to be described.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-assistant_name
+      path: /files/{assistant_name}
+      operations:
+      - name: listfiles
+        method: GET
+        description: List Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to list files for.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: Optional JSON-encoded metadata filter for files.
+      - name: uploadfile
+        method: POST
+        description: Upload file to assistant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to upload files to.
+          required: true
+        - name: metadata
+          in: query
+          type: string
+          description: Optional JSON-encoded metadata for files.
+        - name: multimodal
+          in: query
+          type: string
+          description: Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`.
+            Default is `false`.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-assistant_name-assistant_file_id
+      path: /files/{assistant_name}/{assistant_file_id}
+      operations:
+      - name: describefile
+        method: GET
+        description: Describe a file upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to upload files to.
+          required: true
+        - name: assistant_file_id
+          in: path
+          type: string
+          description: The uuid of the file to be described.
+          required: true
+        - name: include_url
+          in: query
+          type: string
+          description: Include the signed URL of the file in the response.
+      - name: deletefile
+        method: DELETE
+        description: Delete an uploaded file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: assistant_name
+          in: path
+          type: string
+          description: The name of the assistant to upload files to.
+          required: true
+        - name: assistant_file_id
+          in: path
+          type: string
+          description: The uuid of the file to be described.
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.PINECONE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: assistant-data-manage-assistants-rest
+    port: 8080
+    description: REST adapter for Pinecone Assistant Data Plane API — Manage Assistants. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/chat/{assistant-name}
+      name: chat-assistant-name
+      description: REST surface for chat-assistant_name.
+      operations:
+      - method: POST
+        name: chatassistant
+        description: Chat with an assistant
+        call: assistant-data-manage-assistants.chatassistant
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chat/{assistant-name}/chat/completions
+      name: chat-assistant-name-chat-completions
+      description: REST surface for chat-assistant_name-chat-completions.
+      operations:
+      - method: POST
+        name: chatcompletionassistant
+        description: Chat through an OpenAI-compatible interface
+        call: assistant-data-manage-assistants.chatcompletionassistant
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chat/{assistant-name}/context
+      name: chat-assistant-name-context
+      description: REST surface for chat-assistant_name-context.
+      operations:
+      - method: POST
+        name: contextassistant
+        description: Retrieve context from an assistant
+        call: assistant-data-manage-assistants.contextassistant
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{assistant-name}
+      name: files-assistant-name
+      description: REST surface for files-assistant_name.
+      operations:
+      - method: GET
+        name: listfiles
+        description: List Files
+        call: assistant-data-manage-assistants.listfiles
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadfile
+        description: Upload file to assistant
+        call: assistant-data-manage-assistants.uploadfile
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          metadata: rest.metadata
+          multimodal: rest.multimodal
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{assistant-name}/{assistant-file-id}
+      name: files-assistant-name-assistant-file-id
+      description: REST surface for files-assistant_name-assistant_file_id.
+      operations:
+      - method: GET
+        name: describefile
+        description: Describe a file upload
+        call: assistant-data-manage-assistants.describefile
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          assistant_file_id: rest.assistant_file_id
+          include_url: rest.include_url
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefile
+        description: Delete an uploaded file
+        call: assistant-data-manage-assistants.deletefile
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          assistant_name: rest.assistant_name
+          assistant_file_id: rest.assistant_file_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: assistant-data-manage-assistants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pinecone Assistant Data Plane API — Manage Assistants. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: chat-assistant
+      description: Chat with an assistant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: assistant-data-manage-assistants.chatassistant
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chat-through-openai-compatible-interface
+      description: Chat through an OpenAI-compatible interface
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: assistant-data-manage-assistants.chatcompletionassistant
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-context-assistant
+      description: Retrieve context from an assistant
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: assistant-data-manage-assistants.contextassistant
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-files
+      description: List Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: assistant-data-manage-assistants.listfiles
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-file-assistant
+      description: Upload file to assistant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: assistant-data-manage-assistants.uploadfile
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        metadata: tools.metadata
+        multimodal: tools.multimodal
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-file-upload
+      description: Describe a file upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: assistant-data-manage-assistants.describefile
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        assistant_file_id: tools.assistant_file_id
+        include_url: tools.include_url
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-uploaded-file
+      description: Delete an uploaded file
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: assistant-data-manage-assistants.deletefile
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        assistant_name: tools.assistant_name
+        assistant_file_id: tools.assistant_file_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,241 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pinecone Inference API — Inference
+  description: 'Pinecone Inference API — Inference. 4 operations. Lead operation: Generate vectors. Self-contained Naftiko
+    capability covering one Pinecone business surface.'
+  tags:
+  - Pinecone
+  - Inference
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PINECONE_API_KEY: PINECONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: inference-inference
+    baseUri: https://api.pinecone.io
+    description: Pinecone Inference API — Inference business capability. Self-contained, no shared references.
+    resources:
+    - name: embed
+      path: /embed
+      operations:
+      - name: embed
+        method: POST
+        description: Generate vectors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: models
+      path: /models
+      operations:
+      - name: listmodels
+        method: GET
+        description: List available models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: type
+          in: query
+          type: string
+          description: Filter models by type ('embed' or 'rerank').
+        - name: vector_type
+          in: query
+          type: string
+          description: Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.
+    - name: models-model_name
+      path: /models/{model_name}
+      operations:
+      - name: getmodel
+        method: GET
+        description: Describe a model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: model_name
+          in: path
+          type: string
+          description: The name of the model to look up.
+          required: true
+    - name: rerank
+      path: /rerank
+      operations:
+      - name: rerank
+        method: POST
+        description: Rerank results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.PINECONE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: inference-inference-rest
+    port: 8080
+    description: REST adapter for Pinecone Inference API — Inference. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/embed
+      name: embed
+      description: REST surface for embed.
+      operations:
+      - method: POST
+        name: embed
+        description: Generate vectors
+        call: inference-inference.embed
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/models
+      name: models
+      description: REST surface for models.
+      operations:
+      - method: GET
+        name: listmodels
+        description: List available models
+        call: inference-inference.listmodels
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          type: rest.type
+          vector_type: rest.vector_type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/models/{model-name}
+      name: models-model-name
+      description: REST surface for models-model_name.
+      operations:
+      - method: GET
+        name: getmodel
+        description: Describe a model
+        call: inference-inference.getmodel
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          model_name: rest.model_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rerank
+      name: rerank
+      description: REST surface for rerank.
+      operations:
+      - method: POST
+        name: rerank
+        description: Rerank results
+        call: inference-inference.rerank
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: inference-inference-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pinecone Inference API — Inference. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: generate-vectors
+      description: Generate vectors
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: inference-inference.embed
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-available-models
+      description: List available models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: inference-inference.listmodels
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        type: tools.type
+        vector_type: tools.vector_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-model
+      description: Describe a model
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: inference-inference.getmodel
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        model_name: tools.model_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rerank-results
+      description: Rerank results
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: inference-inference.rerank
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

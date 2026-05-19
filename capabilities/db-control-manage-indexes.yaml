@@ -1,0 +1,902 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pinecone Control Plane API — Manage Indexes
+  description: 'Pinecone Control Plane API — Manage Indexes. 18 operations. Lead operation: List backups for all indexes in
+    a project. Self-contained Naftiko capability covering one Pinecone business surface.'
+  tags:
+  - Pinecone
+  - Manage Indexes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PINECONE_API_KEY: PINECONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: db-control-manage-indexes
+    baseUri: https://api.pinecone.io
+    description: Pinecone Control Plane API — Manage Indexes business capability. Self-contained, no shared references.
+    resources:
+    - name: backups
+      path: /backups
+      operations:
+      - name: listprojectbackups
+        method: GET
+        description: List backups for all indexes in a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: The number of results to return per page.
+        - name: paginationToken
+          in: query
+          type: string
+          description: The token to use to retrieve the next page of results.
+    - name: backups-backup_id
+      path: /backups/{backup_id}
+      operations:
+      - name: describebackup
+        method: GET
+        description: Describe a backup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: backup_id
+          in: path
+          type: string
+          description: The ID of the backup to describe.
+          required: true
+      - name: deletebackup
+        method: DELETE
+        description: Delete a backup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: backup_id
+          in: path
+          type: string
+          description: The ID of the backup to delete.
+          required: true
+    - name: backups-backup_id-create-index
+      path: /backups/{backup_id}/create-index
+      operations:
+      - name: createindexfrombackupoperation
+        method: POST
+        description: Create an index from a backup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: backup_id
+          in: path
+          type: string
+          description: The ID of the backup to create an index from.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: collections
+      path: /collections
+      operations:
+      - name: listcollections
+        method: GET
+        description: List collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+      - name: createcollection
+        method: POST
+        description: Create a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: collections-collection_name
+      path: /collections/{collection_name}
+      operations:
+      - name: describecollection
+        method: GET
+        description: Describe a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: collection_name
+          in: path
+          type: string
+          description: The name of the collection to be described.
+          required: true
+      - name: deletecollection
+        method: DELETE
+        description: Delete a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: collection_name
+          in: path
+          type: string
+          description: The name of the collection.
+          required: true
+    - name: indexes
+      path: /indexes
+      operations:
+      - name: listindexes
+        method: GET
+        description: List indexes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+      - name: createindex
+        method: POST
+        description: Create an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: indexes-create-for-model
+      path: /indexes/create-for-model
+      operations:
+      - name: createindexformodel
+        method: POST
+        description: Create an index with integrated embedding
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: indexes-index_name
+      path: /indexes/{index_name}
+      operations:
+      - name: describeindex
+        method: GET
+        description: Describe an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          description: The name of the index to be described.
+          required: true
+      - name: deleteindex
+        method: DELETE
+        description: Delete an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          description: The name of the index to delete.
+          required: true
+      - name: configureindex
+        method: PATCH
+        description: Configure an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          description: The name of the index to configure.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: indexes-index_name-backups
+      path: /indexes/{index_name}/backups
+      operations:
+      - name: listindexbackups
+        method: GET
+        description: List backups for an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          description: Name of the backed up index
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: The number of results to return per page.
+        - name: paginationToken
+          in: query
+          type: string
+          description: The token to use to retrieve the next page of results.
+      - name: createbackup
+        method: POST
+        description: Create a backup of an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          description: Name of the index to backup
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: restore-jobs
+      path: /restore-jobs
+      operations:
+      - name: listrestorejobs
+        method: GET
+        description: List restore jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: The number of results to return per page.
+        - name: paginationToken
+          in: query
+          type: string
+          description: The token to use to retrieve the next page of results.
+    - name: restore-jobs-job_id
+      path: /restore-jobs/{job_id}
+      operations:
+      - name: describerestorejob
+        method: GET
+        description: Describe a restore job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Pinecone-Api-Version
+          in: header
+          type: string
+          description: Required date-based version header
+          required: true
+        - name: job_id
+          in: path
+          type: string
+          description: The ID of the restore job to describe.
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.PINECONE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: db-control-manage-indexes-rest
+    port: 8080
+    description: REST adapter for Pinecone Control Plane API — Manage Indexes. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/backups
+      name: backups
+      description: REST surface for backups.
+      operations:
+      - method: GET
+        name: listprojectbackups
+        description: List backups for all indexes in a project
+        call: db-control-manage-indexes.listprojectbackups
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          limit: rest.limit
+          paginationToken: rest.paginationToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/backups/{backup-id}
+      name: backups-backup-id
+      description: REST surface for backups-backup_id.
+      operations:
+      - method: GET
+        name: describebackup
+        description: Describe a backup
+        call: db-control-manage-indexes.describebackup
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          backup_id: rest.backup_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletebackup
+        description: Delete a backup
+        call: db-control-manage-indexes.deletebackup
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          backup_id: rest.backup_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/backups/{backup-id}/create-index
+      name: backups-backup-id-create-index
+      description: REST surface for backups-backup_id-create-index.
+      operations:
+      - method: POST
+        name: createindexfrombackupoperation
+        description: Create an index from a backup
+        call: db-control-manage-indexes.createindexfrombackupoperation
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          backup_id: rest.backup_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/collections
+      name: collections
+      description: REST surface for collections.
+      operations:
+      - method: GET
+        name: listcollections
+        description: List collections
+        call: db-control-manage-indexes.listcollections
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcollection
+        description: Create a collection
+        call: db-control-manage-indexes.createcollection
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/collections/{collection-name}
+      name: collections-collection-name
+      description: REST surface for collections-collection_name.
+      operations:
+      - method: GET
+        name: describecollection
+        description: Describe a collection
+        call: db-control-manage-indexes.describecollection
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          collection_name: rest.collection_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecollection
+        description: Delete a collection
+        call: db-control-manage-indexes.deletecollection
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          collection_name: rest.collection_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/indexes
+      name: indexes
+      description: REST surface for indexes.
+      operations:
+      - method: GET
+        name: listindexes
+        description: List indexes
+        call: db-control-manage-indexes.listindexes
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createindex
+        description: Create an index
+        call: db-control-manage-indexes.createindex
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/indexes/create-for-model
+      name: indexes-create-for-model
+      description: REST surface for indexes-create-for-model.
+      operations:
+      - method: POST
+        name: createindexformodel
+        description: Create an index with integrated embedding
+        call: db-control-manage-indexes.createindexformodel
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/indexes/{index-name}
+      name: indexes-index-name
+      description: REST surface for indexes-index_name.
+      operations:
+      - method: GET
+        name: describeindex
+        description: Describe an index
+        call: db-control-manage-indexes.describeindex
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          index_name: rest.index_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteindex
+        description: Delete an index
+        call: db-control-manage-indexes.deleteindex
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          index_name: rest.index_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: configureindex
+        description: Configure an index
+        call: db-control-manage-indexes.configureindex
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          index_name: rest.index_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/indexes/{index-name}/backups
+      name: indexes-index-name-backups
+      description: REST surface for indexes-index_name-backups.
+      operations:
+      - method: GET
+        name: listindexbackups
+        description: List backups for an index
+        call: db-control-manage-indexes.listindexbackups
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          index_name: rest.index_name
+          limit: rest.limit
+          paginationToken: rest.paginationToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createbackup
+        description: Create a backup of an index
+        call: db-control-manage-indexes.createbackup
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          index_name: rest.index_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/restore-jobs
+      name: restore-jobs
+      description: REST surface for restore-jobs.
+      operations:
+      - method: GET
+        name: listrestorejobs
+        description: List restore jobs
+        call: db-control-manage-indexes.listrestorejobs
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          limit: rest.limit
+          paginationToken: rest.paginationToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/restore-jobs/{job-id}
+      name: restore-jobs-job-id
+      description: REST surface for restore-jobs-job_id.
+      operations:
+      - method: GET
+        name: describerestorejob
+        description: Describe a restore job
+        call: db-control-manage-indexes.describerestorejob
+        with:
+          X-Pinecone-Api-Version: rest.X-Pinecone-Api-Version
+          job_id: rest.job_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: db-control-manage-indexes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pinecone Control Plane API — Manage Indexes. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-backups-all-indexes-project
+      description: List backups for all indexes in a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.listprojectbackups
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        limit: tools.limit
+        paginationToken: tools.paginationToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-backup
+      description: Describe a backup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.describebackup
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        backup_id: tools.backup_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-backup
+      description: Delete a backup
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: db-control-manage-indexes.deletebackup
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        backup_id: tools.backup_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-index-backup
+      description: Create an index from a backup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: db-control-manage-indexes.createindexfrombackupoperation
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        backup_id: tools.backup_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-collections
+      description: List collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.listcollections
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-collection
+      description: Create a collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: db-control-manage-indexes.createcollection
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-collection
+      description: Describe a collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.describecollection
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        collection_name: tools.collection_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-collection
+      description: Delete a collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: db-control-manage-indexes.deletecollection
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        collection_name: tools.collection_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-indexes
+      description: List indexes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.listindexes
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-index
+      description: Create an index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: db-control-manage-indexes.createindex
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-index-integrated-embedding
+      description: Create an index with integrated embedding
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: db-control-manage-indexes.createindexformodel
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-index
+      description: Describe an index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.describeindex
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        index_name: tools.index_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-index
+      description: Delete an index
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: db-control-manage-indexes.deleteindex
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        index_name: tools.index_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: configure-index
+      description: Configure an index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.configureindex
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        index_name: tools.index_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-backups-index
+      description: List backups for an index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.listindexbackups
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        index_name: tools.index_name
+        limit: tools.limit
+        paginationToken: tools.paginationToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-backup-index
+      description: Create a backup of an index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: db-control-manage-indexes.createbackup
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        index_name: tools.index_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-restore-jobs
+      description: List restore jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.listrestorejobs
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        limit: tools.limit
+        paginationToken: tools.paginationToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-restore-job
+      description: Describe a restore job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: db-control-manage-indexes.describerestorejob
+      with:
+        X-Pinecone-Api-Version: tools.X-Pinecone-Api-Version
+        job_id: tools.job_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,74 @@
+{
+  "operationId": "list_collections",
+  "method": "GET",
+  "path": "/collections",
+  "summary": "List collections",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "multiple-collections",
+      "example": {
+        "collections": [
+          {
+            "dimension": 3,
+            "environment": "us-east1-gcp",
+            "name": "small-collection",
+            "size": 3126700,
+            "status": "Ready",
+            "vector_count": 99
+          },
+          {
+            "dimension": 3,
+            "environment": "us-east1-gcp",
+            "name": "small-collection-new",
+            "size": 3126700,
+            "status": "Initializing",
+            "vector_count": 99
+          },
+          {
+            "dimension": 1536,
+            "environment": "us-east1-gcp",
+            "name": "big-collection",
+            "size": 160087040000000,
+            "status": "Ready",
+            "vector_count": 10000000
+          }
+        ]
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "no-collections",
+      "example": {
+        "collections": []
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

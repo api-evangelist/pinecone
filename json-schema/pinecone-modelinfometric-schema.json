@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelInfoMetric",
+  "title": "ModelInfoMetric",
+  "description": "A distance metric that the embedding model supports for similarity searches.\nPossible values: `cosine`, `euclidean`, or `dotproduct`.",
+  "x-enum": [
+    "cosine",
+    "euclidean",
+    "dotproduct"
+  ],
+  "type": "string"
+}

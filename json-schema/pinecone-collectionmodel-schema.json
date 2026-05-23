@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionModel",
+  "title": "CollectionModel",
+  "description": "The CollectionModel describes the configuration and status of a Pinecone collection.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "example-collection",
+      "description": "The name of the collection.",
+      "type": "string"
+    },
+    "size": {
+      "example": 10000000,
+      "description": "The size of the collection in bytes.",
+      "type": "integer",
+      "format": "int64"
+    },
+    "status": {
+      "example": "Initializing",
+      "description": "The status of the collection.\nPossible values: `Initializing`, `Ready`, or `Terminating`.",
+      "x-enum": [
+        "Initializing",
+        "Ready",
+        "Terminating"
+      ],
+      "type": "string"
+    },
+    "dimension": {
+      "example": 1536,
+      "description": "The dimension of the vectors stored in each record held in the collection.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "vector_count": {
+      "example": 120000,
+      "description": "The number of records stored in the collection.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "environment": {
+      "example": "us-east1-gcp",
+      "description": "The environment where the collection is hosted.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "status",
+    "environment"
+  ]
+}

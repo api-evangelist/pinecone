@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiModalContentTextBlockModel",
+  "title": "MultiModalContentTextBlockModel",
+  "description": "Represents a text block in a multimodal context snippet.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of multimodal content block.",
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "text"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateResponse",
+  "title": "UpdateResponse",
+  "description": "The response for the `update` operation.",
+  "type": "object",
+  "properties": {
+    "matchedRecords": {
+      "example": 42,
+      "description": "The number of records that matched the filter (if a filter was provided).",
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScalingConfigManual",
+  "title": "ScalingConfigManual",
+  "description": "The config to use for manual read capacity scaling.",
+  "type": "object",
+  "properties": {
+    "replicas": {
+      "description": "The number of replicas to use. Replicas duplicate the compute resources and data of an index, allowing higher query throughput and availability. Setting replicas to 0 disables the index but can be used to reduce costs while usage is paused.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    },
+    "shards": {
+      "description": "The number of shards to use. Shards determine the storage capacity of an index, with each shard providing 250 GB of storage.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    }
+  }
+}

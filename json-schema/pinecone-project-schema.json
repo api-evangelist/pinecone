@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "description": "The details of a project.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique ID of the project.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "description": "The name of the project.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "max_pods": {
+      "description": "The maximum number of Pods that can be created in the project.",
+      "type": "integer"
+    },
+    "force_encryption_with_cmek": {
+      "description": "Whether to force encryption with a customer-managed encryption key (CMEK).",
+      "type": "boolean"
+    },
+    "organization_id": {
+      "description": "The unique ID of the organization that the project belongs to.",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "The date and time when the project was created.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "max_pods",
+    "force_encryption_with_cmek",
+    "organization_id"
+  ]
+}

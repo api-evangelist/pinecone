@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Organization",
+  "title": "Organization",
+  "description": "The details of an organization.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique ID of the organization.",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the organization.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "plan": {
+      "description": "The current plan the organization is on.",
+      "x-enum": [
+        "Free",
+        "Standard",
+        "Enterprise",
+        "Dedicated"
+      ],
+      "type": "string"
+    },
+    "payment_status": {
+      "description": "The current payment status of the organization.",
+      "x-enum": [
+        "Active",
+        "PaymentPending",
+        "PastDue",
+        "Restricted",
+        "Suspended",
+        "Deactivated"
+      ],
+      "type": "string"
+    },
+    "created_at": {
+      "description": "The date and time when the organization was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "support_tier": {
+      "description": "The support tier of the organization.",
+      "x-enum": [
+        "Free",
+        "Developer",
+        "Pro",
+        "Enterprise"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "plan",
+    "payment_status",
+    "created_at",
+    "support_tier"
+  ]
+}

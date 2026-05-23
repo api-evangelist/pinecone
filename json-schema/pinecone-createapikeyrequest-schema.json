@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAPIKeyRequest",
+  "title": "CreateAPIKeyRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "devkey",
+      "description": "The name of the API key. The name must be 1-80 characters long.\n",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "roles": {
+      "description": "The roles to create the API key with. Default is `[\"ProjectEditor\"]`.\n",
+      "type": "array",
+      "items": {
+        "example": "ProjectEditor",
+        "description": "A role that can be assigned to an API key.\nPossible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.",
+        "x-enum": [
+          "ProjectEditor",
+          "ProjectViewer",
+          "ControlPlaneEditor",
+          "ControlPlaneViewer",
+          "DataPlaneEditor",
+          "DataPlaneViewer"
+        ],
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

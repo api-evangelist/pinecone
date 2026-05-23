@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparseEmbedding",
+  "title": "Sparse embedding",
+  "description": "A sparse embedding of a single input",
+  "type": "object",
+  "properties": {
+    "sparse_values": {
+      "example": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "description": "The sparse embedding values.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "sparse_indices": {
+      "example": [
+        10,
+        3,
+        156
+      ],
+      "description": "The sparse embedding indices.",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64",
+        "minimum": 0,
+        "maximum": 4294967295
+      }
+    },
+    "sparse_tokens": {
+      "example": [
+        "quick",
+        "brown",
+        "fox"
+      ],
+      "description": "The normalized tokens used to create the sparse embedding.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vector_type": {
+      "$ref": "#/components/schemas/VectorType"
+    }
+  },
+  "required": [
+    "sparse_values",
+    "sparse_indices",
+    "vector_type"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NamespaceDescription",
+  "title": "NamespaceDescription",
+  "description": "A description of a namespace, including the name and record count.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "example-namespace",
+      "description": "The name of the namespace.",
+      "type": "string"
+    },
+    "record_count": {
+      "example": 20000,
+      "description": "The total amount of records within the namespace.",
+      "type": "integer",
+      "format": "int64"
+    },
+    "schema": {
+      "example": {
+        "fields": {
+          "description": {
+            "filterable": true
+          },
+          "genre": {
+            "filterable": true
+          },
+          "year": {
+            "filterable": true
+          }
+        }
+      },
+      "description": "Schema for the behavior of Pinecone's internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.",
+      "type": "object",
+      "properties": {
+        "fields": {
+          "description": "A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "filterable": {
+                "description": "Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.",
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "fields"
+      ]
+    },
+    "indexed_fields": {
+      "description": "A list of all indexed metatadata fields in the namespace",
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "genre",
+            "year",
+            "author"
+          ]
+        }
+      }
+    }
+  }
+}

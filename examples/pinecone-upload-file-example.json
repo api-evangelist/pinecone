@@ -1,0 +1,57 @@
+{
+  "operationId": "upload_file",
+  "method": "POST",
+  "path": "/files/{assistant_name}",
+  "summary": "Upload file to assistant",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "files-validation-error",
+      "example": {
+        "error": {
+          "code": "INVALID_ARGUMENT",
+          "message": "Uploaded file can only currently be either a pdf or txt file"
+        },
+        "status": 400
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "assistant-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Assistant \"example-assistant\" not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

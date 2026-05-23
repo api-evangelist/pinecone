@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScoredVector",
+  "title": "ScoredVector",
+  "type": "object",
+  "properties": {
+    "id": {
+      "example": "example-vector-1",
+      "description": "This is the vector's unique id.",
+      "type": "string",
+      "required": [
+        "id"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "score": {
+      "example": 0.08,
+      "description": "This is a measure of similarity between this vector and the query vector.  The higher the score, the more they are similar.",
+      "type": "number",
+      "format": "float"
+    },
+    "values": {
+      "example": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "description": "This is the vector data, if it is requested.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "sparseValues": {
+      "$ref": "#/components/schemas/SparseValues"
+    },
+    "metadata": {
+      "example": {
+        "genre": "documentary",
+        "year": 2019
+      },
+      "description": "This is the metadata, if it is requested.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

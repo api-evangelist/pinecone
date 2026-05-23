@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatModel",
+  "title": "ChatModel",
+  "description": "Describes the response format of a chat request from the citation API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "finish_reason": {
+      "x-enum": [
+        "stop",
+        "length",
+        "content_filter",
+        "function_call"
+      ],
+      "type": "string"
+    },
+    "message": {
+      "$ref": "#/components/schemas/MessageModel"
+    },
+    "model": {
+      "type": "string"
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CitationModel"
+      }
+    },
+    "usage": {
+      "$ref": "#/components/schemas/UsageModel"
+    }
+  }
+}

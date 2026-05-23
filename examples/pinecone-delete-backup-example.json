@@ -1,0 +1,57 @@
+{
+  "operationId": "delete_backup",
+  "method": "DELETE",
+  "path": "/backups/{backup_id}",
+  "summary": "Delete a backup",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "backup-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Backup bkp_123abc not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "412",
+      "contentType": "application/json",
+      "name": "pending-restore",
+      "example": {
+        "error": {
+          "code": "FAILED_PRECONDITION",
+          "message": "Unable to delete backup. There are pending restore jobs for this backup: ['670e8400-e29b-41d4-a716-446655440000']"
+        },
+        "status": 412
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

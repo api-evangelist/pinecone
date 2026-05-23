@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListNamespacesResponse",
+  "title": "ListNamespacesResponse",
+  "type": "object",
+  "properties": {
+    "namespaces": {
+      "description": "The list of namespaces belonging to this index.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NamespaceDescription"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "total_count": {
+      "example": 25,
+      "description": "The total number of namespaces in the index matching the prefix",
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

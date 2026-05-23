@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateOrganizationRequest",
+  "title": "UpdateOrganizationRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "organization-name",
+      "description": "The new name for the organization.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    }
+  }
+}

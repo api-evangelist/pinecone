@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextSnippetModel",
+  "title": "TextSnippetModel",
+  "description": "Represents a text context snippet.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of context snippet.",
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number",
+      "format": "float"
+    },
+    "reference": {
+      "$ref": "#/components/schemas/TypedReferenceModel"
+    }
+  },
+  "required": [
+    "type",
+    "content",
+    "score",
+    "reference"
+  ]
+}

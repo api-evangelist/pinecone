@@ -1,0 +1,84 @@
+{
+  "operationId": "list_restore_jobs",
+  "method": "GET",
+  "path": "/restore-jobs",
+  "summary": "List restore jobs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "paginated-restore-jobs",
+      "example": {
+        "data": [
+          {
+            "backup_id": "670e8400-e29b-41d4-a716-446655440000",
+            "completed_at": "2024-03-15 10:35:00+00:00",
+            "created_at": "2024-03-15 10:30:00+00:00",
+            "percent_complete": 100,
+            "restore_job_id": "670e8400-e29b-41d4-a716-446655440001",
+            "status": "Completed",
+            "target_index_id": "idx_456",
+            "target_index_name": "my-index"
+          }
+        ],
+        "pagination": {
+          "next": "dXNlcl9pZD11c2VyXzE="
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "non-paginated-restore-jobs",
+      "example": {
+        "data": [
+          {
+            "backup_id": "670e8400-e29b-41d4-a716-446655440000",
+            "completed_at": "2024-03-15 10:35:00+00:00",
+            "created_at": "2024-03-15 10:30:00+00:00",
+            "percent_complete": 100,
+            "restore_job_id": "670e8400-e29b-41d4-a716-446655440001",
+            "status": "Completed",
+            "target_index_id": "idx_456",
+            "target_index_name": "my-index"
+          }
+        ],
+        "pagination": null
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "no-restore-jobs",
+      "example": {
+        "data": [],
+        "pagination": null
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

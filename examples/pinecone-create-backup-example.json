@@ -1,0 +1,102 @@
+{
+  "operationId": "create_backup",
+  "method": "POST",
+  "path": "/indexes/{index_name}/backups",
+  "summary": "Create a backup of an index",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "backup-index-no-name",
+      "example": {}
+    },
+    {
+      "contentType": "application/json",
+      "name": "backup-index-with-name",
+      "example": {
+        "name": "backup-index"
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "backup-index-with-name-and-description",
+      "example": {
+        "description": "Backup of the index",
+        "name": "backup-index"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "index-metric-validation-error",
+      "example": {
+        "error": {
+          "code": "INVALID_ARGUMENT",
+          "message": "Bad request. The request body included invalid request parameters."
+        },
+        "status": 400
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "402",
+      "contentType": "application/json",
+      "name": "payment-required",
+      "example": {
+        "error": {
+          "code": "PAYMENT_REQUIRED",
+          "message": "Request failed. Pay all past due invoices to lift restrictions on your account."
+        },
+        "status": 402
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Increase your quota or upgrade to create more backups."
+        },
+        "status": 403
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "name": "missing-field",
+      "example": {
+        "error": {
+          "code": "UNPROCESSABLE_ENTITY",
+          "message": "Failed to deserialize the JSON body into the target type: missing field `metric` at line 1 column 16"
+        },
+        "status": 422
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

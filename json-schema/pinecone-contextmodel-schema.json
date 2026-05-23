@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContextModel",
+  "title": "ContextModel",
+  "description": "The response format containing the context from an assistant.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "snippets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnippetModel"
+      }
+    },
+    "usage": {
+      "$ref": "#/components/schemas/UsageModel"
+    }
+  },
+  "required": [
+    "snippets",
+    "usage"
+  ]
+}

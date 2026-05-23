@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DocxReferenceModel",
+  "title": "DocxReferenceModel",
+  "description": "Represents a reference to a part of a docx document.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of reference. Always \"doc_x\".",
+      "type": "string"
+    },
+    "file": {
+      "$ref": "#/components/schemas/AssistantFileModel"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "file",
+    "pages"
+  ]
+}

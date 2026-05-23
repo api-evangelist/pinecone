@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageModel",
+  "title": "ImageModel",
+  "nullable": true,
+  "description": "Represents the data for an image.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The format of the image data. Currently, this is always \"base64\".",
+      "type": "string"
+    },
+    "mime_type": {
+      "description": "The MIME type of the image (e.g., \"image/jpeg\").",
+      "type": "string"
+    },
+    "data": {
+      "description": "The image data. Currently, this is always a base64-encoded string.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "mime_type",
+    "data"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListItem",
+  "title": "ListItem",
+  "type": "object",
+  "properties": {
+    "id": {
+      "example": "document1#abb",
+      "type": "string"
+    }
+  }
+}

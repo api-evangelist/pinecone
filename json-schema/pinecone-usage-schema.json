@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Usage",
+  "title": "Usage",
+  "type": "object",
+  "properties": {
+    "readUnits": {
+      "example": 5,
+      "description": "The number of read units consumed by this operation.",
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

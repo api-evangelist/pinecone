@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SingleQueryResults",
+  "title": "The query results for a single `QueryVector`",
+  "type": "object",
+  "properties": {
+    "matches": {
+      "description": "The matches for the vectors.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ScoredVector"
+      }
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace for the vectors.",
+      "type": "string"
+    }
+  }
+}

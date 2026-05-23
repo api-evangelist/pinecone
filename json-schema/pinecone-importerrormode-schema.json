@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportErrorMode",
+  "title": "ImportErrorMode",
+  "description": "Indicates how to respond to errors during the import process.",
+  "type": "object",
+  "properties": {
+    "onError": {
+      "description": "Indicates how to respond to errors during the import process.\nPossible values: `abort` or `continue`.",
+      "x-enum": [
+        "abort",
+        "continue"
+      ],
+      "type": "string"
+    }
+  }
+}

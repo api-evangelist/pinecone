@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListResponse",
+  "title": "ListResponse",
+  "description": "The response for the `list` operation.",
+  "type": "object",
+  "properties": {
+    "vectors": {
+      "example": [
+        {
+          "id": "document1#abb"
+        },
+        {
+          "id": "document1#abc"
+        }
+      ],
+      "title": "A list of ids",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ListItem"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace of the vectors.",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/Usage"
+    }
+  }
+}

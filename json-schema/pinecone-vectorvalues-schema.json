@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VectorValues",
+  "title": "VectorValues",
+  "description": "This is the vector data included in the request.",
+  "type": "array",
+  "items": {
+    "type": "number",
+    "format": "float"
+  },
+  "minLength": 1,
+  "maxLength": 20000
+}

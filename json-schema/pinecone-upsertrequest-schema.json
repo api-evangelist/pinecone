@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpsertRequest",
+  "title": "UpsertRequest",
+  "description": "The request for the `upsert` operation.",
+  "type": "object",
+  "properties": {
+    "vectors": {
+      "description": "An array containing the vectors to upsert. Recommended batch limit is up to 1000 vectors.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Vector"
+      },
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace where you upsert vectors.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "vectors"
+  ]
+}

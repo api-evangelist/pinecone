@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateIndexFromBackupResponse",
+  "title": "CreateIndexFromBackupResponse",
+  "description": "The response for creating an index from a backup.",
+  "type": "object",
+  "properties": {
+    "restore_job_id": {
+      "example": "670e8400-e29b-41d4-a716-446655440000",
+      "description": "The ID of the restore job that was created.",
+      "type": "string"
+    },
+    "index_id": {
+      "example": "123e4567-e89b-12d3-a456-426614174000",
+      "description": "The ID of the index that was created from the backup.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "restore_job_id",
+    "index_id"
+  ]
+}

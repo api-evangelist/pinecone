@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatCompletionModel",
+  "title": "ChatCompletionModel",
+  "description": "Describes the response format of a chat request.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ChoiceModel"
+      }
+    },
+    "model": {
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/UsageModel"
+    }
+  }
+}

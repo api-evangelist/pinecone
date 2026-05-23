@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexList",
+  "title": "IndexList",
+  "description": "The list of indexes that exist in the project.",
+  "type": "object",
+  "properties": {
+    "indexes": {
+      "description": "List of indexes in the project",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/IndexModel"
+      }
+    }
+  }
+}

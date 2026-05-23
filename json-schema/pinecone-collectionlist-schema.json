@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionList",
+  "title": "CollectionList",
+  "description": "The list of collections that exist in the project.",
+  "type": "object",
+  "properties": {
+    "collections": {
+      "description": "List of collections in the project",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CollectionModel"
+      }
+    }
+  }
+}

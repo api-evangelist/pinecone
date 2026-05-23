@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChoiceModel",
+  "title": "ChoiceModel",
+  "description": "Describes a single choice in a chat completion response.",
+  "type": "object",
+  "properties": {
+    "finish_reason": {
+      "x-enum": [
+        "stop",
+        "length",
+        "content_filter",
+        "function_call"
+      ],
+      "type": "string"
+    },
+    "index": {
+      "type": "integer"
+    },
+    "message": {
+      "$ref": "#/components/schemas/MessageModel"
+    }
+  }
+}

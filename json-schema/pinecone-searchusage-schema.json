@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchUsage",
+  "title": "SearchUsage",
+  "type": "object",
+  "properties": {
+    "read_units": {
+      "example": 5,
+      "description": "The number of read units consumed by this operation.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    },
+    "embed_total_tokens": {
+      "example": 2,
+      "description": "The number of embedding tokens consumed by this operation.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    },
+    "rerank_units": {
+      "example": 1,
+      "description": "The number of rerank units consumed by this operation.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "read_units"
+  ]
+}

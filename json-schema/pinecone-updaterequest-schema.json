@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateRequest",
+  "title": "UpdateRequest",
+  "description": "The request for the `update` operation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "example": "example-vector-1",
+      "description": "Vector's unique id.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "values": {
+      "example": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "description": "Vector data.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      },
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "sparseValues": {
+      "$ref": "#/components/schemas/SparseValues"
+    },
+    "setMetadata": {
+      "example": {
+        "genre": "documentary",
+        "year": 2019
+      },
+      "description": "Metadata to set for the vector.",
+      "type": "object"
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace containing the vector to update.",
+      "type": "string"
+    },
+    "filter": {
+      "example": {
+        "genre": {
+          "$in": [
+            "comedy",
+            "documentary",
+            "drama"
+          ]
+        },
+        "year": {
+          "$eq": 2019
+        }
+      },
+      "description": "A metadata filter expression. When updating metadata across records in a namespace,  the update is applied to all records that match the filter.  See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).",
+      "type": "object"
+    },
+    "dryRun": {
+      "example": false,
+      "description": "If `true`, return the number of records that match the `filter`, but do not execute the update.  Default is `false`.",
+      "default": false,
+      "type": "boolean"
+    }
+  }
+}

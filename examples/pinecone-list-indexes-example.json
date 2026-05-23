@@ -1,0 +1,147 @@
+{
+  "operationId": "list_indexes",
+  "method": "GET",
+  "path": "/indexes",
+  "summary": "List indexes",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "multiple-indexes",
+      "example": {
+        "indexes": [
+          {
+            "dimension": 384,
+            "host": "semantic-search-c01b5b5.svc.us-west1-gcp.pinecone.io",
+            "metric": "cosine",
+            "name": "semantic-search",
+            "spec": {
+              "pod": {
+                "environment": "us-west1-gcp",
+                "pod_type": "p1.x1",
+                "pods": 4,
+                "replicas": 2,
+                "shards": 2
+              }
+            },
+            "status": {
+              "ready": true,
+              "state": "Ready"
+            },
+            "vector_type": "dense"
+          },
+          {
+            "dimension": 200,
+            "host": "image-search-a31f9c1.svc.us-east1-gcp.pinecone.io",
+            "metric": "dotproduct",
+            "name": "image-search",
+            "spec": {
+              "serverless": {
+                "cloud": "aws",
+                "read_capacity": {
+                  "mode": "OnDemand",
+                  "status": {
+                    "state": "Ready"
+                  }
+                },
+                "region": "us-east-1"
+              }
+            },
+            "status": {
+              "ready": false,
+              "state": "Initializing"
+            },
+            "vector_type": "dense"
+          },
+          {
+            "host": "sparse-index-1a2b3c4d.svc.us-east1-gcp.pinecone.io",
+            "metric": "dotproduct",
+            "name": "sparse-index",
+            "spec": {
+              "serverless": {
+                "cloud": "aws",
+                "read_capacity": {
+                  "mode": "OnDemand",
+                  "status": {
+                    "state": "Ready"
+                  }
+                },
+                "region": "us-east-1"
+              }
+            },
+            "status": {
+              "ready": true,
+              "state": "Ready"
+            },
+            "vector_type": "sparse"
+          }
+        ]
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "one-index",
+      "example": {
+        "indexes": [
+          {
+            "dimension": 1536,
+            "host": "movie-embeddings-c01b5b5.svc.us-east1-gcp.pinecone.io",
+            "metric": "cosine",
+            "name": "movie-embeddings",
+            "spec": {
+              "serverless": {
+                "cloud": "aws",
+                "read_capacity": {
+                  "mode": "OnDemand",
+                  "status": {
+                    "state": "Ready"
+                  }
+                },
+                "region": "us-east-1"
+              }
+            },
+            "status": {
+              "ready": false,
+              "state": "Initializing"
+            },
+            "vector_type": "dense"
+          }
+        ]
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "no-indexes",
+      "example": {
+        "indexes": []
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

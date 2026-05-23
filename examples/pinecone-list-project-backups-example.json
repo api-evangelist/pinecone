@@ -1,0 +1,102 @@
+{
+  "operationId": "list_project_backups",
+  "method": "GET",
+  "path": "/backups",
+  "summary": "List backups for all indexes in a project",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "backups",
+      "example": {
+        "data": [
+          {
+            "backup_id": "670e8400-e29b-41d4-a716-446655440000",
+            "cloud": "aws",
+            "created_at": "2024-03-15 10:30:00+00:00",
+            "description": "Monthly backup of production index",
+            "dimension": 1536,
+            "metric": "cosine",
+            "name": "backup_2024_03_15",
+            "namespace_count": 3,
+            "record_count": 120000,
+            "region": "us-east-1",
+            "schema": {
+              "fields": {
+                "genre": {
+                  "filterable": true
+                },
+                "title": {
+                  "filterable": true
+                }
+              }
+            },
+            "size_bytes": 10000000,
+            "source_index_id": "idx_456",
+            "source_index_name": "my-index",
+            "status": "Ready",
+            "tags": {
+              "environment": "production",
+              "type": "monthly"
+            }
+          },
+          {
+            "backup_id": "670e8400-e29b-41d4-a716-446655440001",
+            "cloud": "aws",
+            "created_at": "2024-03-20 15:45:00+00:00",
+            "description": "Pre-deployment safety backup",
+            "dimension": 1536,
+            "metric": "cosine",
+            "name": "backup_2024_03_20",
+            "namespace_count": 4,
+            "record_count": 125000,
+            "region": "us-east-1",
+            "schema": {
+              "fields": {
+                "genre": {
+                  "filterable": true
+                },
+                "title": {
+                  "filterable": true
+                }
+              }
+            },
+            "size_bytes": 10500000,
+            "source_index_id": "idx_789",
+            "source_index_name": "my-index-2",
+            "status": "Ready",
+            "tags": {
+              "environment": "production",
+              "type": "pre-deploy"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

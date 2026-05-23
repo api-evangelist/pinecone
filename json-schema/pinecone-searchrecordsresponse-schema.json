@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchRecordsResponse",
+  "title": "SearchRecordsResponse",
+  "example": {
+    "result": {
+      "hits": [
+        {
+          "_id": "example-record-1",
+          "_score": 0.9281134605407715,
+          "fields": {
+            "data": "your example text"
+          }
+        }
+      ]
+    },
+    "usage": {
+      "embed_total_tokens": 10,
+      "read_units": 5
+    }
+  },
+  "description": "The records search response.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "object",
+      "properties": {
+        "hits": {
+          "description": "The hits for the search document request.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Hit"
+          }
+        }
+      },
+      "required": [
+        "hits"
+      ]
+    },
+    "usage": {
+      "$ref": "#/components/schemas/SearchUsage"
+    }
+  },
+  "required": [
+    "usage",
+    "result"
+  ]
+}

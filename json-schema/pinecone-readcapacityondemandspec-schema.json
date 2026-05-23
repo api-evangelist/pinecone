@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReadCapacityOnDemandSpec",
+  "title": "On-demand",
+  "example": {
+    "mode": "OnDemand"
+  },
+  "type": "object",
+  "properties": {
+    "mode": {
+      "description": "The mode of the index. Possible values: `OnDemand` or `Dedicated`. Defaults to `OnDemand`. If set to `Dedicated`, `dedicated.node_type`, and `dedicated.scaling` must be specified.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "mode"
+  ],
+  "additionalProperties": false
+}

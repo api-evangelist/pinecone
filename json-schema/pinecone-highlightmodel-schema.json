@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HighlightModel",
+  "title": "HighlightModel",
+  "nullable": true,
+  "description": "Represents a portion of a referenced document that directly supports or is relevant to the response.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of the highlight. Currently it is always text.",
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "content"
+  ]
+}

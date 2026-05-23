@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeletionProtection",
+  "title": "DeletionProtection",
+  "description": "Whether [deletion protection](http://docs.pinecone.io/guides/manage-data/manage-indexes#configure-deletion-protection) is enabled/disabled for the index.\nPossible values: `disabled` or `enabled`.",
+  "default": "disabled",
+  "x-enum": [
+    "disabled",
+    "enabled"
+  ],
+  "type": "string"
+}

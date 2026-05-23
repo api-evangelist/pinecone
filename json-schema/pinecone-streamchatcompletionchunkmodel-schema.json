@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreamChatCompletionChunkModel",
+  "title": "StreamChatCompletionChunkModel",
+  "description": "Describes the response format of a chat request.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ChoiceChunkModel"
+      }
+    },
+    "model": {
+      "type": "string"
+    }
+  }
+}

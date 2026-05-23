@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContextRequest",
+  "title": "ContextRequest",
+  "description": "Parameters to retrieve context from an assistant.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "description": "The query that is used to generate the context. Exactly one of query or messages should be provided.",
+      "type": "string"
+    },
+    "filter": {
+      "example": {
+        "genre": {
+          "$ne": "documentary"
+        }
+      },
+      "description": "Optionally filter which documents can be retrieved using the following metadata fields.",
+      "type": "object"
+    },
+    "messages": {
+      "description": "The list of messages to use for generating the context. Exactly one of query or messages should be provided.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MessageModel"
+      }
+    },
+    "top_k": {
+      "example": 20,
+      "description": "The maximum number of context snippets to return. Default is 16. Maximum is 64.",
+      "type": "integer"
+    },
+    "snippet_size": {
+      "example": 4096,
+      "description": "The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.",
+      "type": "integer"
+    },
+    "multimodal": {
+      "description": "Whether or not to retrieve image-related context snippets. If `false`, only text snippets are returned.",
+      "default": true,
+      "type": "boolean"
+    },
+    "include_binary_content": {
+      "description": "If image-related context snippets are returned, this field determines whether or not they should include base64 image data. If `false`, only the image captions are returned. Only available when `multimodal=true`.",
+      "default": true,
+      "type": "boolean"
+    }
+  }
+}

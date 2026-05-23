@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateIndexForModelRequest",
+  "title": "CreateIndexForModelRequest",
+  "description": "The desired configuration for the index and associated embedding model.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "example-index",
+      "description": "The name of the index. Resource name must be 1-45 characters long, start and end with an alphanumeric character, and consist only of lower case alphanumeric characters or '-'.\n",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 45
+    },
+    "cloud": {
+      "example": "aws",
+      "description": "The public cloud where you would like your index hosted.\nPossible values: `gcp`, `aws`, or `azure`.",
+      "x-enum": [
+        "gcp",
+        "aws",
+        "azure"
+      ],
+      "type": "string"
+    },
+    "region": {
+      "example": "us-east-1",
+      "description": "The region where you would like your index to be created.",
+      "type": "string"
+    },
+    "deletion_protection": {
+      "$ref": "#/components/schemas/DeletionProtection"
+    },
+    "tags": {
+      "$ref": "#/components/schemas/IndexTags"
+    },
+    "schema": {
+      "$ref": "#/components/schemas/MetadataSchema"
+    },
+    "read_capacity": {
+      "$ref": "#/components/schemas/ReadCapacity"
+    },
+    "embed": {
+      "example": {
+        "field_map": {
+          "text": "your-text-field"
+        },
+        "metric": "cosine",
+        "model": "multilingual-e5-large",
+        "read_parameters": {
+          "input_type": "query",
+          "truncate": "NONE"
+        },
+        "write_parameters": {
+          "input_type": "passage"
+        }
+      },
+      "description": "Specify the integrated inference embedding configuration for the index.\n\nOnce set the model cannot be changed, but you can later update the embedding configuration for an integrated inference index including field map, read parameters, or write parameters.\n\nRefer to the [model guide](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) for available models and model details.",
+      "type": "object",
+      "properties": {
+        "model": {
+          "example": "multilingual-e5-large",
+          "description": "The name of the embedding model to use for the index.",
+          "type": "string"
+        },
+        "metric": {
+          "description": "The distance metric to be used for similarity search. You can use 'euclidean', 'cosine', or 'dotproduct'. If not specified, the metric will be defaulted according to the model. Cannot be updated once set.\nPossible values: `cosine`, `euclidean`, or `dotproduct`.",
+          "x-enum": [
+            "cosine",
+            "euclidean",
+            "dotproduct"
+          ],
+          "type": "string"
+        },
+        "field_map": {
+          "example": {
+            "text": "your-text-field"
+          },
+          "description": "Identifies the name of the text field from your document model that will be embedded.",
+          "type": "object"
+        },
+        "dimension": {
+          "description": "The dimension of embedding vectors produced for the index.",
+          "type": "integer"
+        },
+        "read_parameters": {
+          "description": "The read parameters for the embedding model.",
+          "type": "object"
+        },
+        "write_parameters": {
+          "description": "The write parameters for the embedding model.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "model",
+        "field_map"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "cloud",
+    "region",
+    "embed"
+  ]
+}

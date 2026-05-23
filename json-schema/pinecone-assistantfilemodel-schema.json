@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssistantFileModel",
+  "title": "AssistantFileModel",
+  "description": "The response format for a successful file upload request.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "metadata": {
+      "nullable": true,
+      "type": "object"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "description": "The current state of the uploaded file. Possible values:\n- `Processing`: File is being processed (parsed, chunked, embedded)\n- `Available`: Processing completed successfully; file is ready for use\n- `Deleting`: Deletion has been initiated but not yet completed\n- `ProcessingFailed`: Processing failed with an error\n\nNote: Once a file is deleted, the API returns 404 Not Found instead of a file object.",
+      "x-enum": [
+        "Processing",
+        "Available",
+        "Deleting",
+        "ProcessingFailed"
+      ],
+      "type": "string"
+    },
+    "percent_done": {
+      "nullable": true,
+      "description": "The percentage of the file that has been processed",
+      "type": "number",
+      "format": "double"
+    },
+    "signed_url": {
+      "nullable": true,
+      "example": "https://storage.googleapis.com/bucket/file.pdf?...",
+      "description": "A [signed URL](https://cloud.google.com/storage/docs/access-control/signed-urls) that provides temporary, read-only access to the underlying file. Anyone with the link can access the file, so treat it as sensitive data. Expires after a short time.",
+      "type": "string"
+    },
+    "error_message": {
+      "nullable": true,
+      "description": "A message describing any error during file processing. Provided only if an error occurs.",
+      "type": "string"
+    },
+    "multimodal": {
+      "description": "Indicates whether the file was processed as multimodal.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}

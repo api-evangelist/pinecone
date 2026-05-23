@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiModalContentImageBlockModel",
+  "title": "MultiModalContentImageBlockModel",
+  "description": "Represents an image block in a multimodal context snippet.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of multimodal content block.",
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "image": {
+      "$ref": "#/components/schemas/ImageModel"
+    }
+  },
+  "required": [
+    "type",
+    "caption"
+  ]
+}

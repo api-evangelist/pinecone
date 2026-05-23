@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelInfoSupportedParameter",
+  "title": "ModelInfoSupportedParameter",
+  "description": "Describes a parameter supported by the model, including parameter value constraints.",
+  "type": "object",
+  "properties": {
+    "parameter": {
+      "example": "input_type",
+      "description": "The name of the parameter.",
+      "type": "string"
+    },
+    "type": {
+      "example": "one_of",
+      "description": "The parameter type e.g. 'one_of', 'numeric_range', or 'any'.\n\nIf the type is 'one_of', then 'allowed_values' will be set, and the value specified must be one of the allowed values. 'one_of' is only compatible with value_type 'string' or 'integer'.\n\nIf 'numeric_range', then 'min' and 'max' will be set, then the value specified must adhere to the value_type and must fall within the `[min, max]` range (inclusive).\n\nIf 'any' then any value is allowed, as long as it adheres to the value_type.",
+      "type": "string"
+    },
+    "value_type": {
+      "example": "string",
+      "description": "The type of value the parameter accepts, e.g. 'string', 'integer', 'float', or 'boolean'.",
+      "type": "string"
+    },
+    "required": {
+      "example": true,
+      "description": "Whether the parameter is required (true) or optional (false).",
+      "type": "boolean"
+    },
+    "allowed_values": {
+      "description": "The allowed parameter values when the type is 'one_of'.",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    "min": {
+      "example": 1,
+      "description": "The minimum allowed value (inclusive) when the type is 'numeric_range'.",
+      "type": "number"
+    },
+    "max": {
+      "example": 1,
+      "description": "The maximum allowed value (inclusive) when the type is 'numeric_range'.",
+      "type": "number"
+    },
+    "default": {
+      "example": "END",
+      "description": "The default value for the parameter when a parameter is optional.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "type": "number",
+          "format": "float"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  },
+  "required": [
+    "parameter",
+    "type",
+    "value_type",
+    "required"
+  ]
+}

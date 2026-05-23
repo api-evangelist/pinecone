@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelInfoSupportedMetrics",
+  "title": "ModelInfoSupportedMetrics",
+  "description": "The distance metrics supported by the model for similarity search.",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/ModelInfoMetric"
+  }
+}

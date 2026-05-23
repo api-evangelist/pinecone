@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RestoreJobList",
+  "title": "RestoreJobList",
+  "description": "The list of restore jobs that exist in the project.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "List of restore job objects",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RestoreJobModel"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/PaginationResponse"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageModel",
+  "title": "MessageModel",
+  "description": "Describes the format of a message in a chat.",
+  "type": "object",
+  "properties": {
+    "role": {
+      "description": "Role of the message such as 'user' or 'assistant'",
+      "type": "string"
+    },
+    "content": {
+      "description": "Content of the message",
+      "type": "string"
+    }
+  }
+}

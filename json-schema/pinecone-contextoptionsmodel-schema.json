@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContextOptionsModel",
+  "title": "ContextOptionsModel",
+  "description": "Controls the context snippets sent to the LLM.",
+  "type": "object",
+  "properties": {
+    "top_k": {
+      "example": 20,
+      "description": "The maximum number of context snippets to use. Default is 16. Maximum is 64.",
+      "type": "integer"
+    },
+    "snippet_size": {
+      "example": 4096,
+      "description": "The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.",
+      "type": "integer"
+    },
+    "multimodal": {
+      "description": "Whether or not to send image-related context snippets to the LLM. If `false`, only text context snippets are sent.",
+      "default": true,
+      "type": "boolean"
+    },
+    "include_binary_content": {
+      "description": "If image-related context snippets are sent to the LLM, this field determines whether or not they should include base64 image data. If `false`, only the image caption is sent. Only available when `multimodal=true`.",
+      "default": true,
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmbeddingsList",
+  "title": "EmbeddingsList",
+  "description": "Embeddings generated for the input.",
+  "type": "object",
+  "properties": {
+    "model": {
+      "example": "multilingual-e5-large",
+      "description": "The model used to generate the embeddings",
+      "type": "string"
+    },
+    "vector_type": {
+      "example": "dense",
+      "description": "Indicates whether the response data contains 'dense' or 'sparse' embeddings.",
+      "type": "string"
+    },
+    "data": {
+      "description": "The embeddings generated for the inputs.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Embedding"
+      }
+    },
+    "usage": {
+      "description": "Usage statistics for the model inference.",
+      "type": "object",
+      "properties": {
+        "total_tokens": {
+          "example": 205,
+          "description": "Total number of tokens consumed across all inputs.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "required": [
+    "model",
+    "vector_type",
+    "data",
+    "usage"
+  ]
+}

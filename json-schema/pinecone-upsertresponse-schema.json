@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpsertResponse",
+  "title": "UpsertResponse",
+  "description": "The response for the `upsert` operation.",
+  "type": "object",
+  "properties": {
+    "upsertedCount": {
+      "example": 2,
+      "description": "The number of vectors upserted.",
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "operationId": "get_model",
+  "method": "GET",
+  "path": "/models/{model_name}",
+  "summary": "Describe a model",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "embedding-model",
+      "example": {
+        "default_dimension": 256,
+        "max_batch_size": 96,
+        "max_sequence_length": 512,
+        "modality": "text",
+        "model": "example-embedding-model",
+        "provider_name": "Embedding Model Provider",
+        "short_description": "An example embedding model.",
+        "supported_dimensions": [
+          256,
+          512
+        ],
+        "supported_metrics": [
+          "cosine",
+          "euclidean"
+        ],
+        "supported_parameters": [
+          {
+            "allowed_values": [
+              "value1",
+              "value2"
+            ],
+            "parameter": "example_required_param",
+            "required": true,
+            "type": "one_of",
+            "value_type": "string"
+          },
+          {
+            "allowed_values": [
+              "value1",
+              "value2"
+            ],
+            "default": "value1",
+            "parameter": "example_param_with_default",
+            "required": false,
+            "type": "one_of",
+            "value_type": "string"
+          },
+          {
+            "default": 5,
+            "max": 10,
+            "min": 0,
+            "parameter": "example_numeric_range",
+            "required": false,
+            "type": "numeric_range",
+            "value_type": "integer"
+          }
+        ],
+        "type": "embed",
+        "vector_type": "dense"
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "rerank-model",
+      "example": {
+        "max_batch_size": 100,
+        "max_sequence_length": 1024,
+        "modality": "text",
+        "model": "example-reranking-model",
+        "provider_name": "Reranking Model Provider",
+        "short_description": "An example reranking model.",
+        "supported_parameters": [
+          {
+            "default": true,
+            "parameter": "example_any_value",
+            "required": false,
+            "type": "any",
+            "value_type": "boolean"
+          }
+        ],
+        "type": "rerank"
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "model-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Model example-model not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

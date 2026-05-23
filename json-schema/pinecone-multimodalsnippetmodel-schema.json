@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiModalSnippetModel",
+  "title": "MultiModalSnippetModel",
+  "description": "Represents a multimodal context snippet.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of context snippet.",
+      "type": "string"
+    },
+    "content": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MultiModalContentBlocksModel"
+      }
+    },
+    "score": {
+      "type": "number",
+      "format": "float"
+    },
+    "reference": {
+      "$ref": "#/components/schemas/TypedReferenceModel"
+    }
+  },
+  "required": [
+    "type",
+    "content",
+    "score",
+    "reference"
+  ]
+}

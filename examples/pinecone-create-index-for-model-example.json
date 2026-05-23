@@ -1,0 +1,99 @@
+{
+  "operationId": "create_index_for_model",
+  "method": "POST",
+  "path": "/indexes/create-for-model",
+  "summary": "Create an index with integrated embedding",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "index-for-model",
+      "example": {
+        "cloud": "gcp",
+        "deletion_protection": "enabled",
+        "embed": {
+          "field_map": {
+            "text": "your-text-field"
+          },
+          "metric": "cosine",
+          "model": "multilingual-e5-large"
+        },
+        "name": "multilingual-e5-large-index",
+        "region": "us-east1"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "index-metric-validation-error",
+      "example": {
+        "error": {
+          "code": "INVALID_ARGUMENT",
+          "message": "Bad request. The request body included invalid request parameters."
+        },
+        "status": 400
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "serverless-spec-cloud-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Resource cloud: aws region: us-west1 not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "index-name-already-exists",
+      "example": {
+        "error": {
+          "code": "ALREADY_EXISTS",
+          "message": "Resource already exists."
+        },
+        "status": 409
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "name": "missing-field",
+      "example": {
+        "error": {
+          "code": "UNPROCESSABLE_ENTITY",
+          "message": "Failed to deserialize the JSON body into the target type: missing field `metric` at line 1 column 16"
+        },
+        "status": 422
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

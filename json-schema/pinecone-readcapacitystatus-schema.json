@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReadCapacityStatus",
+  "title": "ReadCapacityStatus",
+  "description": "The current status of factors affecting the read capacity of a serverless index",
+  "type": "object",
+  "properties": {
+    "state": {
+      "description": "The `state` describes the overall status of factors relating to the read capacity of an index. \n\nAvailable values:\n- `Ready` is the state most of the time\n- `Scaling` if the number of replicas or shards has been recently updated by calling the [configure index endpoint](https://docs.pinecone.io/reference/api/2025-10/control-plane/configure_index)\n- `Migrating` if the index is being migrated to a new `node_type`\n- `Error` if there is an error with the read capacity configuration. In that case, see `error_message` for more details.",
+      "type": "string"
+    },
+    "current_replicas": {
+      "description": "The number of replicas. Each replica has dedicated  compute resources and data storage. Increasing this number  will increase the total throughput of the index.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "current_shards": {
+      "description": "The number of shards. Each shard has dedicated storage.  Increasing shards alleiviates index fullness. ",
+      "type": "integer",
+      "format": "int32"
+    },
+    "error_message": {
+      "description": "An optional error message indicating any issues with your read capacity configuration",
+      "type": "string"
+    }
+  },
+  "required": [
+    "state"
+  ]
+}

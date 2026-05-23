@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Hit",
+  "title": "Hit",
+  "example": {
+    "_id": "example-record-1",
+    "_score": 0.9281134605407715,
+    "fields": {
+      "data": "your example text",
+      "more_data": {
+        "text": "your example text"
+      }
+    }
+  },
+  "description": "A record whose vector values are similar to the provided search query.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "The record id of the search hit.",
+      "type": "string"
+    },
+    "_score": {
+      "description": "The similarity score of the returned record.",
+      "type": "number",
+      "format": "float"
+    },
+    "fields": {
+      "description": "The selected record fields associated with the search hit.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "_id",
+    "_score",
+    "fields"
+  ]
+}

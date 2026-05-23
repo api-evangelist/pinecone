@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextReferenceModel",
+  "title": "TextReferenceModel",
+  "description": "Represents a reference to a part of a text document.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of reference. Always \"text\".",
+      "type": "string"
+    },
+    "file": {
+      "$ref": "#/components/schemas/AssistantFileModel"
+    }
+  },
+  "required": [
+    "type",
+    "file"
+  ]
+}

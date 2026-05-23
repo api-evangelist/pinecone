@@ -1,0 +1,45 @@
+{
+  "operationId": "update_project",
+  "method": "PATCH",
+  "path": "/admin/projects/{project_id}",
+  "summary": "Update a project",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "index-metric-validation-error",
+      "example": {
+        "error": {
+          "code": "INVALID_ARGUMENT",
+          "message": "Bad request. The request body included invalid request parameters."
+        },
+        "status": 400
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

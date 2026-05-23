@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateCollectionRequest",
+  "title": "CreateCollectionRequest",
+  "description": "The configuration needed to create a Pinecone collection.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the collection to be created. Resource name must be 1-45 characters long, start and end with an alphanumeric character, and consist only of lower case alphanumeric characters or '-'.\n",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 45
+    },
+    "source": {
+      "example": "example-source-index",
+      "description": "The name of the index to be used as the source for the collection.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "source"
+  ]
+}

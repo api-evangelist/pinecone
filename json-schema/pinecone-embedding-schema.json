@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Embedding",
+  "title": "Embedding",
+  "description": "Embedding of a single input",
+  "discriminator": {
+    "propertyName": "vector_type",
+    "mapping": {
+      "dense": "#/components/schemas/DenseEmbedding",
+      "sparse": "#/components/schemas/SparseEmbedding"
+    }
+  },
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/DenseEmbedding"
+    },
+    {
+      "$ref": "#/components/schemas/SparseEmbedding"
+    }
+  ]
+}

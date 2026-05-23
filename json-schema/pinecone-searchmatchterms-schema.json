@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchMatchTerms",
+  "title": "SearchMatchTerms",
+  "example": {
+    "strategy": "all",
+    "terms": [
+      "animal",
+      "CHARACTER",
+      "donald Duck"
+    ]
+  },
+  "description": "Specifies which terms must be present in the text of each search hit based on the specified strategy. The match is performed\nagainst the text field specified in the integrated index `field_map` configuration.\n\nTerms are normalized and tokenized into single tokens before matching, and order does not matter.\n\nExample:\n\n  `\"match_terms\": {\"terms\": [\"animal\", \"CHARACTER\", \"donald Duck\"], \"strategy\": \"all\"}` will tokenize\n  to `[\"animal\", \"character\", \"donald\", \"duck\"]`, and would match\n  `\"Donald F. Duck is a funny animal character\"` but would not match `\"A duck is a funny animal\"`.\n\nMatch terms filtering is supported only for sparse indexes with [integrated embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding)\nconfigured to use the [pinecone-sparse-english-v0](https://docs.pinecone.io/models/pinecone-sparse-english-v0) model.",
+  "type": "object",
+  "properties": {
+    "strategy": {
+      "description": "The strategy for matching terms in the text. Currently, only `all` is supported, which means all specified terms must be present.",
+      "x-enum": [
+        "all"
+      ],
+      "type": "string"
+    },
+    "terms": {
+      "description": "A list of terms that must be present in the text of each search hit based on the specified strategy.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

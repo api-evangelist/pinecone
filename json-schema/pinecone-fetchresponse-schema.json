@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchResponse",
+  "title": "FetchResponse",
+  "example": {
+    "namespace": "example-namespace",
+    "usage": {
+      "readUnits": 1
+    },
+    "vectors": {
+      "id-1": {
+        "id": "id-1",
+        "values": [
+          1.0,
+          1.5
+        ]
+      },
+      "id-2": {
+        "id": "id-2",
+        "values": [
+          2.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "description": "The response for the `fetch` operation.",
+  "type": "object",
+  "properties": {
+    "vectors": {
+      "title": "The fetched vectors, in the form of a map between the fetched ids and the fetched vectors",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/Vector"
+      }
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace of the vectors.",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/Usage"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReadCapacity",
+  "title": "ReadCapacity",
+  "description": "By default the index will be created with read capacity  mode `OnDemand`. If you prefer to allocate dedicated read  nodes for your workload, you must specify mode `Dedicated` and additional configurations for `node_type` and `scaling`.",
+  "discriminator": {
+    "propertyName": "mode",
+    "mapping": {
+      "OnDemand": "#/components/schemas/ReadCapacityOnDemandSpec",
+      "Dedicated": "#/components/schemas/ReadCapacityDedicatedSpec"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ReadCapacityOnDemandSpec"
+    },
+    {
+      "$ref": "#/components/schemas/ReadCapacityDedicatedSpec"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Assistant",
+  "title": "Assistant",
+  "description": "Describes the configuration and status of a Pinecone Assistant.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "example-assistant",
+      "description": "The name of the assistant. Resource name must be 1-63 characters long, start and end with an alphanumeric character, and consist only of lower case alphanumeric characters or '-'.\n",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 63
+    },
+    "instructions": {
+      "nullable": true,
+      "description": "Description or directive for the assistant to apply to all responses.",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Optional metadata associated with the assistant. Metadata is a JSON object that can store custom organizational data, tags, and attributes.",
+      "nullable": true,
+      "type": "object"
+    },
+    "status": {
+      "x-enum": [
+        "Initializing",
+        "Failed",
+        "Ready",
+        "Terminating",
+        "InitializationFailed"
+      ],
+      "type": "string"
+    },
+    "host": {
+      "description": "The host where the assistant is deployed.",
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "name",
+    "status"
+  ]
+}

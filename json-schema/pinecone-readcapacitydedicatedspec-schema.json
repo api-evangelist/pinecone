@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReadCapacityDedicatedSpec",
+  "title": "Dedicated",
+  "example": {
+    "dedicated": {
+      "manual": {
+        "replicas": 1,
+        "shards": 1
+      },
+      "node_type": "t1",
+      "scaling": "Manual"
+    },
+    "mode": "Dedicated"
+  },
+  "type": "object",
+  "properties": {
+    "mode": {
+      "description": "The mode of the index. Possible values: `OnDemand` or `Dedicated`. Defaults to `OnDemand`. If set to `Dedicated`, `dedicated.node_type`, and `dedicated.scaling` must be specified.",
+      "type": "string"
+    },
+    "dedicated": {
+      "$ref": "#/components/schemas/ReadCapacityDedicatedConfig"
+    }
+  },
+  "required": [
+    "mode",
+    "dedicated"
+  ],
+  "additionalProperties": true
+}

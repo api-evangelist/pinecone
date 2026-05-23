@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateProjectRequest",
+  "title": "CreateProjectRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "chatbot-prod",
+      "description": "The name of the new project.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "max_pods": {
+      "description": "The maximum number of Pods that can be created in the project. Default is `0` (serverless only).\n",
+      "type": "integer"
+    },
+    "force_encryption_with_cmek": {
+      "description": "Whether to force encryption with a customer-managed encryption key (CMEK). Default is `false`.\n",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

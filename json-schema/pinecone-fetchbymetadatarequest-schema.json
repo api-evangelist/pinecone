@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchByMetadataRequest",
+  "title": "FetchByMetadataRequest",
+  "description": "The request for the `fetch_by_metadata` operation.",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace to fetch vectors from.",
+      "type": "string"
+    },
+    "filter": {
+      "example": {
+        "genre": {
+          "$in": [
+            "comedy",
+            "documentary",
+            "drama"
+          ]
+        },
+        "year": {
+          "$eq": 2019
+        }
+      },
+      "description": "Metadata filter expression to select vectors. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).",
+      "type": "object"
+    },
+    "limit": {
+      "example": 12,
+      "description": "Max number of vectors to return.",
+      "default": 100,
+      "type": "integer",
+      "format": "int64",
+      "minimum": 1
+    },
+    "paginationToken": {
+      "example": "Tm90aGluZyB0byBzZWUgaGVyZQo=",
+      "description": "Pagination token to continue a previous listing operation.",
+      "type": "string"
+    }
+  }
+}

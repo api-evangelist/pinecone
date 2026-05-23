@@ -1,0 +1,45 @@
+{
+  "operationId": "describe_restore_job",
+  "method": "GET",
+  "path": "/restore-jobs/{job_id}",
+  "summary": "Describe a restore job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "restore-job-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Restore job 670e8400-e29b-41d4-a716-446655440002 not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

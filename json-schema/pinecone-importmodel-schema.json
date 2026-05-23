@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportModel",
+  "title": "ImportModel",
+  "description": "The model for an import operation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "example": "101",
+      "description": "Unique identifier for the import operation.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "uri": {
+      "description": "The URI from where the data is imported.",
+      "type": "string"
+    },
+    "status": {
+      "example": "Pending",
+      "description": "The status of the operation.\nPossible values: `Pending`, `InProgress`, `Failed`, `Completed`, or `Cancelled`.",
+      "x-enum": [
+        "Pending",
+        "InProgress",
+        "Failed",
+        "Completed",
+        "Cancelled"
+      ],
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "The start time of the import operation.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "description": "The end time of the import operation.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "percentComplete": {
+      "example": 42.2,
+      "description": "The progress made by the operation, as a percentage.",
+      "type": "number",
+      "format": "float",
+      "minimum": 0.0,
+      "maximum": 100.0
+    },
+    "recordsImported": {
+      "example": 1000000,
+      "description": "The number of records successfully imported.",
+      "type": "integer",
+      "format": "int64"
+    },
+    "error": {
+      "description": "The error message if the import process failed.",
+      "type": "string"
+    }
+  }
+}

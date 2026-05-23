@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NamespaceSummary",
+  "title": "NamespaceSummary",
+  "description": "A summary of the contents of a namespace.",
+  "type": "object",
+  "properties": {
+    "vectorCount": {
+      "example": 50000,
+      "description": "The number of vectors stored in this namespace. Note that updates to this field may lag behind updates to the underlying index and corresponding query results, etc.",
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

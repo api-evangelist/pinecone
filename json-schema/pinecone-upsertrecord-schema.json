@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpsertRecord",
+  "title": "UpsertRecord",
+  "example": {
+    "_id": "example-record-1"
+  },
+  "description": "The request for the `upsert` operation.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "The unique ID of the record to upsert. Note that `id` can be used as an alias for `_id`.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "_id"
+  ]
+}

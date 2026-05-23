@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmbedRequest",
+  "title": "EmbedRequest",
+  "type": "object",
+  "properties": {
+    "model": {
+      "example": "multilingual-e5-large",
+      "description": "The [model](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) to use for embedding generation.",
+      "type": "string"
+    },
+    "parameters": {
+      "example": {
+        "input_type": "passage",
+        "truncate": "END"
+      },
+      "description": "Additional model-specific parameters. Refer to the [model guide](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) for available model parameters.",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "inputs": {
+      "description": "List of inputs to generate embeddings for.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "example": "The quick brown fox jumps over the lazy dog.",
+            "description": "The text input to generate embeddings for.",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "model",
+    "inputs"
+  ]
+}

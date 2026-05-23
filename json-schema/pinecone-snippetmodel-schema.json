@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SnippetModel",
+  "title": "SnippetModel",
+  "description": "Represents a part of a document that is relevant to the user query.",
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "text": "#/components/schemas/TextSnippetModel",
+      "multimodal": "#/components/schemas/MultiModalSnippetModel"
+    }
+  },
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/TextSnippetModel"
+    },
+    {
+      "$ref": "#/components/schemas/MultiModalSnippetModel"
+    }
+  ]
+}

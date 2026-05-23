@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackupModel",
+  "title": "BackupModel",
+  "description": "The BackupModel describes the configuration and status of a Pinecone backup.",
+  "type": "object",
+  "properties": {
+    "backup_id": {
+      "example": "670e8400-e29b-41d4-a716-446655440001",
+      "description": "Unique identifier for the backup.",
+      "type": "string"
+    },
+    "source_index_name": {
+      "example": "my-index",
+      "description": "Name of the index from which the backup was taken.",
+      "type": "string"
+    },
+    "source_index_id": {
+      "example": "670e8400-e29b-41d4-a716-446655440000",
+      "description": "ID of the index.",
+      "type": "string"
+    },
+    "name": {
+      "example": "backup-2025-02-04",
+      "description": "Optional user-defined name for the backup.",
+      "type": "string"
+    },
+    "description": {
+      "example": "Backup before bulk update.",
+      "description": "Optional description providing context for the backup.",
+      "type": "string"
+    },
+    "status": {
+      "example": "Ready",
+      "description": "Current status of the backup (e.g., Initializing, Ready, Failed).",
+      "type": "string"
+    },
+    "cloud": {
+      "example": "aws",
+      "description": "Cloud provider where the backup is stored.",
+      "type": "string"
+    },
+    "region": {
+      "example": "us-east-1",
+      "description": "Cloud region where the backup is stored.",
+      "type": "string"
+    },
+    "dimension": {
+      "example": 1536,
+      "description": "The dimensions of the vectors to be inserted in the index.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "metric": {
+      "description": "The distance metric to be used for similarity search. You can use 'euclidean', 'cosine', or 'dotproduct'. If the 'vector_type' is 'sparse', the metric must be 'dotproduct'. If the `vector_type` is `dense`, the metric defaults to 'cosine'.\nPossible values: `cosine`, `euclidean`, or `dotproduct`.",
+      "x-enum": [
+        "cosine",
+        "euclidean",
+        "dotproduct"
+      ],
+      "type": "string"
+    },
+    "schema": {
+      "$ref": "#/components/schemas/MetadataSchema"
+    },
+    "record_count": {
+      "example": 120000,
+      "description": "Total number of records in the backup.",
+      "type": "integer"
+    },
+    "namespace_count": {
+      "example": 3,
+      "description": "Number of namespaces in the backup.",
+      "type": "integer"
+    },
+    "size_bytes": {
+      "example": 10000000,
+      "description": "Size of the backup in bytes.",
+      "type": "integer"
+    },
+    "tags": {
+      "$ref": "#/components/schemas/IndexTags"
+    },
+    "created_at": {
+      "description": "Timestamp when the backup was created.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "backup_id",
+    "source_index_name",
+    "source_index_id",
+    "status",
+    "cloud",
+    "region"
+  ]
+}

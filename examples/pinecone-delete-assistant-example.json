@@ -1,0 +1,45 @@
+{
+  "operationId": "delete_assistant",
+  "method": "DELETE",
+  "path": "/assistants/{assistant_name}",
+  "summary": "Delete an assistant",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "assistant-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Assistant \"example-assistant\" not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

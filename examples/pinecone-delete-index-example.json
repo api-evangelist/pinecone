@@ -1,0 +1,69 @@
+{
+  "operationId": "delete_index",
+  "method": "DELETE",
+  "path": "/indexes/{index_name}",
+  "summary": "Delete an index",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "deletion-protection",
+      "example": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Deletion protection is enabled for this index. Disable deletion protection before retrying."
+        },
+        "status": 403
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "index-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Index example-index not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "412",
+      "contentType": "application/json",
+      "name": "pending-collection",
+      "example": {
+        "error": {
+          "code": "FAILED_PRECONDITION",
+          "message": "Unable to delete an index. There are pending collections for this index: ['test-collection']"
+        },
+        "status": 412
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

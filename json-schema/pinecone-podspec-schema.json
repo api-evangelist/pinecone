@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PodSpec",
+  "title": "Pod-based",
+  "example": {
+    "environment": "us-east1-gcp",
+    "metadata_config": {
+      "indexed": [
+        "genre",
+        "title",
+        "imdb_rating"
+      ]
+    },
+    "pod_type": "p1.x1",
+    "pods": 1,
+    "replicas": 1,
+    "shards": 1,
+    "source_collection": "movie-embeddings"
+  },
+  "description": "Configuration needed to deploy a pod-based index.",
+  "type": "object",
+  "properties": {
+    "environment": {
+      "example": "us-east1-gcp",
+      "description": "The environment where the index is hosted.",
+      "type": "string"
+    },
+    "replicas": {
+      "description": "The number of replicas. Replicas duplicate your index. They provide higher availability and throughput. Replicas can be scaled up or down as your needs change.",
+      "default": 1,
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    },
+    "shards": {
+      "description": "The number of shards. Shards split your data across multiple pods so you can fit more data into an index.",
+      "default": 1,
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    },
+    "pod_type": {
+      "description": "The type of pod to use. One of `s1`, `p1`, or `p2` appended with `.` and one of `x1`, `x2`, `x4`, or `x8`.",
+      "default": "p1.x1",
+      "type": "string"
+    },
+    "pods": {
+      "example": 1,
+      "description": "The number of pods to be used in the index. This should be equal to `shards` x `replicas`.'",
+      "default": 1,
+      "type": "integer",
+      "minimum": 1
+    },
+    "metadata_config": {
+      "example": {
+        "indexed": [
+          "genre",
+          "title",
+          "imdb_rating"
+        ]
+      },
+      "description": "Configuration for the behavior of Pinecone's internal metadata index. By default, all metadata is indexed; when `metadata_config` is present, only specified metadata fields are indexed. These configurations are only valid for use with pod-based indexes.",
+      "type": "object",
+      "properties": {
+        "indexed": {
+          "description": "By default, all metadata is indexed; to change this behavior, use this property to specify an array of metadata fields that should be indexed.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_collection": {
+      "example": "movie-embeddings",
+      "description": "The name of the collection to be used as the source for the index.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "environment",
+    "pod_type"
+  ]
+}

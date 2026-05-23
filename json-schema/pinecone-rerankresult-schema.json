@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RerankResult",
+  "title": "RerankResult",
+  "description": "The result of a reranking request.",
+  "type": "object",
+  "properties": {
+    "model": {
+      "example": "bge-reranker-v2-m3",
+      "description": "The model used to rerank documents.",
+      "type": "string"
+    },
+    "data": {
+      "description": "The reranked documents.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RankedDocument"
+      }
+    },
+    "usage": {
+      "description": "Usage statistics for the model inference.",
+      "type": "object",
+      "properties": {
+        "rerank_units": {
+          "example": 1,
+          "description": "The number of rerank units consumed by this operation.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "required": [
+    "model",
+    "data",
+    "usage"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DescribeIndexStatsRequest",
+  "title": "DescribeIndexStatsRequest",
+  "description": "The request for the `describe_index_stats` operation.",
+  "type": "object",
+  "properties": {
+    "filter": {
+      "description": "If this parameter is present, the operation only returns statistics for vectors that satisfy the filter. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).\n\nServerless indexes do not support filtering `describe_index_stats` by metadata.",
+      "type": "object"
+    }
+  }
+}

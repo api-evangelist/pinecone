@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigureIndexRequest",
+  "title": "ConfigureIndexRequest",
+  "description": "Configuration used to scale an index.",
+  "type": "object",
+  "properties": {
+    "spec": {
+      "description": "The spec object defines how the index should be deployed.  Only some attributes of an index's spec may be updated.  In general, you can modify settings related to scaling and  configuration but you cannot change the cloud or region  where the index is hosted.",
+      "oneOf": [
+        {
+          "title": "Serverless",
+          "type": "object",
+          "properties": {
+            "serverless": {
+              "description": "Updated configuration for serverless indexes",
+              "type": "object",
+              "properties": {
+                "read_capacity": {
+                  "$ref": "#/components/schemas/ReadCapacity"
+                }
+              }
+            }
+          },
+          "required": [
+            "serverless"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "title": "Pod-based",
+          "type": "object",
+          "properties": {
+            "pod": {
+              "description": "Updated configuration for pod-based indexes",
+              "type": "object",
+              "properties": {
+                "replicas": {
+                  "description": "The number of replicas. Replicas duplicate your index. They provide higher availability and throughput. Replicas can be scaled up or down as your needs change.",
+                  "default": 1,
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 1
+                },
+                "pod_type": {
+                  "description": "The type of pod to use. One of `s1`, `p1`, or `p2` appended with `.` and one of `x1`, `x2`, `x4`, or `x8`.",
+                  "default": "p1.x1",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": [
+            "pod"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "title": "BYOC",
+          "type": "object",
+          "properties": {
+            "byoc": {
+              "description": "Updated configuration for a BYOC index",
+              "type": "object",
+              "properties": {
+                "read_capacity": {
+                  "$ref": "#/components/schemas/ReadCapacity"
+                }
+              }
+            }
+          },
+          "required": [
+            "byoc"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "deletion_protection": {
+      "$ref": "#/components/schemas/DeletionProtection"
+    },
+    "tags": {
+      "$ref": "#/components/schemas/IndexTags"
+    },
+    "embed": {
+      "example": {
+        "field_map": {
+          "text": "your-text-field"
+        },
+        "model": "multilingual-e5-large",
+        "read_parameters": {
+          "input_type": "query",
+          "truncate": "NONE"
+        },
+        "write_parameters": {
+          "input_type": "passage"
+        }
+      },
+      "description": "Configure the integrated inference embedding settings for this index.\n\nYou can convert an existing index to an integrated index by specifying the embedding model and field_map. The index vector type and dimension must match the model vector type and dimension, and the index similarity metric must be supported by the model. Refer to the [model guide](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) for available models and model details.\n\nYou can later change the embedding configuration to update the field map, read parameters, or write parameters. Once set, the model cannot be changed.",
+      "type": "object",
+      "properties": {
+        "model": {
+          "example": "multilingual-e5-large",
+          "description": "The name of the embedding model to use with the index. The index dimension and model dimension must match, and the index similarity metric must be supported by the model. The index embedding model cannot be changed once set.",
+          "type": "string"
+        },
+        "field_map": {
+          "example": {
+            "text": "your-text-field"
+          },
+          "description": "Identifies the name of the text field from your document model that will be embedded.",
+          "type": "object"
+        },
+        "read_parameters": {
+          "description": "The read parameters for the embedding model.",
+          "type": "object"
+        },
+        "write_parameters": {
+          "description": "The write parameters for the embedding model.",
+          "type": "object"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,471 @@
+{
+  "provider": "Pinecone",
+  "providerId": "pinecone",
+  "kind": "json-structure",
+  "description": "Structural overview of the Pinecone API surface; extracted from openapi/.",
+  "schemaCount": 36,
+  "operationCount": 18,
+  "schemas": [
+    {
+      "name": "ReadCapacityStatus",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "state"
+      ]
+    },
+    {
+      "name": "ReadCapacityOnDemandSpecResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "mode",
+        "status"
+      ]
+    },
+    {
+      "name": "CollectionModel",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "status",
+        "environment"
+      ]
+    },
+    {
+      "name": "RestoreJobList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "CreateIndexFromBackupResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "restore_job_id",
+        "index_id"
+      ]
+    },
+    {
+      "name": "PodSpec",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "environment",
+        "pod_type"
+      ]
+    },
+    {
+      "name": "BackupList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BackupModel",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "backup_id",
+        "source_index_name",
+        "source_index_id",
+        "status",
+        "cloud",
+        "region"
+      ]
+    },
+    {
+      "name": "ServerlessSpec",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "cloud",
+        "region"
+      ]
+    },
+    {
+      "name": "ReadCapacityDedicatedSpecResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "mode",
+        "dedicated",
+        "status"
+      ]
+    },
+    {
+      "name": "CreateIndexFromBackupRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "error"
+      ]
+    },
+    {
+      "name": "IndexModel",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "name",
+        "metric",
+        "status",
+        "spec",
+        "host",
+        "vector_type"
+      ]
+    },
+    {
+      "name": "PaginationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "next"
+      ]
+    },
+    {
+      "name": "ReadCapacity",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IndexTags",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateCollectionRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "source"
+      ]
+    },
+    {
+      "name": "ReadCapacityOnDemandSpec",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "mode"
+      ]
+    },
+    {
+      "name": "ServerlessSpecResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "cloud",
+        "region",
+        "read_capacity"
+      ]
+    },
+    {
+      "name": "ConfigureIndexRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "RestoreJobModel",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "restore_job_id",
+        "backup_id",
+        "target_index_name",
+        "target_index_id",
+        "status",
+        "created_at"
+      ]
+    },
+    {
+      "name": "ModelIndexEmbed",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "model"
+      ]
+    },
+    {
+      "name": "ReadCapacityDedicatedSpec",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "mode",
+        "dedicated"
+      ]
+    },
+    {
+      "name": "CreateBackupRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IndexSpec",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ReadCapacityResponse",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateIndexRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "spec"
+      ]
+    },
+    {
+      "name": "CollectionList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateIndexForModelRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "cloud",
+        "region",
+        "embed"
+      ]
+    },
+    {
+      "name": "IndexList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ScalingConfigManual",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ReadCapacityDedicatedConfig",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DeletionProtection",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ByocSpec",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "environment"
+      ]
+    },
+    {
+      "name": "ByocSpecResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "environment",
+        "read_capacity"
+      ]
+    },
+    {
+      "name": "MetadataSchema",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "fields"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/indexes",
+      "operationId": "list_indexes",
+      "summary": "List indexes",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/indexes",
+      "operationId": "create_index",
+      "summary": "Create an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/indexes/{index_name}",
+      "operationId": "describe_index",
+      "summary": "Describe an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/indexes/{index_name}",
+      "operationId": "delete_index",
+      "summary": "Delete an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/indexes/{index_name}",
+      "operationId": "configure_index",
+      "summary": "Configure an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/indexes/{index_name}/backups",
+      "operationId": "list_index_backups",
+      "summary": "List backups for an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/indexes/{index_name}/backups",
+      "operationId": "create_backup",
+      "summary": "Create a backup of an index",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/collections",
+      "operationId": "list_collections",
+      "summary": "List collections",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/collections",
+      "operationId": "create_collection",
+      "summary": "Create a collection",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/indexes/create-for-model",
+      "operationId": "create_index_for_model",
+      "summary": "Create an index with integrated embedding",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/backups",
+      "operationId": "list_project_backups",
+      "summary": "List backups for all indexes in a project",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/backups/{backup_id}",
+      "operationId": "describe_backup",
+      "summary": "Describe a backup",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/backups/{backup_id}",
+      "operationId": "delete_backup",
+      "summary": "Delete a backup",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/backups/{backup_id}/create-index",
+      "operationId": "create_index_from_backup_operation",
+      "summary": "Create an index from a backup",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/restore-jobs",
+      "operationId": "list_restore_jobs",
+      "summary": "List restore jobs",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/restore-jobs/{job_id}",
+      "operationId": "describe_restore_job",
+      "summary": "Describe a restore job",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/collections/{collection_name}",
+      "operationId": "describe_collection",
+      "summary": "Describe a collection",
+      "tags": [
+        "Manage Indexes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/collections/{collection_name}",
+      "operationId": "delete_collection",
+      "summary": "Delete a collection",
+      "tags": [
+        "Manage Indexes"
+      ]
+    }
+  ]
+}

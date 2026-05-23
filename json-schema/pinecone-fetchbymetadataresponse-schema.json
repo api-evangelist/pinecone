@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchByMetadataResponse",
+  "title": "FetchByMetadataResponse",
+  "example": {
+    "namespace": "example-namespace",
+    "pagination": {
+      "next": "Tm90aGluZyB0byBzZWUgaGVyZQo="
+    },
+    "usage": {
+      "readUnits": 5
+    },
+    "vectors": {
+      "id-1": {
+        "id": "id-1",
+        "metadata": {
+          "genre": "documentary",
+          "year": 2019
+        },
+        "values": [
+          1.0,
+          1.5
+        ]
+      },
+      "id-2": {
+        "id": "id-2",
+        "metadata": {
+          "genre": "comedy",
+          "year": 2019
+        },
+        "values": [
+          2.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "description": "The response for the `fetch_by_metadata` operation.",
+  "type": "object",
+  "properties": {
+    "vectors": {
+      "description": "The fetched vectors, in the form of a map between the fetched ids and the fetched vectors",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/Vector"
+      }
+    },
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace of the vectors.",
+      "default": "",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/Usage"
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

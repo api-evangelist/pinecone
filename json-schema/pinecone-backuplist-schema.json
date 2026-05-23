@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackupList",
+  "title": "BackupList",
+  "description": "The list of backups that exist in the project.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "List of backup objects",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BackupModel"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/PaginationResponse"
+    }
+  }
+}

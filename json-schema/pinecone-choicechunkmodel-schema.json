@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChoiceChunkModel",
+  "title": "ChoiceChunkModel",
+  "description": "Describes a single choice in a chat completion response.",
+  "type": "object",
+  "properties": {
+    "finish_reason": {
+      "x-enum": [
+        "stop",
+        "length",
+        "content_filter",
+        "function_call"
+      ],
+      "type": "string"
+    },
+    "index": {
+      "type": "integer"
+    },
+    "delta": {
+      "description": "Chat completion message",
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

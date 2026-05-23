@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryResponse",
+  "title": "QueryResponse",
+  "description": "The response for the `query` operation. These are the matches found for a particular query vector. The matches are ordered from most similar to least similar.",
+  "type": "object",
+  "properties": {
+    "results": {
+      "deprecated": true,
+      "description": "DEPRECATED. The results of each query. The order is the same as `QueryRequest.queries`.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SingleQueryResults"
+      }
+    },
+    "matches": {
+      "description": "The matches for the vectors.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ScoredVector"
+      }
+    },
+    "namespace": {
+      "description": "The namespace for the vectors.",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/Usage"
+    }
+  }
+}

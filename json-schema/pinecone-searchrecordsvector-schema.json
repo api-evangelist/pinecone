@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchRecordsVector",
+  "title": "SearchRecordsVector",
+  "type": "object",
+  "properties": {
+    "values": {
+      "$ref": "#/components/schemas/VectorValues"
+    },
+    "sparse_values": {
+      "example": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "description": "The sparse embedding values.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "sparse_indices": {
+      "example": [
+        10,
+        3,
+        156
+      ],
+      "description": "The sparse embedding indices.",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32",
+        "minimum": 0
+      }
+    }
+  }
+}

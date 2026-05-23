@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiModalContentBlocksModel",
+  "title": "MultiModalContentBlocksModel",
+  "description": "Represents a block in the multimodal content of a context snippet.",
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "text": "#/components/schemas/MultiModalContentTextBlockModel",
+      "image": "#/components/schemas/MultiModalContentImageBlockModel"
+    }
+  },
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/MultiModalContentTextBlockModel"
+    },
+    {
+      "$ref": "#/components/schemas/MultiModalContentImageBlockModel"
+    }
+  ]
+}

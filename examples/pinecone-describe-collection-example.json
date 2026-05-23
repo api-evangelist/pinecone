@@ -1,0 +1,58 @@
+{
+  "operationId": "describe_collection",
+  "method": "GET",
+  "path": "/collections/{collection_name}",
+  "summary": "Describe a collection",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "tiny-collection",
+      "example": {
+        "dimension": 3,
+        "environment": "us-east1-gcp",
+        "name": "tiny-collection",
+        "size": 3126700,
+        "status": "Ready",
+        "vector_count": 99
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "collection-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Collection example-collection not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryRequest",
+  "title": "QueryRequest",
+  "description": "The request for the `query` operation.",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "example": "example-namespace",
+      "description": "The namespace to query.",
+      "type": "string"
+    },
+    "topK": {
+      "example": 10,
+      "description": "The number of results to return for each query.",
+      "type": "integer",
+      "minimum": 1.0,
+      "maximum": 10000.0,
+      "required": [
+        "top_k"
+      ],
+      "format": "int64"
+    },
+    "filter": {
+      "example": {
+        "genre": {
+          "$in": [
+            "comedy",
+            "documentary",
+            "drama"
+          ]
+        },
+        "year": {
+          "$eq": 2019
+        }
+      },
+      "description": "The filter to apply. You can use vector metadata to limit your search. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).",
+      "type": "object"
+    },
+    "includeValues": {
+      "example": true,
+      "description": "Indicates whether vector values are included in the response. For on-demand indexes, setting this to `true` may increase latency, especially with higher `topK` values, because vector values are retrieved from object storage. Unless you need vector values, set this to `false` for better performance.",
+      "default": false,
+      "type": "boolean"
+    },
+    "includeMetadata": {
+      "example": true,
+      "description": "Indicates whether metadata is included in the response as well as the ids.",
+      "default": false,
+      "type": "boolean"
+    },
+    "queries": {
+      "deprecated": true,
+      "description": "DEPRECATED. Use `vector` or `id` instead.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/QueryVector"
+      },
+      "minLength": 1,
+      "maxLength": 10
+    },
+    "vector": {
+      "example": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "description": "The query vector. This should be the same length as the dimension of the index being queried. Each `query` request can contain only one of the parameters `id` or `vector`.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      },
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "sparseVector": {
+      "$ref": "#/components/schemas/SparseValues"
+    },
+    "id": {
+      "example": "example-vector-1",
+      "description": "The unique ID of the vector to be used as a query vector. Each request  can contain either the `vector` or `id` parameter.",
+      "type": "string",
+      "maxLength": 512
+    },
+    "scanFactor": {
+      "type": "number",
+      "format": "float",
+      "example": 2.0,
+      "minimum": 0.5,
+      "maximum": 4.0,
+      "description": "An optimization parameter for IVF dense indexes in dedicated read node indexes. It adjusts how much of the index is scanned to find vector candidates. Range: 0.5 \u2013 4 (default).\nKeep the default (4.0) for the best search results. If query latency is too high, try lowering this value incrementally (minimum 0.5) to speed up the search at the cost of slightly lower accuracy. This parameter is only supported for dedicated (DRN) dense indexes. "
+    },
+    "maxCandidates": {
+      "type": "integer",
+      "format": "int64",
+      "example": 1000,
+      "minimum": 1,
+      "maximum": 100000,
+      "description": "An optimization parameter that controls the maximum number of candidate dense vectors to rerank. Reranking computes exact distances to improve recall but increases query latency. Range: top_k \u2013 100000.\nKeep the default for a balance of recall and latency. Increase this value if recall is too low, or decrease it to reduce latency at the cost of accuracy. This parameter is only supported for dedicated (DRN) dense indexes."
+    }
+  },
+  "required": [
+    "topK"
+  ]
+}

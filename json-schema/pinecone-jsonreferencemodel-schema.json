@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonReferenceModel",
+  "title": "JsonReferenceModel",
+  "description": "Represents a reference to a json document.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of reference. Always \"json\".",
+      "type": "string"
+    },
+    "file": {
+      "$ref": "#/components/schemas/AssistantFileModel"
+    }
+  },
+  "required": [
+    "type",
+    "file"
+  ]
+}

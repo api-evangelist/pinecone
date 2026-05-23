@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "example": {
+    "error": {
+      "code": "QUOTA_EXCEEDED",
+      "message": "The index exceeds the project quota of 5 pods by 2 pods. Upgrade your account or change the project settings to increase the quota."
+    },
+    "status": 429
+  },
+  "description": "The response shape used for all error responses.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "example": 500,
+      "description": "The HTTP status code of the error.",
+      "type": "integer"
+    },
+    "error": {
+      "example": {
+        "code": "INVALID_ARGUMENT",
+        "message": "Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen."
+      },
+      "description": "Detailed information about the error that occurred.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "The error code.\nPossible values: `OK`, `UNKNOWN`, `INVALID_ARGUMENT`, `DEADLINE_EXCEEDED`, `QUOTA_EXCEEDED`, `NOT_FOUND`, `ALREADY_EXISTS`, `PERMISSION_DENIED`, `UNAUTHENTICATED`, `RESOURCE_EXHAUSTED`, `FAILED_PRECONDITION`, `ABORTED`, `OUT_OF_RANGE`, `UNIMPLEMENTED`, `INTERNAL`, `UNAVAILABLE`, `DATA_LOSS`, `FORBIDDEN`, or `UNPROCESSABLE_ENTITY`.        ",
+          "x-enum": [
+            "OK",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "QUOTA_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS",
+            "FORBIDDEN",
+            "UNPROCESSABLE_ENTITY"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "example": "Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen.",
+          "type": "string"
+        },
+        "details": {
+          "description": "Additional information about the error. This field is not guaranteed to be present.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "error"
+  ]
+}

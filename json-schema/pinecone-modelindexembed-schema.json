@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelIndexEmbed",
+  "title": "ModelIndexEmbed",
+  "example": {
+    "field_map": {
+      "text": "your-text-field"
+    },
+    "metric": "cosine",
+    "model": "multilingual-e5-large",
+    "read_parameters": {
+      "input_type": "query",
+      "truncate": "NONE"
+    },
+    "write_parameters": {
+      "input_type": "passage"
+    }
+  },
+  "description": "The embedding model and document fields mapped to embedding inputs.",
+  "type": "object",
+  "properties": {
+    "model": {
+      "example": "multilingual-e5-large",
+      "description": "The name of the embedding model used to create the index.",
+      "type": "string"
+    },
+    "metric": {
+      "description": "The distance metric to be used for similarity search. You can use 'euclidean', 'cosine', or 'dotproduct'. If not specified, the metric will be defaulted according to the model. Cannot be updated once set.\nPossible values: `cosine`, `euclidean`, or `dotproduct`.",
+      "x-enum": [
+        "cosine",
+        "euclidean",
+        "dotproduct"
+      ],
+      "type": "string"
+    },
+    "dimension": {
+      "example": 1536,
+      "description": "The dimensions of the vectors to be inserted in the index.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "vector_type": {
+      "description": "The index vector type. You can use 'dense' or 'sparse'. If 'dense', the vector dimension must be specified.  If 'sparse', the vector dimension should not be specified.",
+      "default": "dense",
+      "type": "string"
+    },
+    "field_map": {
+      "example": {
+        "text": "your-text-field"
+      },
+      "description": "Identifies the name of the text field from your document model that is embedded.",
+      "type": "object"
+    },
+    "read_parameters": {
+      "description": "The read parameters for the embedding model.",
+      "type": "object"
+    },
+    "write_parameters": {
+      "description": "The write parameters for the embedding model.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "model"
+  ]
+}

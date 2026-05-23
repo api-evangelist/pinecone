@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StartImportResponse",
+  "title": "StartImportResponse",
+  "description": "The response for the `start_import` operation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "example": "101",
+      "description": "Unique identifier for the import operation.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    }
+  }
+}

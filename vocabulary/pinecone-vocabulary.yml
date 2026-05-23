@@ -1,0 +1,7 @@
+name: Pinecone Domain Vocabulary
+provider: Pinecone
+providerId: pinecone
+description: Tag-derived vocabulary for the Pinecone API surface; sourced from openapi/ tags.
+terms:
+- term: Manage Indexes
+  description: Actions that manage indexes

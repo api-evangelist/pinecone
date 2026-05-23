@@ -1,0 +1,45 @@
+{
+  "operationId": "describe_file",
+  "method": "GET",
+  "path": "/files/{assistant_name}/{assistant_file_id}",
+  "summary": "Describe a file upload",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "file-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "File with id 72490b32-46d9-4db1-b48b-666e9176d9be  not found in provided assistant"
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReferenceModel",
+  "title": "ReferenceModel",
+  "description": "Describes a single reference in a citation.",
+  "type": "object",
+  "properties": {
+    "file": {
+      "$ref": "#/components/schemas/AssistantFileModel"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "highlight": {
+      "$ref": "#/components/schemas/HighlightModel"
+    }
+  }
+}

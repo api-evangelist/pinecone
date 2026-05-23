@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DenseEmbedding",
+  "title": "Dense embedding",
+  "description": "A dense embedding of a single input",
+  "type": "object",
+  "properties": {
+    "values": {
+      "example": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "description": "The dense embedding values.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "vector_type": {
+      "$ref": "#/components/schemas/VectorType"
+    }
+  },
+  "required": [
+    "values",
+    "vector_type"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatRequest",
+  "title": "ChatRequest",
+  "description": "The list of queries / chats to chat an assistant",
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MessageModel"
+      }
+    },
+    "stream": {
+      "description": "If false, the assistant will return a single JSON response. If true, the assistant will return a stream of responses.",
+      "default": false,
+      "type": "boolean"
+    },
+    "model": {
+      "description": "The large language model to use for answer generation",
+      "default": "gpt-4o",
+      "x-enum": [
+        "gpt-4o",
+        "gpt-4.1",
+        "o4-mini",
+        "claude-3-5-sonnet",
+        "claude-3-7-sonnet",
+        "gemini-2.5-pro"
+      ],
+      "type": "string"
+    },
+    "temperature": {
+      "description": "Controls the randomness of the model's output: lower values make responses more deterministic, while higher values increase creativity and variability. If the model does not support a temperature parameter, the parameter will be ignored.",
+      "default": 0.0,
+      "type": "number",
+      "format": "float"
+    },
+    "filter": {
+      "example": {
+        "genre": {
+          "$ne": "documentary"
+        }
+      },
+      "description": "Optionally filter which documents can be retrieved using the following metadata fields.",
+      "type": "object"
+    },
+    "json_response": {
+      "description": "If true, the assistant will be instructed to return a JSON response. Cannot be used with streaming.",
+      "default": false,
+      "type": "boolean"
+    },
+    "include_highlights": {
+      "description": "If true, the assistant will be instructed to return highlights from the referenced documents that support its response.",
+      "default": false,
+      "type": "boolean"
+    },
+    "context_options": {
+      "$ref": "#/components/schemas/ContextOptionsModel"
+    }
+  },
+  "required": [
+    "messages"
+  ]
+}

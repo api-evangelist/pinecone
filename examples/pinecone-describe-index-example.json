@@ -1,0 +1,115 @@
+{
+  "operationId": "describe_index",
+  "method": "GET",
+  "path": "/indexes/{index_name}",
+  "summary": "Describe an index",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "movie-recommendations-serverless",
+      "example": {
+        "dimension": 1536,
+        "host": "movie-recommendations-c01b5b5.svc.us-east1-gcp.pinecone.io",
+        "metric": "cosine",
+        "name": "movie-recommendations",
+        "spec": {
+          "serverless": {
+            "cloud": "aws",
+            "read_capacity": {
+              "mode": "OnDemand",
+              "status": {
+                "state": "Ready"
+              }
+            },
+            "region": "us-east-1",
+            "schema": {
+              "fields": {
+                "genre": {
+                  "filterable": true
+                },
+                "title": {
+                  "filterable": true
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "ready": false,
+          "state": "Initializing"
+        },
+        "vector_type": "dense"
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "movie-recommendations-pod",
+      "example": {
+        "dimension": 1536,
+        "host": "movie-recommendations-c01b5b5.svc.us-east1-gcp.pinecone.io",
+        "metric": "cosine",
+        "name": "movie-recommendations",
+        "spec": {
+          "pod": {
+            "environment": "us-east-1-aws",
+            "metadata_config": {
+              "indexed": [
+                "genre",
+                "title",
+                "imdb_rating"
+              ]
+            },
+            "pod_type": "p1.x1",
+            "pods": 1,
+            "replicas": 1,
+            "shards": 1
+          }
+        },
+        "status": {
+          "ready": false,
+          "state": "Initializing"
+        },
+        "vector_type": "dense"
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "index-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Index example-index not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

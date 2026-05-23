@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaginationResponse",
+  "title": "PaginationResponse",
+  "example": {
+    "next": "dXNlcl9pZD11c2VyXzE="
+  },
+  "description": "The pagination object that is returned with paginated responses.",
+  "type": "object",
+  "properties": {
+    "next": {
+      "example": "dXNlcl9pZD11c2VyXzE=",
+      "description": "The token to use to retrieve the next page of results.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "next"
+  ]
+}

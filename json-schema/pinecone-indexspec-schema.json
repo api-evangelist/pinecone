@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexSpec",
+  "title": "IndexSpec",
+  "description": "The spec object defines how the index should be deployed.\n\nFor serverless indexes, you define only the [cloud and region](http://docs.pinecone.io/guides/index-data/create-an-index#cloud-regions) where the index should be hosted. For pod-based indexes, you define the [environment](http://docs.pinecone.io/guides/indexes/pods/understanding-pod-based-indexes#pod-environments) where the index should be hosted, the [pod type and size](http://docs.pinecone.io/guides/indexes/pods/understanding-pod-based-indexes#pod-types) to use, and other index characteristics.\n",
+  "type": "object",
+  "oneOf": [
+    {
+      "title": "Serverless",
+      "type": "object",
+      "properties": {
+        "serverless": {
+          "$ref": "#/components/schemas/ServerlessSpec"
+        }
+      },
+      "required": [
+        "serverless"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Pod-based",
+      "type": "object",
+      "properties": {
+        "pod": {
+          "$ref": "#/components/schemas/PodSpec"
+        }
+      },
+      "required": [
+        "pod"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "BYOC",
+      "type": "object",
+      "properties": {
+        "byoc": {
+          "$ref": "#/components/schemas/ByocSpec"
+        }
+      },
+      "required": [
+        "byoc"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UsageModel",
+  "title": "UsageModel",
+  "description": "Describes the usage of a chat completion.",
+  "type": "object",
+  "properties": {
+    "prompt_tokens": {
+      "type": "integer"
+    },
+    "completion_tokens": {
+      "type": "integer"
+    },
+    "total_tokens": {
+      "type": "integer"
+    }
+  }
+}

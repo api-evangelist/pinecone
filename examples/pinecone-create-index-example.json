@@ -1,0 +1,198 @@
+{
+  "operationId": "create_index",
+  "method": "POST",
+  "path": "/indexes",
+  "summary": "Create an index",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "serverless-index",
+      "example": {
+        "deletion_protection": "enabled",
+        "dimension": 1536,
+        "metric": "cosine",
+        "name": "movie-recommendations",
+        "spec": {
+          "serverless": {
+            "cloud": "gcp",
+            "read_capacity": {
+              "mode": "OnDemand"
+            },
+            "region": "us-east1",
+            "source_collection": "movie-embeddings"
+          }
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "serverless-sparse-index",
+      "example": {
+        "deletion_protection": "enabled",
+        "metric": "dotproduct",
+        "name": "sparse-index",
+        "spec": {
+          "serverless": {
+            "cloud": "gcp",
+            "read_capacity": {
+              "mode": "OnDemand"
+            },
+            "region": "us-east1"
+          }
+        },
+        "vector_type": "sparse"
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "serverless-dedicated-index",
+      "example": {
+        "deletion_protection": "enabled",
+        "metric": "cosine",
+        "name": "dedicated-index",
+        "spec": {
+          "serverless": {
+            "cloud": "gcp",
+            "read_capacity": {
+              "dedicated": {
+                "manual": {
+                  "replicas": 3,
+                  "shards": 2
+                },
+                "node_type": "b1",
+                "scaling": "Manual"
+              },
+              "mode": "Dedicated"
+            },
+            "region": "us-east1"
+          }
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "pod-index",
+      "example": {
+        "deletion_protection": "enabled",
+        "dimension": 1536,
+        "metric": "cosine",
+        "name": "movie-recommendations",
+        "spec": {
+          "pod": {
+            "environment": "us-east-1-aws",
+            "metadata_config": {
+              "indexed": [
+                "genre",
+                "title",
+                "imdb_rating"
+              ]
+            },
+            "pod_type": "p1.x1",
+            "pods": 1,
+            "replicas": 1,
+            "shards": 1,
+            "source_collection": "movie-embeddings"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "index-metric-validation-error",
+      "example": {
+        "error": {
+          "code": "INVALID_ARGUMENT",
+          "message": "Bad request. The request body included invalid request parameters."
+        },
+        "status": 400
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "UNAUTHENTICATED",
+          "message": "Invalid API key."
+        },
+        "status": 401
+      }
+    },
+    {
+      "status": "402",
+      "contentType": "application/json",
+      "name": "payment-required",
+      "example": {
+        "error": {
+          "code": "PAYMENT_REQUIRED",
+          "message": "Request failed. Pay all past due invoices to lift restrictions on your account."
+        },
+        "status": 402
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "unauthorized",
+      "example": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Increase your quota or upgrade to create more indexes."
+        },
+        "status": 403
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "serverless-spec-cloud-not-found",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Resource cloud: aws region: us-west1 not found."
+        },
+        "status": 404
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "name": "missing-field",
+      "example": {
+        "error": {
+          "code": "UNPROCESSABLE_ENTITY",
+          "message": "Failed to deserialize the JSON body into the target type: missing field `metric` at line 1 column 16"
+        },
+        "status": 422
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "index-name-already-exists",
+      "example": {
+        "error": {
+          "code": "ALREADY_EXISTS",
+          "message": "Resource already exists."
+        },
+        "status": 409
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "internal-server-error",
+      "example": {
+        "error": {
+          "code": "UNKNOWN",
+          "message": "Internal server error"
+        },
+        "status": 500
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CitationModel",
+  "title": "CitationModel",
+  "description": "Describes a single cited source returned by a chat request.",
+  "type": "object",
+  "properties": {
+    "position": {
+      "description": "The index position of the citation in the complete text response.",
+      "type": "integer"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ReferenceModel"
+      }
+    }
+  }
+}

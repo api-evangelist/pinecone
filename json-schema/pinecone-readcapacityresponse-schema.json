@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReadCapacityResponse",
+  "title": "ReadCapacityResponse",
+  "description": "Response containing read capacity configuration",
+  "discriminator": {
+    "propertyName": "mode",
+    "mapping": {
+      "OnDemand": "#/components/schemas/ReadCapacityOnDemandSpecResponse",
+      "Dedicated": "#/components/schemas/ReadCapacityDedicatedSpecResponse"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ReadCapacityOnDemandSpecResponse"
+    },
+    {
+      "$ref": "#/components/schemas/ReadCapacityDedicatedSpecResponse"
+    }
+  ]
+}

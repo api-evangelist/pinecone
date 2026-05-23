@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Document",
+  "title": "Document",
+  "example": {
+    "id": "1",
+    "text": "Paris is the capital of France.",
+    "title": "France",
+    "url": "https://example.com"
+  },
+  "description": "Document for reranking",
+  "type": "object",
+  "additionalProperties": true
+}

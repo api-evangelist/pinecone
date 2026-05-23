@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ByocSpec",
+  "title": "BYOC",
+  "example": {
+    "environment": "aws-us-east-1-b921"
+  },
+  "description": "Configuration needed to deploy an index in a BYOC environment.",
+  "type": "object",
+  "properties": {
+    "environment": {
+      "example": "aws-us-east-1-b921",
+      "description": "The environment where the index is hosted.",
+      "type": "string"
+    },
+    "read_capacity": {
+      "$ref": "#/components/schemas/ReadCapacity"
+    },
+    "schema": {
+      "$ref": "#/components/schemas/MetadataSchema"
+    }
+  },
+  "required": [
+    "environment"
+  ]
+}

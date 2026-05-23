@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelInfo",
+  "title": "ModelInfo",
+  "description": "Represents the model configuration including model type, supported parameters, and other model details.",
+  "type": "object",
+  "properties": {
+    "model": {
+      "example": "multilingual-e5-large",
+      "description": "The name of the model.",
+      "type": "string"
+    },
+    "short_description": {
+      "example": "multilingual-e5-large",
+      "description": "A summary of the model.",
+      "type": "string"
+    },
+    "type": {
+      "example": "embed",
+      "description": "The type of model (e.g. 'embed' or 'rerank').",
+      "type": "string"
+    },
+    "vector_type": {
+      "description": "Whether the embedding model produces 'dense' or 'sparse' embeddings.",
+      "type": "string"
+    },
+    "default_dimension": {
+      "example": 1024,
+      "description": "The default embedding model dimension (applies to dense embedding models only).",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "modality": {
+      "example": "text",
+      "description": "The modality of the model (e.g. 'text').",
+      "type": "string"
+    },
+    "max_sequence_length": {
+      "example": 512,
+      "description": "The maximum tokens per sequence supported by the model.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    },
+    "max_batch_size": {
+      "example": 96,
+      "description": "The maximum batch size (number of sequences) supported by the model.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    },
+    "provider_name": {
+      "example": "NVIDIA",
+      "description": "The name of the provider of the model.",
+      "type": "string"
+    },
+    "supported_dimensions": {
+      "description": "The list of supported dimensions for the model (applies to dense embedding models only).",
+      "type": "array",
+      "items": {
+        "example": 1024,
+        "type": "integer",
+        "format": "int32",
+        "minimum": 1,
+        "maximum": 20000
+      }
+    },
+    "supported_metrics": {
+      "$ref": "#/components/schemas/ModelInfoSupportedMetrics"
+    },
+    "supported_parameters": {
+      "description": "List of parameters supported by the model.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ModelInfoSupportedParameter"
+      }
+    }
+  },
+  "required": [
+    "model",
+    "short_description",
+    "type",
+    "supported_parameters"
+  ]
+}

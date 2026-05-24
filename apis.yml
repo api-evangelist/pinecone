@@ -185,6 +185,8 @@ common:
   url: https://docs.pinecone.io/reference/pinecone-sdks
 - type: Repository
   url: https://github.com/pinecone-io/pinecone-api
+- type: LLMsTxt
+  url: https://docs.pinecone.io/llms.txt
 integrations:
 - name: Agent Skills
 maintainers:

@@ -2,12 +2,20 @@
   "repo": "pinecone",
   "feeds": [
     {
-      "source": "https://www.pinecone.io/blog/",
+      "source": "https://www.pinecone.io/rss/",
       "feed_url": "https://www.pinecone.io/rss/",
-      "title": "Pinecone",
-      "saved": 37
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.pinecone.io/pricing/",
+      "feed_url": "https://www.pinecone.io/pricing/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 55,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 57,
+  "fetched": "2026-06-01T23:35:02Z"
 }

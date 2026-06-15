@@ -1,0 +1,1079 @@
+"""
+Pinecone GraphQL Schema
+Conceptual schema derived from Pinecone REST/gRPC API.
+Covers Database (vector storage and search), Inference (embeddings and reranking),
+Assistant (RAG over documents), and Admin (organization and project management).
+"""
+
+# -----------------------------------------------------------------------
+# Scalars
+# -----------------------------------------------------------------------
+
+scalar JSON
+scalar DateTime
+scalar Float32
+
+# -----------------------------------------------------------------------
+# Enums
+# -----------------------------------------------------------------------
+
+"""Status of a Pinecone index."""
+enum IndexStatus {
+  INITIALIZING
+  SCALING_UP
+  SCALING_DOWN
+  TERMINATING
+  READY
+  FAILED
+}
+
+"""Metric used for similarity search in an index."""
+enum IndexMetric {
+  COSINE
+  EUCLIDEAN
+  DOTPRODUCT
+}
+
+"""Cloud provider where an index is hosted."""
+enum CloudProvider {
+  AWS
+  GCP
+  AZURE
+}
+
+"""Type of Pinecone index."""
+enum IndexType {
+  SERVERLESS
+  POD
+}
+
+"""Pod type for pod-based indexes."""
+enum PodType {
+  S1
+  P1
+  P2
+}
+
+"""Pod size for pod-based indexes."""
+enum PodSize {
+  X1
+  X2
+  X4
+  X8
+}
+
+"""Status of a collection."""
+enum CollectionStatus {
+  INITIALIZING
+  READY
+  TERMINATING
+}
+
+"""Status of a backup."""
+enum BackupStatus {
+  INITIALIZING
+  READY
+  FAILED
+  TERMINATING
+}
+
+"""Status of a bulk import operation."""
+enum ImportStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+"""Error mode for import operations."""
+enum ImportErrorMode {
+  ABORT
+  CONTINUE
+}
+
+"""Status of an assistant."""
+enum AssistantStatus {
+  INITIALIZING
+  READY
+  TERMINATING
+  FAILED
+}
+
+"""Status of a file uploaded to an assistant."""
+enum FileStatus {
+  PROCESSING
+  AVAILABLE
+  DELETING
+  PROCESSING_FAILED
+}
+
+"""Model input type for embeddings."""
+enum EmbeddingInputType {
+  QUERY
+  PASSAGE
+}
+
+"""Output tensor type for embeddings."""
+enum EmbeddingOutputType {
+  DENSE
+  SPARSE
+  BINARY
+}
+
+"""Role of a message in an assistant conversation."""
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+"""Stream mode for assistant chat."""
+enum StreamMode {
+  SYNC
+  STREAM
+}
+
+"""Type of organization member role."""
+enum OrganizationRole {
+  OWNER
+  MEMBER
+  BILLING
+}
+
+"""Type of project member role."""
+enum ProjectRole {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+"""Sort order."""
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# -----------------------------------------------------------------------
+# Core Entity Types
+# -----------------------------------------------------------------------
+
+"""A Pinecone serverless index specification."""
+type ServerlessSpec {
+  cloud: CloudProvider!
+  region: String!
+}
+
+"""A Pinecone pod-based index specification."""
+type PodSpec {
+  environment: String!
+  podType: PodType!
+  podSize: PodSize!
+  pods: Int!
+  replicas: Int!
+  shards: Int!
+  sourceCollection: String
+  metadataConfig: MetadataIndexConfig
+}
+
+"""Configuration for selective metadata indexing."""
+type MetadataIndexConfig {
+  indexed: [String!]
+}
+
+"""Details of a Pinecone index."""
+type Index {
+  name: String!
+  dimension: Int!
+  metric: IndexMetric!
+  host: String!
+  spec: IndexSpec!
+  status: IndexStatusDetail!
+  tags: JSON
+  deletionProtection: Boolean!
+  createdAt: DateTime
+}
+
+"""Union spec for serverless or pod-based index."""
+type IndexSpec {
+  serverless: ServerlessSpec
+  pod: PodSpec
+}
+
+"""Status details for an index."""
+type IndexStatusDetail {
+  ready: Boolean!
+  state: IndexStatus!
+}
+
+"""Statistics about an index namespace."""
+type NamespaceStats {
+  vectorCount: Int!
+}
+
+"""Statistics about an index."""
+type IndexStats {
+  namespaces: JSON
+  dimension: Int!
+  indexFullness: Float!
+  totalVectorCount: Int!
+}
+
+"""A vector stored in Pinecone."""
+type Vector {
+  id: String!
+  values: [Float32!]
+  sparseValues: SparseValues
+  metadata: JSON
+}
+
+"""Sparse vector values."""
+type SparseValues {
+  indices: [Int!]!
+  values: [Float32!]!
+}
+
+"""A scored vector returned from a query."""
+type ScoredVector {
+  id: String!
+  score: Float!
+  values: [Float32!]
+  sparseValues: SparseValues
+  metadata: JSON
+}
+
+"""Result of a query operation."""
+type QueryResult {
+  matches: [ScoredVector!]!
+  namespace: String
+  usage: QueryUsage
+}
+
+"""Token usage for a query."""
+type QueryUsage {
+  readUnits: Int
+}
+
+"""Result of an upsert operation."""
+type UpsertResult {
+  upsertedCount: Int!
+}
+
+"""Result of a delete operation."""
+type DeleteResult {
+  success: Boolean!
+}
+
+"""Result of a fetch operation."""
+type FetchResult {
+  vectors: JSON
+  namespace: String
+}
+
+"""Result of an update operation."""
+type UpdateResult {
+  success: Boolean!
+}
+
+"""A Pinecone collection (static snapshot of an index)."""
+type Collection {
+  name: String!
+  size: Int!
+  status: CollectionStatus!
+  dimension: Int!
+  vectorCount: Int!
+  environment: String!
+  createdAt: DateTime
+}
+
+"""A Pinecone index backup."""
+type Backup {
+  backupId: String!
+  sourceIndexName: String!
+  sourceIndexId: String!
+  name: String
+  description: String
+  status: BackupStatus!
+  cloud: CloudProvider
+  region: String
+  dimension: Int
+  metric: IndexMetric
+  recordCount: Int
+  namespaceCount: Int
+  sizeBytes: Int
+  tags: JSON
+  createdAt: DateTime!
+}
+
+"""A bulk import operation."""
+type Import {
+  id: String!
+  uri: String!
+  status: ImportStatus!
+  percentComplete: Float
+  recordsImported: Int
+  error: String
+  createdAt: DateTime
+  finishedAt: DateTime
+}
+
+"""A Pinecone namespace within an index."""
+type Namespace {
+  name: String!
+  vectorCount: Int
+}
+
+# -----------------------------------------------------------------------
+# Inference Types
+# -----------------------------------------------------------------------
+
+"""An embedding generated by the Pinecone Inference API."""
+type Embedding {
+  values: [Float32!]
+  sparseValues: SparseValues
+  vectorType: EmbeddingOutputType!
+}
+
+"""Result of an embed operation."""
+type EmbedResult {
+  model: String!
+  data: [Embedding!]!
+  usage: EmbedUsage!
+}
+
+"""Token usage for an embed operation."""
+type EmbedUsage {
+  totalTokens: Int!
+}
+
+"""A reranked document."""
+type RankedDocument {
+  index: Int!
+  score: Float!
+  document: JSON
+}
+
+"""Result of a rerank operation."""
+type RerankResult {
+  model: String!
+  data: [RankedDocument!]!
+  usage: RerankUsage!
+}
+
+"""Token usage for a rerank operation."""
+type RerankUsage {
+  rerankUnits: Int!
+}
+
+"""A model available in Pinecone Inference."""
+type InferenceModel {
+  model: String!
+  shortDescription: String
+  type: String
+  vectorType: String
+  dimension: Int
+  distanceMetric: String
+  maxSequenceLength: Int
+  maxBatchSize: Int
+  providerName: String
+  supportedParameters: [ModelParameter!]
+}
+
+"""A parameter supported by an inference model."""
+type ModelParameter {
+  parameter: String!
+  type: String!
+  valueType: String
+  required: Boolean!
+  allowedValues: [String!]
+  description: String
+}
+
+# -----------------------------------------------------------------------
+# Assistant Types
+# -----------------------------------------------------------------------
+
+"""A Pinecone Assistant for RAG over documents."""
+type Assistant {
+  name: String!
+  instructions: String
+  metadata: JSON
+  status: AssistantStatus!
+  host: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A file uploaded to an assistant."""
+type AssistantFile {
+  id: String!
+  name: String!
+  size: Int
+  status: FileStatus!
+  percentDone: Float
+  signedUrl: String
+  errorMessage: String
+  metadata: JSON
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A citation reference in an assistant response."""
+type Citation {
+  position: Int
+  references: [CitationReference!]
+}
+
+"""A reference within a citation."""
+type CitationReference {
+  file: AssistantFile
+  pages: [Int!]
+}
+
+"""A message in an assistant conversation."""
+type AssistantMessage {
+  role: MessageRole!
+  content: String!
+  citations: [Citation!]
+  finishReason: String
+  id: String
+  model: String
+  usage: AssistantUsage
+}
+
+"""Token usage for an assistant response."""
+type AssistantUsage {
+  promptTokens: Int
+  completionTokens: Int
+  totalTokens: Int
+}
+
+"""Result of assistant chat."""
+type ChatResult {
+  id: String
+  model: String
+  messages: [AssistantMessage!]!
+  usage: AssistantUsage
+  finishReason: String
+}
+
+# -----------------------------------------------------------------------
+# Admin Types
+# -----------------------------------------------------------------------
+
+"""A Pinecone organization."""
+type Organization {
+  id: String!
+  name: String!
+  plan: String
+  createdAt: DateTime
+}
+
+"""A project within an organization."""
+type Project {
+  id: String!
+  name: String!
+  organizationId: String!
+  maxPods: Int
+  podQuota: Int
+  forceEncryption: Boolean
+  createdAt: DateTime
+}
+
+"""An API key for accessing Pinecone."""
+type ApiKey {
+  id: String!
+  name: String!
+  projectId: String!
+  value: String
+  roles: [String!]
+  createdAt: DateTime
+}
+
+"""A service account for machine-to-machine authentication."""
+type ServiceAccount {
+  id: String!
+  name: String!
+  projectId: String!
+  createdAt: DateTime
+}
+
+"""An organization member."""
+type OrganizationMember {
+  userId: String!
+  email: String!
+  role: OrganizationRole!
+  joinedAt: DateTime
+}
+
+"""A project member."""
+type ProjectMember {
+  userId: String!
+  email: String!
+  role: ProjectRole!
+  joinedAt: DateTime
+}
+
+# -----------------------------------------------------------------------
+# Pagination / Connection Types
+# -----------------------------------------------------------------------
+
+"""Page info for cursor-based pagination."""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+"""A page of indexes."""
+type IndexConnection {
+  indexes: [Index!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A page of collections."""
+type CollectionConnection {
+  collections: [Collection!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A page of backups."""
+type BackupConnection {
+  backups: [Backup!]!
+  nextPaginationToken: String
+}
+
+"""A page of imports."""
+type ImportConnection {
+  imports: [Import!]!
+  nextPaginationToken: String
+  totalCount: Int
+}
+
+"""A page of namespaces."""
+type NamespaceConnection {
+  namespaces: [Namespace!]!
+  nextPaginationToken: String
+}
+
+"""A page of assistant files."""
+type AssistantFileConnection {
+  files: [AssistantFile!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A page of assistants."""
+type AssistantConnection {
+  assistants: [Assistant!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A page of API keys."""
+type ApiKeyConnection {
+  keys: [ApiKey!]!
+  pageInfo: PageInfo!
+}
+
+"""A page of projects."""
+type ProjectConnection {
+  projects: [Project!]!
+  pageInfo: PageInfo!
+}
+
+"""A page of organization members."""
+type OrganizationMemberConnection {
+  members: [OrganizationMember!]!
+  pageInfo: PageInfo!
+}
+
+"""A page of inference models."""
+type InferenceModelConnection {
+  models: [InferenceModel!]!
+}
+
+# -----------------------------------------------------------------------
+# Input Types
+# -----------------------------------------------------------------------
+
+"""Input for creating a serverless index."""
+input CreateServerlessIndexInput {
+  name: String!
+  dimension: Int!
+  metric: IndexMetric!
+  cloud: CloudProvider!
+  region: String!
+  deletionProtection: Boolean
+  tags: JSON
+}
+
+"""Input for creating a pod-based index."""
+input CreatePodIndexInput {
+  name: String!
+  dimension: Int!
+  metric: IndexMetric!
+  environment: String!
+  podType: PodType!
+  podSize: PodSize!
+  pods: Int
+  replicas: Int
+  shards: Int
+  sourceCollection: String
+  deletionProtection: Boolean
+  metadataConfig: MetadataIndexConfigInput
+  tags: JSON
+}
+
+"""Input for configuring metadata indexing."""
+input MetadataIndexConfigInput {
+  indexed: [String!]
+}
+
+"""Input for updating an index configuration."""
+input UpdateIndexInput {
+  name: String!
+  deletionProtection: Boolean
+  tags: JSON
+  podSpec: UpdatePodSpecInput
+}
+
+"""Input for updating pod-based index spec."""
+input UpdatePodSpecInput {
+  replicas: Int
+  podType: String
+}
+
+"""Input for a single vector to upsert."""
+input VectorInput {
+  id: String!
+  values: [Float32!]
+  sparseValues: SparseValuesInput
+  metadata: JSON
+}
+
+"""Input for sparse vector values."""
+input SparseValuesInput {
+  indices: [Int!]!
+  values: [Float32!]!
+}
+
+"""Input for upserting vectors."""
+input UpsertVectorsInput {
+  indexName: String!
+  namespace: String
+  vectors: [VectorInput!]!
+}
+
+"""Input for querying an index."""
+input QueryVectorsInput {
+  indexName: String!
+  namespace: String
+  topK: Int!
+  vector: [Float32!]
+  sparseVector: SparseValuesInput
+  id: String
+  filter: JSON
+  includeValues: Boolean
+  includeMetadata: Boolean
+}
+
+"""Input for fetching vectors by ID."""
+input FetchVectorsInput {
+  indexName: String!
+  namespace: String
+  ids: [String!]!
+}
+
+"""Input for updating a vector."""
+input UpdateVectorInput {
+  indexName: String!
+  namespace: String
+  id: String!
+  values: [Float32!]
+  sparseValues: SparseValuesInput
+  setMetadata: JSON
+}
+
+"""Input for deleting vectors."""
+input DeleteVectorsInput {
+  indexName: String!
+  namespace: String
+  ids: [String!]
+  deleteAll: Boolean
+  filter: JSON
+}
+
+"""Input for creating a collection."""
+input CreateCollectionInput {
+  name: String!
+  source: String!
+}
+
+"""Input for creating a backup."""
+input CreateBackupInput {
+  indexName: String!
+  name: String
+  description: String
+  tags: JSON
+}
+
+"""Input for restoring an index from backup."""
+input RestoreIndexInput {
+  backupId: String!
+  name: String!
+  tags: JSON
+}
+
+"""Input for starting a bulk import."""
+input StartImportInput {
+  indexName: String!
+  uri: String!
+  namespace: String
+  integration: String
+  errorMode: ImportErrorMode
+}
+
+"""Input for generating embeddings."""
+input EmbedInput {
+  model: String!
+  inputs: [EmbedTextInput!]!
+  parameters: EmbedParametersInput
+}
+
+"""A single text input for embedding."""
+input EmbedTextInput {
+  text: String!
+}
+
+"""Parameters for embedding generation."""
+input EmbedParametersInput {
+  inputType: EmbeddingInputType
+  truncate: String
+  outputType: EmbeddingOutputType
+}
+
+"""Input for reranking documents."""
+input RerankInput {
+  model: String!
+  query: String!
+  documents: [JSON!]!
+  topN: Int
+  returnDocuments: Boolean
+  rankFields: [String!]
+  parameters: JSON
+}
+
+"""Input for creating an assistant."""
+input CreateAssistantInput {
+  name: String!
+  instructions: String
+  metadata: JSON
+}
+
+"""Input for updating an assistant."""
+input UpdateAssistantInput {
+  name: String!
+  instructions: String
+  metadata: JSON
+}
+
+"""Input for chatting with an assistant."""
+input ChatInput {
+  assistantName: String!
+  messages: [ChatMessageInput!]!
+  stream: StreamMode
+  model: String
+  filter: JSON
+}
+
+"""A message in a chat request."""
+input ChatMessageInput {
+  role: MessageRole!
+  content: String!
+}
+
+"""Input for creating a project."""
+input CreateProjectInput {
+  name: String!
+  organizationId: String!
+  maxPods: Int
+  podQuota: Int
+  forceEncryption: Boolean
+}
+
+"""Input for creating an API key."""
+input CreateApiKeyInput {
+  name: String!
+  projectId: String!
+  roles: [String!]
+}
+
+"""Input for creating a service account."""
+input CreateServiceAccountInput {
+  name: String!
+  projectId: String!
+}
+
+"""Filter input for listing vectors or indexes."""
+input ListFilter {
+  prefix: String
+  limit: Int
+  paginationToken: String
+}
+
+# -----------------------------------------------------------------------
+# Query Root
+# -----------------------------------------------------------------------
+
+type Query {
+  # ---- Index queries ----
+
+  """List all indexes, optionally filtered by tags."""
+  indexes(tags: JSON, after: String, first: Int): IndexConnection!
+
+  """Get details of a specific index."""
+  index(name: String!): Index!
+
+  """Get statistics for an index."""
+  indexStats(name: String!, filter: JSON): IndexStats!
+
+  # ---- Vector queries ----
+
+  """Query an index for the nearest neighbors to a vector."""
+  queryVectors(input: QueryVectorsInput!): QueryResult!
+
+  """Fetch specific vectors by ID from an index."""
+  fetchVectors(input: FetchVectorsInput!): FetchResult!
+
+  """List vector IDs in a namespace."""
+  listVectors(indexName: String!, namespace: String, filter: ListFilter): NamespaceConnection!
+
+  # ---- Collection queries ----
+
+  """List all collections."""
+  collections(after: String, first: Int): CollectionConnection!
+
+  """Get details of a specific collection."""
+  collection(name: String!): Collection!
+
+  # ---- Backup queries ----
+
+  """List all backups for an index."""
+  backups(indexName: String, paginationToken: String, limit: Int): BackupConnection!
+
+  """Get details of a specific backup."""
+  backup(backupId: String!): Backup!
+
+  # ---- Import queries ----
+
+  """List all bulk import operations for an index."""
+  imports(indexName: String!, paginationToken: String, limit: Int): ImportConnection!
+
+  """Get details of a specific import operation."""
+  import(indexName: String!, importId: String!): Import!
+
+  # ---- Namespace queries ----
+
+  """List namespaces within an index."""
+  namespaces(indexName: String!, paginationToken: String, limit: Int): NamespaceConnection!
+
+  # ---- Inference queries ----
+
+  """List available embedding and reranking models."""
+  inferenceModels(type: String, vectorType: String): InferenceModelConnection!
+
+  """Get details of a specific inference model."""
+  inferenceModel(model: String!): InferenceModel!
+
+  # ---- Assistant queries ----
+
+  """List all assistants."""
+  assistants(after: String, first: Int): AssistantConnection!
+
+  """Get details of a specific assistant."""
+  assistant(name: String!): Assistant!
+
+  """List files uploaded to an assistant."""
+  assistantFiles(assistantName: String!, after: String, first: Int): AssistantFileConnection!
+
+  """Get a specific file uploaded to an assistant."""
+  assistantFile(assistantName: String!, fileId: String!): AssistantFile!
+
+  # ---- Admin queries ----
+
+  """List all organizations the caller belongs to."""
+  organizations: [Organization!]!
+
+  """Get a specific organization."""
+  organization(organizationId: String!): Organization!
+
+  """List all projects in an organization."""
+  projects(organizationId: String!, after: String, first: Int): ProjectConnection!
+
+  """Get a specific project."""
+  project(projectId: String!): Project!
+
+  """List API keys for a project."""
+  apiKeys(projectId: String!, after: String, first: Int): ApiKeyConnection!
+
+  """Get a specific API key."""
+  apiKey(keyId: String!): ApiKey!
+
+  """List service accounts for a project."""
+  serviceAccounts(projectId: String!): [ServiceAccount!]!
+
+  """List members of an organization."""
+  organizationMembers(organizationId: String!): OrganizationMemberConnection!
+
+  """List members of a project."""
+  projectMembers(projectId: String!): [ProjectMember!]!
+}
+
+# -----------------------------------------------------------------------
+# Mutation Root
+# -----------------------------------------------------------------------
+
+type Mutation {
+  # ---- Index mutations ----
+
+  """Create a new serverless index."""
+  createServerlessIndex(input: CreateServerlessIndexInput!): Index!
+
+  """Create a new pod-based index."""
+  createPodIndex(input: CreatePodIndexInput!): Index!
+
+  """Update configuration of an existing index."""
+  updateIndex(input: UpdateIndexInput!): Index!
+
+  """Delete an index."""
+  deleteIndex(name: String!): DeleteResult!
+
+  # ---- Vector mutations ----
+
+  """Upsert vectors into an index."""
+  upsertVectors(input: UpsertVectorsInput!): UpsertResult!
+
+  """Update a vector's values or metadata."""
+  updateVector(input: UpdateVectorInput!): UpdateResult!
+
+  """Delete vectors from an index."""
+  deleteVectors(input: DeleteVectorsInput!): DeleteResult!
+
+  # ---- Collection mutations ----
+
+  """Create a collection from an existing index."""
+  createCollection(input: CreateCollectionInput!): Collection!
+
+  """Delete a collection."""
+  deleteCollection(name: String!): DeleteResult!
+
+  # ---- Backup mutations ----
+
+  """Create a backup of an index."""
+  createBackup(input: CreateBackupInput!): Backup!
+
+  """Restore an index from a backup."""
+  restoreIndexFromBackup(input: RestoreIndexInput!): Index!
+
+  """Delete a backup."""
+  deleteBackup(backupId: String!): DeleteResult!
+
+  # ---- Import mutations ----
+
+  """Start a bulk import operation."""
+  startImport(input: StartImportInput!): Import!
+
+  """Cancel a running import operation."""
+  cancelImport(indexName: String!, importId: String!): DeleteResult!
+
+  # ---- Inference mutations ----
+
+  """Generate embeddings for a list of text inputs."""
+  embed(input: EmbedInput!): EmbedResult!
+
+  """Rerank documents against a query."""
+  rerank(input: RerankInput!): RerankResult!
+
+  # ---- Assistant mutations ----
+
+  """Create a new assistant."""
+  createAssistant(input: CreateAssistantInput!): Assistant!
+
+  """Update an existing assistant."""
+  updateAssistant(input: UpdateAssistantInput!): Assistant!
+
+  """Delete an assistant."""
+  deleteAssistant(name: String!): DeleteResult!
+
+  """Upload a file to an assistant."""
+  uploadAssistantFile(assistantName: String!, fileName: String!, content: String!, metadata: JSON): AssistantFile!
+
+  """Delete a file from an assistant."""
+  deleteAssistantFile(assistantName: String!, fileId: String!): DeleteResult!
+
+  """Chat with an assistant."""
+  chat(input: ChatInput!): ChatResult!
+
+  # ---- Admin mutations ----
+
+  """Create a new project."""
+  createProject(input: CreateProjectInput!): Project!
+
+  """Update a project."""
+  updateProject(projectId: String!, name: String, maxPods: Int, forceEncryption: Boolean): Project!
+
+  """Delete a project."""
+  deleteProject(projectId: String!): DeleteResult!
+
+  """Create an API key for a project."""
+  createApiKey(input: CreateApiKeyInput!): ApiKey!
+
+  """Delete an API key."""
+  deleteApiKey(keyId: String!): DeleteResult!
+
+  """Create a service account."""
+  createServiceAccount(input: CreateServiceAccountInput!): ServiceAccount!
+
+  """Delete a service account."""
+  deleteServiceAccount(serviceAccountId: String!): DeleteResult!
+
+  """Add a member to an organization."""
+  addOrganizationMember(organizationId: String!, email: String!, role: OrganizationRole!): OrganizationMember!
+
+  """Remove a member from an organization."""
+  removeOrganizationMember(organizationId: String!, userId: String!): DeleteResult!
+
+  """Add a member to a project."""
+  addProjectMember(projectId: String!, email: String!, role: ProjectRole!): ProjectMember!
+
+  """Remove a member from a project."""
+  removeProjectMember(projectId: String!, userId: String!): DeleteResult!
+}
+
+# -----------------------------------------------------------------------
+# Subscription Root
+# -----------------------------------------------------------------------
+
+type Subscription {
+  """Subscribe to status changes of an index."""
+  indexStatusChanged(name: String!): Index!
+
+  """Subscribe to import operation progress updates."""
+  importProgress(indexName: String!, importId: String!): Import!
+
+  """Subscribe to backup status changes."""
+  backupStatusChanged(backupId: String!): Backup!
+
+  """Subscribe to assistant status changes."""
+  assistantStatusChanged(name: String!): Assistant!
+
+  """Subscribe to streaming chat responses from an assistant."""
+  chatStream(input: ChatInput!): AssistantMessage!
+
+  """Subscribe to file processing status changes."""
+  assistantFileStatusChanged(assistantName: String!, fileId: String!): AssistantFile!
+}

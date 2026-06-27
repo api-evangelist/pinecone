@@ -34,7 +34,7 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-db-control-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/db-control-manage-indexes.yaml
   - url: graphql/pinecone-graphql.md
     type: GraphQL
@@ -54,11 +54,11 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-db-data-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/db-data-bulk-operations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/db-data-namespace-operations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/db-data-vector-operations.yaml
 - aid: pinecone:pinecone-inference
   name: Pinecone Inference API
@@ -75,7 +75,7 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-inference-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/inference-inference.yaml
 - aid: pinecone:pinecone-assistant-control
   name: Pinecone Assistant Control API
@@ -92,7 +92,7 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-assistant-control-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/assistant-control-manage-assistants.yaml
 - aid: pinecone:pinecone-assistant-data
   name: Pinecone Assistant Data API
@@ -109,7 +109,7 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-assistant-data-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/assistant-data-manage-assistants.yaml
 - aid: pinecone:pinecone-admin
   name: Pinecone Admin API
@@ -126,11 +126,11 @@ apis:
     url: https://docs.pinecone.io/reference/api/introduction
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/openapi/pinecone-admin-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/admin-api-keys.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/admin-organizations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/admin-projects.yaml
 common:
 - type: LinkedIn
@@ -191,7 +191,7 @@ common:
   url: https://docs.pinecone.io/reference/pinecone-sdks
 - type: Repository
   url: https://github.com/pinecone-io/pinecone-api
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.pinecone.io/llms.txt
 integrations:
 - name: Agent Skills

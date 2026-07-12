@@ -133,6 +133,12 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/admin-projects.yaml
 common:
+- type: TrustCenter
+  url: security/pinecone-trust-center.yml
+- type: DomainSecurity
+  url: security/pinecone-domain-security.yml
+- type: Authentication
+  url: authentication/pinecone-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/pinecone-io
 - type: Website

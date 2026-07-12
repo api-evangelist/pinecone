@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pinecone-admin-openapi.yaml, openapi/pinecone-assistant-control-openapi.yaml,
+  openapi/pinecone-assistant-data-openapi.yaml, openapi/pinecone-db-control-openapi.yaml, openapi/pinecone-db-data-openapi.yaml,
+  openapi/pinecone-inference-openapi.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token)
+    must be provided in the `Authorization` header using the `Bearer` scheme.
+  sources:
+  - openapi/pinecone-admin-openapi.yaml
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Api-Key
+  description: Pinecone API Key
+  sources:
+  - openapi/pinecone-assistant-control-openapi.yaml
+  - openapi/pinecone-assistant-data-openapi.yaml
+  - openapi/pinecone-db-control-openapi.yaml
+  - openapi/pinecone-db-data-openapi.yaml
+  - openapi/pinecone-inference-openapi.yaml

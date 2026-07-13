@@ -2,13 +2,14 @@
   "repo": "pinecone",
   "feeds": [
     {
-      "source": "https://www.pinecone.io/blog/",
-      "feed_url": "",
+      "source": "https://www.pinecone.io/pricing/",
+      "feed_url": "https://www.pinecone.io/pricing/",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
-  "post_count": 59,
-  "fetched": "2026-06-27T13:02:19Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 62,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }

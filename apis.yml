@@ -133,6 +133,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/admin-projects.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/pinecone-agentic-access.yml
 - type: TrustCenter
   url: security/pinecone-trust-center.yml
 - type: DomainSecurity

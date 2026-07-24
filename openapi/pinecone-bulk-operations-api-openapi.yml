@@ -1,0 +1,377 @@
+openapi: 3.0.3
+info:
+  title: Pinecone Admin API Keys Bulk Operations API
+  description: 'Provides an API for managing a Pinecone organization and its resources.
+
+    '
+  contact:
+    name: Pinecone Support
+    url: https://support.pinecone.io
+    email: support@pinecone.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 2025-10
+servers:
+- url: https://api.pinecone.io
+  description: Production API endpoints
+security:
+- BearerAuth: []
+tags:
+- name: Bulk Operations
+paths:
+  /bulk/imports:
+    get:
+      tags:
+      - Bulk Operations
+      summary: List imports
+      description: 'List all recent and ongoing import operations.
+
+
+        By default, `list_imports` returns up to 100 imports per page. If the `limit` parameter is set, `list` returns up to that number of imports instead. Whenever there are additional IDs to return, the response also includes a `pagination_token` that you can use to get the next batch of imports. When the response does not include a `pagination_token`, there are no more imports to return.
+
+
+        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+      operationId: listBulkImports
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: query
+        name: limit
+        description: Max number of operations to return per page.
+        schema:
+          default: 100
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+        example: 10
+        style: form
+      - in: query
+        name: paginationToken
+        description: Pagination token to continue a previous listing operation.
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          description: A list of import operations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListImportsResponse'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+    post:
+      tags:
+      - Bulk Operations
+      summary: Start import
+      description: 'Start an asynchronous import of vectors from object storage into an index.
+
+
+        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+      operationId: startBulkImport
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartImportRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful import operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartImportResponse'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+  /bulk/imports/{id}:
+    get:
+      tags:
+      - Bulk Operations
+      summary: Describe an import
+      description: 'Return details of a specific import operation.
+
+
+        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+      operationId: describeBulkImport
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: path
+        name: id
+        description: Unique identifier for the import operation.
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        example: '101'
+        style: simple
+      responses:
+        '200':
+          description: Details of the import operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportModel'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+    delete:
+      tags:
+      - Bulk Operations
+      summary: Cancel an import
+      description: 'Cancel an import operation if it is not yet finished. It has no effect if the operation is already finished.
+
+
+        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+      operationId: cancelBulkImport
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: path
+        name: id
+        description: Unique identifier for the import operation.
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        example: '101'
+        style: simple
+      responses:
+        '200':
+          description: Operation cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelImportResponse'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+components:
+  schemas:
+    ListImportsResponse:
+      description: The response for the `list_imports` operation.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportModel'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ImportErrorMode:
+      description: Indicates how to respond to errors during the import process.
+      type: object
+      properties:
+        onError:
+          description: 'Indicates how to respond to errors during the import process.
+
+            Possible values: `abort` or `continue`.'
+          x-enum:
+          - abort
+          - continue
+          type: string
+    ImportModel:
+      description: The model for an import operation.
+      type: object
+      properties:
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
+        uri:
+          description: The URI from where the data is imported.
+          type: string
+        status:
+          example: Pending
+          description: 'The status of the operation.
+
+            Possible values: `Pending`, `InProgress`, `Failed`, `Completed`, or `Cancelled`.'
+          x-enum:
+          - Pending
+          - InProgress
+          - Failed
+          - Completed
+          - Cancelled
+          type: string
+        createdAt:
+          description: The start time of the import operation.
+          type: string
+          format: date-time
+        finishedAt:
+          description: The end time of the import operation.
+          type: string
+          format: date-time
+        percentComplete:
+          example: 42.2
+          description: The progress made by the operation, as a percentage.
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 100.0
+        recordsImported:
+          example: 1000000
+          description: The number of records successfully imported.
+          type: integer
+          format: int64
+        error:
+          description: The error message if the import process failed.
+          type: string
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    CancelImportResponse:
+      description: The response for the `cancel_import` operation.
+      type: object
+    StartImportRequest:
+      description: The request for the `start_import` operation.
+      type: object
+      properties:
+        integrationId:
+          description: The id of the [storage integration](https://docs.pinecone.io/guides/operations/integrations/manage-storage-integrations) that should be used to access the data.
+          type: string
+          maxLength: 1000
+        uri:
+          description: The URI of the bucket (or container) and import directory containing the namespaces and Parquet files you want to import. For example, `s3://BUCKET_NAME/IMPORT_DIR` for Amazon S3, `gs://BUCKET_NAME/IMPORT_DIR` for Google Cloud Storage, or `https://STORAGE_ACCOUNT.blob.core.windows.net/CONTAINER_NAME/IMPORT_DIR` for Azure Blob Storage. For more information, see [Import records](https://docs.pinecone.io/guides/index-data/import-data#prepare-your-data).
+          type: string
+          minLength: 1
+          maxLength: 1500
+        errorMode:
+          $ref: '#/components/schemas/ImportErrorMode'
+      required:
+      - uri
+    StartImportResponse:
+      description: The response for the `start_import` operation.
+      type: object
+      properties:
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
+
+        '

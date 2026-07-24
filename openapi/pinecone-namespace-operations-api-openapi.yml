@@ -1,0 +1,386 @@
+openapi: 3.0.3
+info:
+  title: Pinecone Admin API Keys Namespace Operations API
+  description: 'Provides an API for managing a Pinecone organization and its resources.
+
+    '
+  contact:
+    name: Pinecone Support
+    url: https://support.pinecone.io
+    email: support@pinecone.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 2025-10
+servers:
+- url: https://api.pinecone.io
+  description: Production API endpoints
+security:
+- BearerAuth: []
+tags:
+- name: Namespace Operations
+paths:
+  /namespaces:
+    get:
+      tags:
+      - Namespace Operations
+      summary: List namespaces
+      description: 'List all namespaces in a serverless index.
+
+
+        Up to 100 namespaces are returned at a time by default, in sorted order (bitwise “C” collation). If the `limit` parameter is set, up to that number of namespaces are returned instead. Whenever there are additional namespaces to return, the response also includes a `pagination_token` that you can use to get the next batch of namespaces. When the response does not include a `pagination_token`, there are no more namespaces to return.
+
+
+        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+
+
+        **Note:** This operation is not supported for pod-based indexes.'
+      operationId: listNamespacesOperation
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: query
+        name: limit
+        description: Max number namespaces to return per page.
+        schema:
+          type: integer
+          format: int32
+        example: 10
+        style: form
+      - in: query
+        name: paginationToken
+        description: Pagination token to continue a previous listing operation.
+        schema:
+          type: string
+        style: form
+      - in: query
+        name: prefix
+        description: Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix.
+        schema:
+          type: string
+        example: prefixExample
+        style: form
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNamespacesResponse'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+    post:
+      tags:
+      - Namespace Operations
+      summary: Create a namespace
+      description: 'Create a namespace in a serverless index.
+
+
+        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+
+
+        **Note:** This operation is not supported for pod-based indexes.'
+      operationId: createNamespace
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNamespaceRequest'
+        required: true
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceDescription'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        '409':
+          description: Namespace of the given name already exists on the index.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+  /namespaces/{namespace}:
+    get:
+      tags:
+      - Namespace Operations
+      summary: Describe a namespace
+      description: 'Describe a namespace in a serverless index, including the total number of vectors in the namespace.
+
+
+        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+
+
+        **Note:** This operation is not supported for pod-based indexes.'
+      operationId: describeNamespace
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: path
+        name: namespace
+        description: The namespace to describe.
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: A description of a namespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceDescription'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+    delete:
+      tags:
+      - Namespace Operations
+      summary: Delete a namespace
+      description: 'Delete a namespace from a serverless index. Deleting a namespace is irreversible; all data in the namespace is permanently deleted.
+
+
+        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+
+
+        **Note:** This operation is not supported for pod-based indexes.'
+      operationId: deleteNamespace
+      parameters:
+      - in: header
+        name: X-Pinecone-Api-Version
+        description: Required date-based version header
+        required: true
+        schema:
+          default: 2025-10
+          type: string
+        style: simple
+      - in: path
+        name: namespace
+        description: The namespace to delete.
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad request. The request body included invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        4XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+        5XX:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+components:
+  schemas:
+    NamespaceDescription:
+      description: A description of a namespace, including the name and record count.
+      type: object
+      properties:
+        name:
+          example: example-namespace
+          description: The name of the namespace.
+          type: string
+        record_count:
+          example: 20000
+          description: The total amount of records within the namespace.
+          type: integer
+          format: int64
+        schema:
+          example:
+            fields:
+              description:
+                filterable: true
+              genre:
+                filterable: true
+              year:
+                filterable: true
+          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
+          type: object
+          properties:
+            fields:
+              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filterable:
+                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
+                    type: boolean
+          required:
+          - fields
+        indexed_fields:
+          description: A list of all indexed metatadata fields in the namespace
+          type: object
+          properties:
+            fields:
+              type: array
+              items:
+                type: string
+              example:
+              - genre
+              - year
+              - author
+    DeleteResponse:
+      description: The response for the `delete` operation.
+      type: object
+    CreateNamespaceRequest:
+      description: A request for creating a namespace with the specified namespace name.
+      type: object
+      properties:
+        name:
+          example: example-namespace
+          description: The name of the namespace.
+          type: string
+        schema:
+          example:
+            fields:
+              description:
+                filterable: true
+              genre:
+                filterable: true
+              year:
+                filterable: true
+          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
+          type: object
+          properties:
+            fields:
+              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filterable:
+                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
+                    type: boolean
+          required:
+          - fields
+      required:
+      - name
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    ListNamespacesResponse:
+      type: object
+      properties:
+        namespaces:
+          description: The list of namespaces belonging to this index.
+          type: array
+          items:
+            $ref: '#/components/schemas/NamespaceDescription'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        total_count:
+          example: 25
+          description: The total number of namespaces in the index matching the prefix
+          type: integer
+          format: int32
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
+
+        '

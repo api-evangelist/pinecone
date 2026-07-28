@@ -1,0 +1,36 @@
+generated: '2026-07-28'
+method: probed
+source: https://www.pinecone.io/.well-known/agent-card.json
+description: 'A2A Agent Card observed at /.well-known/agent-card.json on pinecone.io. Grade is measured
+  against the A2A 1.0.0 AgentCard object: ''conformant'' passes every structural check, ''near-conformant''
+  is correctly shaped but omits optional fields, ''flavored'' fails a hard check and is an agent card
+  in spirit rather than in schema. Provider-published by construction — served from the provider''s own
+  host; nothing here is derived or generated.'
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: pinecone.io
+conformance:
+  spec: A2A 1.0.0
+  grade: flavored
+  protocol_version: null
+  preferred_transport: null
+  deviations:
+  - no-protocolVersion
+  - no-preferredTransport
+card:
+  name: Pinecone
+  description: Pinecone is the vector database for building knowledgeable AI. This agent card advertises
+    the Pinecone marketing-site MCP, which exposes read-only browsing of website content. For API and
+    SDK reference, use the docs MCP at https://docs.pinecone.io/mcp.
+  url: https://www.pinecone.io/mcp/
+  version: 1.0.0
+  documentation_url: null
+  skills: 1
+  file: pinecone-agent-card.json
+x-evidence:
+  fetched: '2026-07-28'
+  url: https://www.pinecone.io/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  note: Verbatim body saved alongside this manifest. No field inferred.

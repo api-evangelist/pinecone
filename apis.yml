@@ -133,6 +133,10 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/admin-projects.yaml
 common:
+- type: AgentCard
+  url: a2a/pinecone-a2a.yml
+  name: A2A Agent Card
+  description: Agent Card served at /.well-known/agent-card.json (flavored against A2A 1.0.0).
 - type: AgenticAccess
   url: agentic-access/pinecone-agentic-access.yml
 - type: TrustCenter

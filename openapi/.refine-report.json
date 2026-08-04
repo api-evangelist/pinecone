@@ -1,0 +1,30 @@
+{
+  "provider": "pinecone",
+  "sources": [
+    "pinecone-api-keys-api-openapi.yml",
+    "pinecone-bulk-operations-api-openapi.yml",
+    "pinecone-inference-api-openapi.yml",
+    "pinecone-manage-assistants-api-openapi.yml",
+    "pinecone-manage-indexes-api-openapi.yml",
+    "pinecone-namespace-operations-api-openapi.yml",
+    "pinecone-organizations-api-openapi.yml",
+    "pinecone-projects-api-openapi.yml",
+    "pinecone-vector-operations-api-openapi.yml"
+  ],
+  "outputs": [
+    "pinecone-api-keys-api-openapi.yml",
+    "pinecone-bulk-operations-api-openapi.yml",
+    "pinecone-inference-api-openapi.yml",
+    "pinecone-manage-assistants-api-openapi.yml",
+    "pinecone-manage-indexes-api-openapi.yml",
+    "pinecone-namespace-operations-api-openapi.yml",
+    "pinecone-organizations-api-openapi.yml",
+    "pinecone-projects-api-openapi.yml",
+    "pinecone-vector-operations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

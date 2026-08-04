@@ -1,0 +1,1195 @@
+{
+  "info": {
+    "_postman_id": "7038b867-0be4-492d-83c8-dde2ad035d51",
+    "name": "Pinecone Admin API Keys Inference API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:14.000Z",
+    "updatedAt": "2026-07-28T02:36:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7038b867-0be4-492d-83c8-dde2ad035d51"
+  },
+  "item": [
+    {
+      "name": "embed",
+      "item": [
+        {
+          "name": "Generate vectors",
+          "id": "7e446e9f-b706-415a-a2ac-54b15b1727c0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"inputs\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"parameters\": {\n    \"utf69\": false,\n    \"ut4\": -64542250.94411647\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/embed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "embed"
+              ]
+            },
+            "description": "Generate vector embeddings for input data. This endpoint uses Pinecone's [hosted embedding models](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models)."
+          },
+          "response": [
+            {
+              "id": "3a848f57-cf20-4e65-96fa-7642063c6dff",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"inputs\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"parameters\": {\n    \"utf69\": false,\n    \"ut4\": -64542250.94411647\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/embed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "embed"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"model\": \"<string>\",\n  \"vector_type\": \"<string>\",\n  \"data\": [\n    {\n      \"values\": [\n        \"<float>\",\n        \"<float>\"\n      ],\n      \"vector_type\": \"<string>\"\n    },\n    {\n      \"values\": [\n        \"<float>\",\n        \"<float>\"\n      ],\n      \"vector_type\": \"<string>\"\n    }\n  ],\n  \"usage\": {\n    \"total_tokens\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-3a848f57-cf20-4e65-96fa-7642063c6dff"
+            },
+            {
+              "id": "bca1ae9d-68f4-4b9f-9f85-6eba7b531bbc",
+              "name": "Bad request. The request body included invalid request parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"inputs\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"parameters\": {\n    \"utf69\": false,\n    \"ut4\": -64542250.94411647\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/embed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "embed"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-bca1ae9d-68f4-4b9f-9f85-6eba7b531bbc"
+            },
+            {
+              "id": "8cb3fdc9-b26d-483a-966a-8359462a410c",
+              "name": "Unauthorized. Possible causes: Invalid API key.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"inputs\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"parameters\": {\n    \"utf69\": false,\n    \"ut4\": -64542250.94411647\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/embed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "embed"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-8cb3fdc9-b26d-483a-966a-8359462a410c"
+            },
+            {
+              "id": "43d171b3-36e4-430d-8759-a60c7b7d60fb",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"inputs\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"parameters\": {\n    \"utf69\": false,\n    \"ut4\": -64542250.94411647\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/embed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "embed"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-43d171b3-36e4-430d-8759-a60c7b7d60fb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:15.000Z",
+          "updatedAt": "2026-07-28T02:36:15.000Z",
+          "uid": "35240-7e446e9f-b706-415a-a2ac-54b15b1727c0"
+        }
+      ],
+      "id": "5b169abd-c79c-43aa-905a-ac4fd1136e20",
+      "createdAt": "2026-07-28T02:36:15.000Z",
+      "updatedAt": "2026-07-28T02:36:15.000Z",
+      "uid": "35240-5b169abd-c79c-43aa-905a-ac4fd1136e20"
+    },
+    {
+      "name": "rerank",
+      "item": [
+        {
+          "name": "Rerank results",
+          "id": "2db79f23-fb49-42f3-95e7-99173f752ae3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"documents\": [\n    {\n      \"ipsumc7\": \"irure quis\",\n      \"laborum_cb8\": 40931297\n    },\n    {\n      \"est661\": 13542862\n    }\n  ],\n  \"query\": \"<string>\",\n  \"top_n\": \"<integer>\",\n  \"return_documents\": true,\n  \"rank_fields\": [\n    \"text\"\n  ],\n  \"parameters\": {\n    \"enim_2dd\": -31284899.183876827,\n    \"Lorema3e\": false,\n    \"enim4f\": \"nisi\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rerank",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rerank"
+              ]
+            },
+            "description": "Rerank results according to their relevance to a query.\n\nFor guidance and examples, see [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+          },
+          "response": [
+            {
+              "id": "810a2893-ef48-48d5-9d5c-4ae59721eae1",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"documents\": [\n    {\n      \"ipsumc7\": \"irure quis\",\n      \"laborum_cb8\": 40931297\n    },\n    {\n      \"est661\": 13542862\n    }\n  ],\n  \"query\": \"<string>\",\n  \"top_n\": \"<integer>\",\n  \"return_documents\": true,\n  \"rank_fields\": [\n    \"text\"\n  ],\n  \"parameters\": {\n    \"enim_2dd\": -31284899.183876827,\n    \"Lorema3e\": false,\n    \"enim4f\": \"nisi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rerank",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rerank"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"model\": \"<string>\",\n  \"data\": [\n    {\n      \"index\": \"<integer>\",\n      \"score\": \"<number>\",\n      \"document\": {\n        \"adipisicing_4\": \"aute incididunt veniam esse\"\n      }\n    },\n    {\n      \"index\": \"<integer>\",\n      \"score\": \"<number>\",\n      \"document\": {\n        \"ad736\": 84522980,\n        \"sit18\": -22475892.121827945\n      }\n    }\n  ],\n  \"usage\": {\n    \"rerank_units\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-810a2893-ef48-48d5-9d5c-4ae59721eae1"
+            },
+            {
+              "id": "a61086a1-a6db-4fdd-87f8-060d14e696a6",
+              "name": "Bad request. The request body included invalid request parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"documents\": [\n    {\n      \"ipsumc7\": \"irure quis\",\n      \"laborum_cb8\": 40931297\n    },\n    {\n      \"est661\": 13542862\n    }\n  ],\n  \"query\": \"<string>\",\n  \"top_n\": \"<integer>\",\n  \"return_documents\": true,\n  \"rank_fields\": [\n    \"text\"\n  ],\n  \"parameters\": {\n    \"enim_2dd\": -31284899.183876827,\n    \"Lorema3e\": false,\n    \"enim4f\": \"nisi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rerank",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rerank"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-a61086a1-a6db-4fdd-87f8-060d14e696a6"
+            },
+            {
+              "id": "ebe6d3ad-08a7-4bad-823a-284a5a1cffd1",
+              "name": "Unauthorized. Possible causes: Invalid API key.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"documents\": [\n    {\n      \"ipsumc7\": \"irure quis\",\n      \"laborum_cb8\": 40931297\n    },\n    {\n      \"est661\": 13542862\n    }\n  ],\n  \"query\": \"<string>\",\n  \"top_n\": \"<integer>\",\n  \"return_documents\": true,\n  \"rank_fields\": [\n    \"text\"\n  ],\n  \"parameters\": {\n    \"enim_2dd\": -31284899.183876827,\n    \"Lorema3e\": false,\n    \"enim4f\": \"nisi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rerank",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rerank"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-ebe6d3ad-08a7-4bad-823a-284a5a1cffd1"
+            },
+            {
+              "id": "1283ff53-2e71-466a-810b-c11610ece6d7",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"documents\": [\n    {\n      \"ipsumc7\": \"irure quis\",\n      \"laborum_cb8\": 40931297\n    },\n    {\n      \"est661\": 13542862\n    }\n  ],\n  \"query\": \"<string>\",\n  \"top_n\": \"<integer>\",\n  \"return_documents\": true,\n  \"rank_fields\": [\n    \"text\"\n  ],\n  \"parameters\": {\n    \"enim_2dd\": -31284899.183876827,\n    \"Lorema3e\": false,\n    \"enim4f\": \"nisi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rerank",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rerank"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-1283ff53-2e71-466a-810b-c11610ece6d7"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:15.000Z",
+          "updatedAt": "2026-07-28T02:36:15.000Z",
+          "uid": "35240-2db79f23-fb49-42f3-95e7-99173f752ae3"
+        }
+      ],
+      "id": "6bf8e8b1-275b-4345-879d-c93ef6ff4734",
+      "createdAt": "2026-07-28T02:36:15.000Z",
+      "updatedAt": "2026-07-28T02:36:15.000Z",
+      "uid": "35240-6bf8e8b1-275b-4345-879d-c93ef6ff4734"
+    },
+    {
+      "name": "models",
+      "item": [
+        {
+          "name": "{model_name}",
+          "item": [
+            {
+              "name": "Describe a model",
+              "id": "cd7bfd7e-f7c0-4018-ae67-189016e2944e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models/:model_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models",
+                    ":model_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ca194a3e-81c1-43a4-a7e2-f5a14ef658d3",
+                      "key": "model_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the model to look up."
+                    }
+                  ]
+                },
+                "description": "Get a description of a model hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+              },
+              "response": [
+                {
+                  "id": "63d29159-6910-4279-940b-2a6616bac4fd",
+                  "name": "The model details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:model_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":model_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "model_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"model\": \"<string>\",\n  \"short_description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"supported_parameters\": [\n    {\n      \"parameter\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value_type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"allowed_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"min\": \"<number>\",\n      \"max\": \"<number>\",\n      \"default\": \"<string>\"\n    },\n    {\n      \"parameter\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value_type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"allowed_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"min\": \"<number>\",\n      \"max\": \"<number>\",\n      \"default\": \"<string>\"\n    }\n  ],\n  \"vector_type\": \"<string>\",\n  \"default_dimension\": \"<integer>\",\n  \"modality\": \"<string>\",\n  \"max_sequence_length\": \"<integer>\",\n  \"max_batch_size\": \"<integer>\",\n  \"provider_name\": \"<string>\",\n  \"supported_dimensions\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"supported_metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:15.000Z",
+                  "updatedAt": "2026-07-28T02:36:15.000Z",
+                  "uid": "35240-63d29159-6910-4279-940b-2a6616bac4fd"
+                },
+                {
+                  "id": "a958efd5-9e5a-41cb-8078-2712d1a5245f",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:model_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":model_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "model_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:15.000Z",
+                  "updatedAt": "2026-07-28T02:36:15.000Z",
+                  "uid": "35240-a958efd5-9e5a-41cb-8078-2712d1a5245f"
+                },
+                {
+                  "id": "41f3d200-cd66-49d8-a477-b9563cea2888",
+                  "name": "Model not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:model_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":model_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "model_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:15.000Z",
+                  "updatedAt": "2026-07-28T02:36:15.000Z",
+                  "uid": "35240-41f3d200-cd66-49d8-a477-b9563cea2888"
+                },
+                {
+                  "id": "38e4fa99-f089-46cf-adcb-285c301ae2c7",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:model_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":model_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "model_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:15.000Z",
+                  "updatedAt": "2026-07-28T02:36:15.000Z",
+                  "uid": "35240-38e4fa99-f089-46cf-adcb-285c301ae2c7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-cd7bfd7e-f7c0-4018-ae67-189016e2944e"
+            }
+          ],
+          "id": "652c72ba-ed9f-444e-a7d4-31e52bfddcb0",
+          "createdAt": "2026-07-28T02:36:15.000Z",
+          "updatedAt": "2026-07-28T02:36:15.000Z",
+          "uid": "35240-652c72ba-ed9f-444e-a7d4-31e52bfddcb0"
+        },
+        {
+          "name": "List available models",
+          "id": "efbf6c3a-c68a-4942-8d44-154598d17d7a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/models?type=<string>&vector_type=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "models"
+              ],
+              "query": [
+                {
+                  "description": "Filter models by type ('embed' or 'rerank').",
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.",
+                  "key": "vector_type",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List the embedding and reranking models hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+          },
+          "response": [
+            {
+              "id": "c360efb2-8526-46ed-9058-5df22002f613",
+              "name": "The list of available models.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?type=<string>&vector_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter models by type ('embed' or 'rerank').",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.",
+                      "key": "vector_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"models\": [\n    {\n      \"model\": \"<string>\",\n      \"short_description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"supported_parameters\": [\n        {\n          \"parameter\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value_type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"allowed_values\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"min\": \"<number>\",\n          \"max\": \"<number>\",\n          \"default\": \"<string>\"\n        },\n        {\n          \"parameter\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value_type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"allowed_values\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"min\": \"<number>\",\n          \"max\": \"<number>\",\n          \"default\": \"<string>\"\n        }\n      ],\n      \"vector_type\": \"<string>\",\n      \"default_dimension\": \"<integer>\",\n      \"modality\": \"<string>\",\n      \"max_sequence_length\": \"<integer>\",\n      \"max_batch_size\": \"<integer>\",\n      \"provider_name\": \"<string>\",\n      \"supported_dimensions\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"supported_metrics\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"model\": \"<string>\",\n      \"short_description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"supported_parameters\": [\n        {\n          \"parameter\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value_type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"allowed_values\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"min\": \"<number>\",\n          \"max\": \"<number>\",\n          \"default\": \"<string>\"\n        },\n        {\n          \"parameter\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value_type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"allowed_values\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"min\": \"<number>\",\n          \"max\": \"<number>\",\n          \"default\": \"<string>\"\n        }\n      ],\n      \"vector_type\": \"<string>\",\n      \"default_dimension\": \"<integer>\",\n      \"modality\": \"<string>\",\n      \"max_sequence_length\": \"<integer>\",\n      \"max_batch_size\": \"<integer>\",\n      \"provider_name\": \"<string>\",\n      \"supported_dimensions\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"supported_metrics\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-c360efb2-8526-46ed-9058-5df22002f613"
+            },
+            {
+              "id": "730e2db0-2506-44c6-adf8-c1636015b37d",
+              "name": "Unauthorized. Possible causes: Invalid API key.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?type=<string>&vector_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter models by type ('embed' or 'rerank').",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.",
+                      "key": "vector_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-730e2db0-2506-44c6-adf8-c1636015b37d"
+            },
+            {
+              "id": "899c43f6-8934-41f8-948c-ad7895e1ab7a",
+              "name": "Model not found.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?type=<string>&vector_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter models by type ('embed' or 'rerank').",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.",
+                      "key": "vector_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-899c43f6-8934-41f8-948c-ad7895e1ab7a"
+            },
+            {
+              "id": "06a09c54-19d0-46ce-a1da-2a8ddf5bba37",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?type=<string>&vector_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter models by type ('embed' or 'rerank').",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`.",
+                      "key": "vector_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:15.000Z",
+              "updatedAt": "2026-07-28T02:36:15.000Z",
+              "uid": "35240-06a09c54-19d0-46ce-a1da-2a8ddf5bba37"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:15.000Z",
+          "updatedAt": "2026-07-28T02:36:15.000Z",
+          "uid": "35240-efbf6c3a-c68a-4942-8d44-154598d17d7a"
+        }
+      ],
+      "id": "4a629e0b-1173-478e-b04d-c24870b206c4",
+      "createdAt": "2026-07-28T02:36:15.000Z",
+      "updatedAt": "2026-07-28T02:36:15.000Z",
+      "uid": "35240-4a629e0b-1173-478e-b04d-c24870b206c4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

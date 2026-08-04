@@ -1,0 +1,1169 @@
+{
+  "info": {
+    "_postman_id": "a69ad3d4-0ee6-4ea7-ba9f-2a3c747c835c",
+    "name": "Pinecone Admin API Keys Bulk Operations API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:13.000Z",
+    "updatedAt": "2026-07-28T02:36:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a69ad3d4-0ee6-4ea7-ba9f-2a3c747c835c"
+  },
+  "item": [
+    {
+      "name": "bulk",
+      "item": [
+        {
+          "name": "imports",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Describe an import",
+                  "id": "ccf0b107-668f-4118-8535-f753a2a8816d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0390c641-1104-4656-8fdd-2517f33c2b82",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the import operation."
+                        }
+                      ]
+                    },
+                    "description": "Return details of a specific import operation.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+                  },
+                  "response": [
+                    {
+                      "id": "9b4a0f8a-a008-4f73-ad67-25b1b9fdc40e",
+                      "name": "Details of the import operation.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"uri\": \"<string>\",\n  \"status\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"percentComplete\": \"<float>\",\n  \"recordsImported\": \"<long>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-9b4a0f8a-a008-4f73-ad67-25b1b9fdc40e"
+                    },
+                    {
+                      "id": "cedba53b-8455-42b7-84e2-ca260b7dfac7",
+                      "name": "Bad request. The request body included invalid request parameters.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-cedba53b-8455-42b7-84e2-ca260b7dfac7"
+                    },
+                    {
+                      "id": "f19624c9-41e9-49da-8403-9253abad5ff0",
+                      "name": "An unexpected error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-f19624c9-41e9-49da-8403-9253abad5ff0"
+                    },
+                    {
+                      "id": "ab0e7682-72e7-49ed-813f-8d6cb940a9ac",
+                      "name": "An unexpected error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-ab0e7682-72e7-49ed-813f-8d6cb940a9ac"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-ccf0b107-668f-4118-8535-f753a2a8816d"
+                },
+                {
+                  "name": "Cancel an import",
+                  "id": "377e235c-a4d1-4a73-bfcd-6d9f6814d412",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f1a0c7a2-f556-448b-8643-632573fb38d3",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the import operation."
+                        }
+                      ]
+                    },
+                    "description": "Cancel an import operation if it is not yet finished. It has no effect if the operation is already finished.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+                  },
+                  "response": [
+                    {
+                      "id": "c372732b-2471-4ef5-91c6-cbf1b505f331",
+                      "name": "Operation cancelled successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-c372732b-2471-4ef5-91c6-cbf1b505f331"
+                    },
+                    {
+                      "id": "b595f174-5a2d-4047-85a0-a91e265ca951",
+                      "name": "Bad request. The request body included invalid request parameters.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-b595f174-5a2d-4047-85a0-a91e265ca951"
+                    },
+                    {
+                      "id": "db67b0b4-daf8-46e3-abf1-b31129e452b5",
+                      "name": "An unexpected error response.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-db67b0b4-daf8-46e3-abf1-b31129e452b5"
+                    },
+                    {
+                      "id": "54588809-9b41-4c08-8442-bcacae617560",
+                      "name": "An unexpected error response.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/bulk/imports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bulk",
+                            "imports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:14.000Z",
+                      "updatedAt": "2026-07-28T02:36:14.000Z",
+                      "uid": "35240-54588809-9b41-4c08-8442-bcacae617560"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-377e235c-a4d1-4a73-bfcd-6d9f6814d412"
+                }
+              ],
+              "id": "466fa8c3-dd8d-4d51-a08a-9013e599be30",
+              "createdAt": "2026-07-28T02:36:14.000Z",
+              "updatedAt": "2026-07-28T02:36:14.000Z",
+              "uid": "35240-466fa8c3-dd8d-4d51-a08a-9013e599be30"
+            },
+            {
+              "name": "List imports",
+              "id": "81e7a7fd-c2b3-4f24-8b96-a409b363ceed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bulk/imports?limit=100&paginationToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bulk",
+                    "imports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Max number of operations to return per page.",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Pagination token to continue a previous listing operation.",
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List all recent and ongoing import operations.\n\nBy default, `list_imports` returns up to 100 imports per page. If the `limit` parameter is set, `list` returns up to that number of imports instead. Whenever there are additional IDs to return, the response also includes a `pagination_token` that you can use to get the next batch of imports. When the response does not include a `pagination_token`, there are no more imports to return.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+              },
+              "response": [
+                {
+                  "id": "2b763d0e-addf-429b-8922-0854be734c71",
+                  "name": "A list of import operations",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports?limit=100&paginationToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ],
+                      "query": [
+                        {
+                          "description": "Max number of operations to return per page.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination token to continue a previous listing operation.",
+                          "key": "paginationToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"uri\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"percentComplete\": \"<float>\",\n      \"recordsImported\": \"<long>\",\n      \"error\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"uri\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"percentComplete\": \"<float>\",\n      \"recordsImported\": \"<long>\",\n      \"error\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-2b763d0e-addf-429b-8922-0854be734c71"
+                },
+                {
+                  "id": "a9dbcb00-7362-4dc0-8b7d-0ca0e85a30d6",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports?limit=100&paginationToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ],
+                      "query": [
+                        {
+                          "description": "Max number of operations to return per page.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination token to continue a previous listing operation.",
+                          "key": "paginationToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-a9dbcb00-7362-4dc0-8b7d-0ca0e85a30d6"
+                },
+                {
+                  "id": "3b7221b2-50b5-41b3-9d4d-07459da594b3",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports?limit=100&paginationToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ],
+                      "query": [
+                        {
+                          "description": "Max number of operations to return per page.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination token to continue a previous listing operation.",
+                          "key": "paginationToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-3b7221b2-50b5-41b3-9d4d-07459da594b3"
+                },
+                {
+                  "id": "e8b3474c-28a5-4d16-b85d-02f6c7e4f343",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports?limit=100&paginationToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ],
+                      "query": [
+                        {
+                          "description": "Max number of operations to return per page.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination token to continue a previous listing operation.",
+                          "key": "paginationToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-e8b3474c-28a5-4d16-b85d-02f6c7e4f343"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:14.000Z",
+              "updatedAt": "2026-07-28T02:36:14.000Z",
+              "uid": "35240-81e7a7fd-c2b3-4f24-8b96-a409b363ceed"
+            },
+            {
+              "name": "Start import",
+              "id": "014763ba-f5a9-4d7b-843b-1451136982da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"integrationId\": \"<string>\",\n  \"errorMode\": {\n    \"onError\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bulk/imports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bulk",
+                    "imports"
+                  ]
+                },
+                "description": "Start an asynchronous import of vectors from object storage into an index.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+              },
+              "response": [
+                {
+                  "id": "a5c2d40c-025c-48fa-8e7a-4bf8b08dbe09",
+                  "name": "Successful import operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\",\n  \"integrationId\": \"<string>\",\n  \"errorMode\": {\n    \"onError\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-a5c2d40c-025c-48fa-8e7a-4bf8b08dbe09"
+                },
+                {
+                  "id": "0dad8e15-c63b-45b1-8d33-f1ef76b24463",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\",\n  \"integrationId\": \"<string>\",\n  \"errorMode\": {\n    \"onError\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-0dad8e15-c63b-45b1-8d33-f1ef76b24463"
+                },
+                {
+                  "id": "bfa31f65-ff01-4acc-b141-a4d541f68040",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\",\n  \"integrationId\": \"<string>\",\n  \"errorMode\": {\n    \"onError\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-bfa31f65-ff01-4acc-b141-a4d541f68040"
+                },
+                {
+                  "id": "220411e6-39e0-4e4d-a9a0-17541fc08a66",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\",\n  \"integrationId\": \"<string>\",\n  \"errorMode\": {\n    \"onError\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk/imports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk",
+                        "imports"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:14.000Z",
+                  "updatedAt": "2026-07-28T02:36:14.000Z",
+                  "uid": "35240-220411e6-39e0-4e4d-a9a0-17541fc08a66"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:14.000Z",
+              "updatedAt": "2026-07-28T02:36:14.000Z",
+              "uid": "35240-014763ba-f5a9-4d7b-843b-1451136982da"
+            }
+          ],
+          "id": "f3ef5383-7cbc-4e81-9b8a-e83a9f7edb61",
+          "createdAt": "2026-07-28T02:36:14.000Z",
+          "updatedAt": "2026-07-28T02:36:14.000Z",
+          "uid": "35240-f3ef5383-7cbc-4e81-9b8a-e83a9f7edb61"
+        }
+      ],
+      "id": "fd8e2f3b-cd4c-40d5-b86e-93f8c6e83243",
+      "createdAt": "2026-07-28T02:36:14.000Z",
+      "updatedAt": "2026-07-28T02:36:14.000Z",
+      "uid": "35240-fd8e2f3b-cd4c-40d5-b86e-93f8c6e83243"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

@@ -1,0 +1,1162 @@
+{
+  "info": {
+    "_postman_id": "333acef8-c158-4583-8041-f23380afcb53",
+    "name": "Pinecone Admin API Keys Namespace Operations API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:34.000Z",
+    "updatedAt": "2026-07-28T02:36:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-333acef8-c158-4583-8041-f23380afcb53"
+  },
+  "item": [
+    {
+      "name": "namespaces",
+      "item": [
+        {
+          "name": "{namespace}",
+          "item": [
+            {
+              "name": "Describe a namespace",
+              "id": "d924ac00-7cc0-4842-81a6-8570070453dd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces/:namespace",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4daa836f-a958-4322-978b-e7140034652f",
+                      "key": "namespace",
+                      "value": "<string>",
+                      "description": "(Required) The namespace to describe."
+                    }
+                  ]
+                },
+                "description": "Describe a namespace in a serverless index, including the total number of vectors in the namespace.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+              },
+              "response": [
+                {
+                  "id": "09432c18-54b5-457b-a738-81e48c468027",
+                  "name": "A description of a namespace.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"record_count\": \"<long>\",\n  \"schema\": {\n    \"fields\": {\n      \"dolorb78\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  },\n  \"indexed_fields\": {\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-09432c18-54b5-457b-a738-81e48c468027"
+                },
+                {
+                  "id": "6f1f8456-9d62-4d92-9d30-989e7a738959",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-6f1f8456-9d62-4d92-9d30-989e7a738959"
+                },
+                {
+                  "id": "46f804d8-11df-4862-b062-36bd108e07d6",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-46f804d8-11df-4862-b062-36bd108e07d6"
+                },
+                {
+                  "id": "db9d2862-9cbe-4385-aecf-165c3c0a677e",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-db9d2862-9cbe-4385-aecf-165c3c0a677e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-d924ac00-7cc0-4842-81a6-8570070453dd"
+            },
+            {
+              "name": "Delete a namespace",
+              "id": "cd51602f-4bae-480b-bd1b-e65e38ce75dd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces/:namespace",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b70e6501-ed7c-451e-ba09-7d1bdf44a92a",
+                      "key": "namespace",
+                      "value": "<string>",
+                      "description": "(Required) The namespace to delete."
+                    }
+                  ]
+                },
+                "description": "Delete a namespace from a serverless index. Deleting a namespace is irreversible; all data in the namespace is permanently deleted.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+              },
+              "response": [
+                {
+                  "id": "0e028915-5aa7-41cb-9c17-41f5aeed9db1",
+                  "name": "A successful response.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-0e028915-5aa7-41cb-9c17-41f5aeed9db1"
+                },
+                {
+                  "id": "e253e1d7-2a34-43fd-ab45-5f9341874eec",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-e253e1d7-2a34-43fd-ab45-5f9341874eec"
+                },
+                {
+                  "id": "5a528696-7dc8-4bed-a421-53adf569656a",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-5a528696-7dc8-4bed-a421-53adf569656a"
+                },
+                {
+                  "id": "9c819536-e2d4-4355-ad96-fcf9847ebc43",
+                  "name": "An unexpected error response.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/namespaces/:namespace",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "namespaces",
+                        ":namespace"
+                      ],
+                      "variable": [
+                        {
+                          "key": "namespace"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:35.000Z",
+                  "updatedAt": "2026-07-28T02:36:35.000Z",
+                  "uid": "35240-9c819536-e2d4-4355-ad96-fcf9847ebc43"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-cd51602f-4bae-480b-bd1b-e65e38ce75dd"
+            }
+          ],
+          "id": "eacb3117-2181-4dea-b00e-2ded74ba3110",
+          "createdAt": "2026-07-28T02:36:35.000Z",
+          "updatedAt": "2026-07-28T02:36:35.000Z",
+          "uid": "35240-eacb3117-2181-4dea-b00e-2ded74ba3110"
+        },
+        {
+          "name": "List namespaces",
+          "id": "bf913c53-666d-4b5a-bb1c-b508f5281f1e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/namespaces?limit=<integer>&paginationToken=<string>&prefix=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "namespaces"
+              ],
+              "query": [
+                {
+                  "description": "Max number namespaces to return per page.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token to continue a previous listing operation.",
+                  "key": "paginationToken",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix.",
+                  "key": "prefix",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List all namespaces in a serverless index.\n\nUp to 100 namespaces are returned at a time by default, in sorted order (bitwise \u201cC\u201d collation). If the `limit` parameter is set, up to that number of namespaces are returned instead. Whenever there are additional namespaces to return, the response also includes a `pagination_token` that you can use to get the next batch of namespaces. When the response does not include a `pagination_token`, there are no more namespaces to return.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+          },
+          "response": [
+            {
+              "id": "0cd0ad1b-1a0d-4ac4-905e-cf458b9031b6",
+              "name": "A successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces?limit=<integer>&paginationToken=<string>&prefix=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Max number namespaces to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token to continue a previous listing operation.",
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix.",
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"namespaces\": [\n    {\n      \"name\": \"<string>\",\n      \"record_count\": \"<long>\",\n      \"schema\": {\n        \"fields\": {\n          \"irured\": {\n            \"filterable\": \"<boolean>\"\n          },\n          \"reprehenderit__\": {\n            \"filterable\": \"<boolean>\"\n          }\n        }\n      },\n      \"indexed_fields\": {\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"record_count\": \"<long>\",\n      \"schema\": {\n        \"fields\": {\n          \"cillum_1\": {\n            \"filterable\": \"<boolean>\"\n          }\n        }\n      },\n      \"indexed_fields\": {\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<string>\"\n  },\n  \"total_count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-0cd0ad1b-1a0d-4ac4-905e-cf458b9031b6"
+            },
+            {
+              "id": "1a799b85-dddb-41bb-8891-98d75099de01",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces?limit=<integer>&paginationToken=<string>&prefix=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Max number namespaces to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token to continue a previous listing operation.",
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix.",
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-1a799b85-dddb-41bb-8891-98d75099de01"
+            },
+            {
+              "id": "a6810835-97c0-426d-8eb1-cb0252de0393",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces?limit=<integer>&paginationToken=<string>&prefix=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Max number namespaces to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token to continue a previous listing operation.",
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix.",
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-a6810835-97c0-426d-8eb1-cb0252de0393"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:35.000Z",
+          "updatedAt": "2026-07-28T02:36:35.000Z",
+          "uid": "35240-bf913c53-666d-4b5a-bb1c-b508f5281f1e"
+        },
+        {
+          "name": "Create a namespace",
+          "id": "43c27df9-b1f7-45da-a10b-a0254887fca1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/namespaces",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "namespaces"
+              ]
+            },
+            "description": "Create a namespace in a serverless index.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+          },
+          "response": [
+            {
+              "id": "55f2ff53-4baa-4486-98ba-3a2d8920dac1",
+              "name": "A successful response.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"name\": \"<string>\",\n  \"record_count\": \"<long>\",\n  \"schema\": {\n    \"fields\": {\n      \"dolorb78\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  },\n  \"indexed_fields\": {\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-55f2ff53-4baa-4486-98ba-3a2d8920dac1"
+            },
+            {
+              "id": "6154e99b-b6ec-4d05-8bcc-dbb0ab6a977d",
+              "name": "Bad request. The request body included invalid request parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-6154e99b-b6ec-4d05-8bcc-dbb0ab6a977d"
+            },
+            {
+              "id": "cbfcdc5a-bf96-4b96-95ff-c26347019054",
+              "name": "Namespace of the given name already exists on the index.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-cbfcdc5a-bf96-4b96-95ff-c26347019054"
+            },
+            {
+              "id": "9a13ce2f-0d43-4360-98b9-c38e0bd7ff13",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-9a13ce2f-0d43-4360-98b9-c38e0bd7ff13"
+            },
+            {
+              "id": "3d61f8f5-f760-41a2-81f1-50f5627ddddb",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schema\": {\n    \"fields\": {\n      \"laborumd\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"dolore_9\": {\n        \"filterable\": \"<boolean>\"\n      },\n      \"pariaturbb4\": {\n        \"filterable\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/namespaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "namespaces"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"typeUrl\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:35.000Z",
+              "updatedAt": "2026-07-28T02:36:35.000Z",
+              "uid": "35240-3d61f8f5-f760-41a2-81f1-50f5627ddddb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:35.000Z",
+          "updatedAt": "2026-07-28T02:36:35.000Z",
+          "uid": "35240-43c27df9-b1f7-45da-a10b-a0254887fca1"
+        }
+      ],
+      "id": "c148e3dc-62bc-4a80-a8c4-f1d45f43e5fc",
+      "createdAt": "2026-07-28T02:36:35.000Z",
+      "updatedAt": "2026-07-28T02:36:35.000Z",
+      "uid": "35240-c148e3dc-62bc-4a80-a8c4-f1d45f43e5fc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

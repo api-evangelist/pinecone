@@ -1,0 +1,1499 @@
+{
+  "info": {
+    "_postman_id": "b846d77c-ef70-44f4-9fb0-b28a57e3ef42",
+    "name": "Pinecone Admin API Keys Organizations API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:35.000Z",
+    "updatedAt": "2026-07-28T02:36:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b846d77c-ef70-44f4-9fb0-b28a57e3ef42"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "organizations",
+          "item": [
+            {
+              "name": "{organization_id}",
+              "item": [
+                {
+                  "name": "Get organization details",
+                  "id": "c7136a54-e096-4bb9-8e9e-6ce0dc3c612f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations",
+                        ":organization_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b2e273fa-f0b5-409d-b3e7-3d08bd07b9cf",
+                          "key": "organization_id",
+                          "value": "<string>",
+                          "description": "(Required) Organization ID"
+                        }
+                      ]
+                    },
+                    "description": "Get details about an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "9bd528fa-afca-4a35-8914-1aa2e8525939",
+                      "name": "The details of an organization.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"plan\": \"<string>\",\n  \"payment_status\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"support_tier\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-9bd528fa-afca-4a35-8914-1aa2e8525939"
+                    },
+                    {
+                      "id": "dce223f3-dbc1-4d92-8349-13f06d0c2693",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-dce223f3-dbc1-4d92-8349-13f06d0c2693"
+                    },
+                    {
+                      "id": "2d44b17d-14be-44c7-96a5-9b001ede0457",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-2d44b17d-14be-44c7-96a5-9b001ede0457"
+                    },
+                    {
+                      "id": "71064ae7-2ffe-4b92-a5c7-72fcff273700",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-71064ae7-2ffe-4b92-a5c7-72fcff273700"
+                    },
+                    {
+                      "id": "0ce93a68-85e8-40a1-a913-9e60583ad02d",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-0ce93a68-85e8-40a1-a913-9e60583ad02d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-c7136a54-e096-4bb9-8e9e-6ce0dc3c612f"
+                },
+                {
+                  "name": "Delete an organization",
+                  "id": "32bb5e60-447a-4aa4-9a20-bd1d2887841b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations",
+                        ":organization_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "54d424ba-4688-4032-b7d9-7518ac14b038",
+                          "key": "organization_id",
+                          "value": "<string>",
+                          "description": "(Required) Organization ID"
+                        }
+                      ]
+                    },
+                    "description": "Delete an organization and all its associated configuration.\nBefore deleting an organization, you must delete all projects (including indexes, assistants, backups, and collections) associated with the organization.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "f4f1fd4d-86ba-4359-aab7-ca508e96d55d",
+                      "name": "Organization deletion request accepted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-f4f1fd4d-86ba-4359-aab7-ca508e96d55d"
+                    },
+                    {
+                      "id": "1e8775c5-5c50-4275-b3df-14563b060d00",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-1e8775c5-5c50-4275-b3df-14563b060d00"
+                    },
+                    {
+                      "id": "726289a9-3c97-42d7-bfcb-8599597220b8",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-726289a9-3c97-42d7-bfcb-8599597220b8"
+                    },
+                    {
+                      "id": "0c9b8956-a2c3-496c-a06e-079b311ee0de",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-0c9b8956-a2c3-496c-a06e-079b311ee0de"
+                    },
+                    {
+                      "id": "a8c39af8-340b-4656-8930-046407f54537",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-a8c39af8-340b-4656-8930-046407f54537"
+                    },
+                    {
+                      "id": "e1cf5feb-e918-4125-8fcc-e9f48f7c4d3f",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-e1cf5feb-e918-4125-8fcc-e9f48f7c4d3f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-32bb5e60-447a-4aa4-9a20-bd1d2887841b"
+                },
+                {
+                  "name": "Update an organization",
+                  "id": "e6b1f1c1-f361-4377-bb63-9f3f135dcdf4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations",
+                        ":organization_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0f6406c7-3d86-43da-aad8-a2bd8b9ee0c6",
+                          "key": "organization_id",
+                          "value": "<string>",
+                          "description": "(Required) Organization ID"
+                        }
+                      ]
+                    },
+                    "description": "Update an organization's name.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "71860d73-1c10-49f4-907d-dc8c7073c91e",
+                      "name": "The organization was successfully updated.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"plan\": \"<string>\",\n  \"payment_status\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"support_tier\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-71860d73-1c10-49f4-907d-dc8c7073c91e"
+                    },
+                    {
+                      "id": "0246f4e1-12c4-4b17-a2f5-3e84f21bd69a",
+                      "name": "Bad request. The request body included invalid request parameters.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-0246f4e1-12c4-4b17-a2f5-3e84f21bd69a"
+                    },
+                    {
+                      "id": "2437858b-f6ee-4c75-a069-6eb76f57691a",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-2437858b-f6ee-4c75-a069-6eb76f57691a"
+                    },
+                    {
+                      "id": "643700be-2150-4d42-8bca-feddc95abc08",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-643700be-2150-4d42-8bca-feddc95abc08"
+                    },
+                    {
+                      "id": "474c87ff-1591-429a-9ef8-ad33feba4297",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-474c87ff-1591-429a-9ef8-ad33feba4297"
+                    },
+                    {
+                      "id": "831cf540-f167-4cc9-9116-53aa70b60983",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-831cf540-f167-4cc9-9116-53aa70b60983"
+                    },
+                    {
+                      "id": "e0d05a7b-051a-407d-b135-29e8602bc4a0",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/organizations/:organization_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "organizations",
+                            ":organization_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:36.000Z",
+                      "updatedAt": "2026-07-28T02:36:36.000Z",
+                      "uid": "35240-e0d05a7b-051a-407d-b135-29e8602bc4a0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-e6b1f1c1-f361-4377-bb63-9f3f135dcdf4"
+                }
+              ],
+              "id": "035feb2c-0a43-4c3a-9dd4-abf6c2e97190",
+              "createdAt": "2026-07-28T02:36:36.000Z",
+              "updatedAt": "2026-07-28T02:36:36.000Z",
+              "uid": "35240-035feb2c-0a43-4c3a-9dd4-abf6c2e97190"
+            },
+            {
+              "name": "List organizations",
+              "id": "911dc279-4d3c-4f59-b4ce-c5e8a5b6174e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "organizations"
+                  ]
+                },
+                "description": "List all organizations associated with an account."
+              },
+              "response": [
+                {
+                  "id": "9ed2e2ab-3359-43f8-9785-b2ee64375fbe",
+                  "name": "A list of organizations.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"plan\": \"<string>\",\n      \"payment_status\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"support_tier\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"plan\": \"<string>\",\n      \"payment_status\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"support_tier\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-9ed2e2ab-3359-43f8-9785-b2ee64375fbe"
+                },
+                {
+                  "id": "4aa528f2-e93d-480f-ad98-bbc5524e213b",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-4aa528f2-e93d-480f-ad98-bbc5524e213b"
+                },
+                {
+                  "id": "5e9a8404-8e3b-4ff1-8d59-233f56febfbe",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-5e9a8404-8e3b-4ff1-8d59-233f56febfbe"
+                },
+                {
+                  "id": "b5dc9e00-50d1-4156-9cb9-48bbd0a212f7",
+                  "name": "Unexpected error on request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:36.000Z",
+                  "updatedAt": "2026-07-28T02:36:36.000Z",
+                  "uid": "35240-b5dc9e00-50d1-4156-9cb9-48bbd0a212f7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:36.000Z",
+              "updatedAt": "2026-07-28T02:36:36.000Z",
+              "uid": "35240-911dc279-4d3c-4f59-b4ce-c5e8a5b6174e"
+            }
+          ],
+          "id": "06daaa91-b270-4077-924c-c0e776828db7",
+          "createdAt": "2026-07-28T02:36:36.000Z",
+          "updatedAt": "2026-07-28T02:36:36.000Z",
+          "uid": "35240-06daaa91-b270-4077-924c-c0e776828db7"
+        }
+      ],
+      "id": "3b9a1a1f-6ad4-4983-9e48-95cc296c0b0f",
+      "createdAt": "2026-07-28T02:36:36.000Z",
+      "updatedAt": "2026-07-28T02:36:36.000Z",
+      "uid": "35240-3b9a1a1f-6ad4-4983-9e48-95cc296c0b0f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

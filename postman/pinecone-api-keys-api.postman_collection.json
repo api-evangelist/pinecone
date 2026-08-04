@@ -1,0 +1,1971 @@
+{
+  "info": {
+    "_postman_id": "6aa227c7-dc67-449e-b9c1-21f303381f8f",
+    "name": "Pinecone Admin API Keys API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:12.000Z",
+    "updatedAt": "2026-07-28T02:36:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6aa227c7-dc67-449e-b9c1-21f303381f8f"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "projects",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "api-keys",
+                  "item": [
+                    {
+                      "name": "List API keys",
+                      "id": "c2c78918-6d57-4d38-b119-a0c448cd3096",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "projects",
+                            ":project_id",
+                            "api-keys"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b861f52e-5950-4eb9-aea0-f28ffdb56b1a",
+                              "key": "project_id",
+                              "value": "<uuid>",
+                              "description": "(Required) Project ID"
+                            }
+                          ]
+                        },
+                        "description": "List all API keys in a project."
+                      },
+                      "response": [
+                        {
+                          "id": "497d7848-376a-4366-abfd-3f9a71275433",
+                          "name": "A list of API keys.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-497d7848-376a-4366-abfd-3f9a71275433"
+                        },
+                        {
+                          "id": "efed4bb2-b1a5-456d-b380-80330e58bbcd",
+                          "name": "Unauthorized. Possible causes: Invalid API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-efed4bb2-b1a5-456d-b380-80330e58bbcd"
+                        },
+                        {
+                          "id": "0b509615-d6ea-4e82-9a7c-524cad5afd3e",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-0b509615-d6ea-4e82-9a7c-524cad5afd3e"
+                        },
+                        {
+                          "id": "57c0a34e-4f50-42cb-903e-7a1f516456e4",
+                          "name": "Unexpected error on request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-57c0a34e-4f50-42cb-903e-7a1f516456e4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-c2c78918-6d57-4d38-b119-a0c448cd3096"
+                    },
+                    {
+                      "name": "Create an API key",
+                      "id": "a8ff6cea-2e77-401a-b6a6-ae2b79a37d99",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "projects",
+                            ":project_id",
+                            "api-keys"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d99d9043-7ffa-4616-900b-94fa2ccb1ebd",
+                              "key": "project_id",
+                              "value": "<uuid>",
+                              "description": "(Required) Project ID"
+                            }
+                          ]
+                        },
+                        "description": "Create a new API key for a project. Developers can use the API key to authenticate requests to Pinecone's Data Plane and Control Plane APIs.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "88e8f386-ff1c-42a5-9bdd-fc6b5f01c255",
+                          "name": "API key created successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"key\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"value\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-88e8f386-ff1c-42a5-9bdd-fc6b5f01c255"
+                        },
+                        {
+                          "id": "cabc1239-2add-44c1-a05a-7719ee0da322",
+                          "name": "Bad request. The request body included invalid request parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-cabc1239-2add-44c1-a05a-7719ee0da322"
+                        },
+                        {
+                          "id": "e3ae8e36-3348-4045-9aa9-1fb963e7a0a6",
+                          "name": "Unauthorized. Possible causes: Invalid API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-e3ae8e36-3348-4045-9aa9-1fb963e7a0a6"
+                        },
+                        {
+                          "id": "51b9225f-1660-46ca-b141-9fe56ec8dbe6",
+                          "name": "Not enough available quota to complete this operation.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-51b9225f-1660-46ca-b141-9fe56ec8dbe6"
+                        },
+                        {
+                          "id": "00191d6e-882b-4ee0-8b09-298872142d70",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-00191d6e-882b-4ee0-8b09-298872142d70"
+                        },
+                        {
+                          "id": "8a230839-69b6-40e4-9b18-4e659979f897",
+                          "name": "Unexpected error on request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/projects/:project_id/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "projects",
+                                ":project_id",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:13.000Z",
+                          "updatedAt": "2026-07-28T02:36:13.000Z",
+                          "uid": "35240-8a230839-69b6-40e4-9b18-4e659979f897"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-a8ff6cea-2e77-401a-b6a6-ae2b79a37d99"
+                    }
+                  ],
+                  "id": "262875e5-71ec-4726-b291-2de203632280",
+                  "createdAt": "2026-07-28T02:36:13.000Z",
+                  "updatedAt": "2026-07-28T02:36:13.000Z",
+                  "uid": "35240-262875e5-71ec-4726-b291-2de203632280"
+                }
+              ],
+              "id": "e81652c7-fd7c-47de-be13-103fe0294952",
+              "createdAt": "2026-07-28T02:36:13.000Z",
+              "updatedAt": "2026-07-28T02:36:13.000Z",
+              "uid": "35240-e81652c7-fd7c-47de-be13-103fe0294952"
+            }
+          ],
+          "id": "7a667a87-937a-4fb0-b91b-45c7693590a5",
+          "createdAt": "2026-07-28T02:36:13.000Z",
+          "updatedAt": "2026-07-28T02:36:13.000Z",
+          "uid": "35240-7a667a87-937a-4fb0-b91b-45c7693590a5"
+        },
+        {
+          "name": "api-keys",
+          "item": [
+            {
+              "name": "{api_key_id}",
+              "item": [
+                {
+                  "name": "Get API key details",
+                  "id": "c1a6216c-740f-4a01-8ed5-e3b27f97932f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "api-keys",
+                        ":api_key_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "50ece59e-e118-40dd-b117-645ad5982a04",
+                          "key": "api_key_id",
+                          "value": "<uuid>",
+                          "description": "(Required) API key ID"
+                        }
+                      ]
+                    },
+                    "description": "Get the details of an API key, excluding the API key secret."
+                  },
+                  "response": [
+                    {
+                      "id": "97f919cf-dbb9-4326-959a-294bf70f5646",
+                      "name": "The details of the API key, excluding the API key secret.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-97f919cf-dbb9-4326-959a-294bf70f5646"
+                    },
+                    {
+                      "id": "1e27354b-eccb-4766-9d90-2862094d686a",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-1e27354b-eccb-4766-9d90-2862094d686a"
+                    },
+                    {
+                      "id": "1c77fc5c-5ebf-4229-bf40-ecbbfeecb260",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-1c77fc5c-5ebf-4229-bf40-ecbbfeecb260"
+                    },
+                    {
+                      "id": "1b4fd9e0-0a2a-49f0-880c-681ef74e12b6",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-1b4fd9e0-0a2a-49f0-880c-681ef74e12b6"
+                    },
+                    {
+                      "id": "3af159dc-c57b-45f2-a16c-00a2612b3a76",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-3af159dc-c57b-45f2-a16c-00a2612b3a76"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:13.000Z",
+                  "updatedAt": "2026-07-28T02:36:13.000Z",
+                  "uid": "35240-c1a6216c-740f-4a01-8ed5-e3b27f97932f"
+                },
+                {
+                  "name": "Delete an API key",
+                  "id": "9a28be4a-ef1f-461e-b9a1-4c65e963f485",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "api-keys",
+                        ":api_key_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ed6bccfb-aab3-41ce-bd6a-920fe4611d76",
+                          "key": "api_key_id",
+                          "value": "<uuid>",
+                          "description": "(Required) API key ID"
+                        }
+                      ]
+                    },
+                    "description": "Delete an API key from a project."
+                  },
+                  "response": [
+                    {
+                      "id": "c384aa33-9c4f-4531-b8c5-bb3edcf1a0c2",
+                      "name": "API key deletion request accepted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-c384aa33-9c4f-4531-b8c5-bb3edcf1a0c2"
+                    },
+                    {
+                      "id": "39c73787-342f-457a-a9eb-e231b4335cdb",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-39c73787-342f-457a-a9eb-e231b4335cdb"
+                    },
+                    {
+                      "id": "05474279-d622-416b-9bea-3c0839e47353",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-05474279-d622-416b-9bea-3c0839e47353"
+                    },
+                    {
+                      "id": "b0df66ea-7f1a-4619-a449-3865336d9685",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-b0df66ea-7f1a-4619-a449-3865336d9685"
+                    },
+                    {
+                      "id": "77f11e18-3542-47d4-9847-554330e2686a",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-77f11e18-3542-47d4-9847-554330e2686a"
+                    },
+                    {
+                      "id": "fe853db7-2195-412a-ac98-a2c38d08c2e7",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-fe853db7-2195-412a-ac98-a2c38d08c2e7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:13.000Z",
+                  "updatedAt": "2026-07-28T02:36:13.000Z",
+                  "uid": "35240-9a28be4a-ef1f-461e-b9a1-4c65e963f485"
+                },
+                {
+                  "name": "Update an API key",
+                  "id": "92d1111c-becd-426a-b5d5-3c72e4d66c49",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "api-keys",
+                        ":api_key_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a87c6a7c-1ae3-4652-abfe-eba667f6d038",
+                          "key": "api_key_id",
+                          "value": "<uuid>",
+                          "description": "(Required) API key ID"
+                        }
+                      ]
+                    },
+                    "description": "Update the name and roles of an API key.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "03245bce-db91-46a6-b6e4-7e77a3391a8e",
+                      "name": "API key updated successfully.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-03245bce-db91-46a6-b6e4-7e77a3391a8e"
+                    },
+                    {
+                      "id": "2927bb51-b96a-4928-a064-6563cb746478",
+                      "name": "Bad request. The request body included invalid request parameters.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-2927bb51-b96a-4928-a064-6563cb746478"
+                    },
+                    {
+                      "id": "cab80aae-4f2a-49e9-8155-10bbc0b73698",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-cab80aae-4f2a-49e9-8155-10bbc0b73698"
+                    },
+                    {
+                      "id": "c784c0cb-3265-43ac-95ac-c8f8edcbcce7",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-c784c0cb-3265-43ac-95ac-c8f8edcbcce7"
+                    },
+                    {
+                      "id": "e75b841f-e59f-41f8-819a-5a4235d36421",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-e75b841f-e59f-41f8-819a-5a4235d36421"
+                    },
+                    {
+                      "id": "b7b6e7d3-4ee2-4cba-9968-488e12491e76",
+                      "name": "Unexpected error on request.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/api-keys/:api_key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "api-keys",
+                            ":api_key_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:13.000Z",
+                      "updatedAt": "2026-07-28T02:36:13.000Z",
+                      "uid": "35240-b7b6e7d3-4ee2-4cba-9968-488e12491e76"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:13.000Z",
+                  "updatedAt": "2026-07-28T02:36:13.000Z",
+                  "uid": "35240-92d1111c-becd-426a-b5d5-3c72e4d66c49"
+                }
+              ],
+              "id": "6cc150fa-bbaf-429e-a057-8e5ca4ae96cc",
+              "createdAt": "2026-07-28T02:36:13.000Z",
+              "updatedAt": "2026-07-28T02:36:13.000Z",
+              "uid": "35240-6cc150fa-bbaf-429e-a057-8e5ca4ae96cc"
+            }
+          ],
+          "id": "1279420b-07d9-4ba3-ae38-184ffcdee848",
+          "createdAt": "2026-07-28T02:36:13.000Z",
+          "updatedAt": "2026-07-28T02:36:13.000Z",
+          "uid": "35240-1279420b-07d9-4ba3-ae38-184ffcdee848"
+        }
+      ],
+      "id": "934d6bda-7a99-4a35-a8b7-8e1e08acb62a",
+      "createdAt": "2026-07-28T02:36:13.000Z",
+      "updatedAt": "2026-07-28T02:36:13.000Z",
+      "uid": "35240-934d6bda-7a99-4a35-a8b7-8e1e08acb62a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

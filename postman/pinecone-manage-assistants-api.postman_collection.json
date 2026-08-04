@@ -1,0 +1,4060 @@
+{
+  "info": {
+    "_postman_id": "e7e840ac-7748-4087-a4be-0d685a68421d",
+    "name": "Pinecone Admin API Keys Manage Assistants API",
+    "description": "Provides an API for managing a Pinecone organization and its resources.\n\n\nContact Support:\n Name: Pinecone Support\n Email: support@pinecone.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:31.000Z",
+    "updatedAt": "2026-07-28T02:36:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e7e840ac-7748-4087-a4be-0d685a68421d"
+  },
+  "item": [
+    {
+      "name": "assistants",
+      "item": [
+        {
+          "name": "{assistant_name}",
+          "item": [
+            {
+              "name": "Check assistant status",
+              "id": "231ebf98-e08f-4a9d-8117-c412e0c7d1a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistants/:assistant_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants",
+                    ":assistant_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "662d782f-d126-4304-846d-8ef7abf653b6",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to get a status on."
+                    }
+                  ]
+                },
+                "description": "Get the status of an assistant.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#get-the-status-of-an-assistant)"
+              },
+              "response": [
+                {
+                  "id": "fa3b47c3-8de4-4428-b881-ae3cdc142b73",
+                  "name": "Poll request successful.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"host\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-fa3b47c3-8de4-4428-b881-ae3cdc142b73"
+                },
+                {
+                  "id": "b81f09ae-2230-4896-9ad2-f65e67b2cea0",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-b81f09ae-2230-4896-9ad2-f65e67b2cea0"
+                },
+                {
+                  "id": "d5951f59-7e53-4ec7-8d1a-442ca673dab3",
+                  "name": "Assistant not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-d5951f59-7e53-4ec7-8d1a-442ca673dab3"
+                },
+                {
+                  "id": "d9280ee9-e76c-40ba-8fd0-319a399920d2",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-d9280ee9-e76c-40ba-8fd0-319a399920d2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-231ebf98-e08f-4a9d-8117-c412e0c7d1a4"
+            },
+            {
+              "name": "Delete an assistant",
+              "id": "ce2e8467-4dc6-4b8e-ae27-006d9f909060",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistants/:assistant_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants",
+                    ":assistant_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ee890923-8a51-4e2c-890c-5a570094148b",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to delete."
+                    }
+                  ]
+                },
+                "description": "Delete an existing assistant.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#delete-an-assistant)"
+              },
+              "response": [
+                {
+                  "id": "d70c4044-03b5-4a97-89ad-167fd6a65709",
+                  "name": "The request to delete the assistant has been accepted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-d70c4044-03b5-4a97-89ad-167fd6a65709"
+                },
+                {
+                  "id": "8b043db4-efdd-419e-af00-609cbb47fdc5",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-8b043db4-efdd-419e-af00-609cbb47fdc5"
+                },
+                {
+                  "id": "9e568d06-0318-4e4f-84d2-a771b74d0283",
+                  "name": "Assistant not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-9e568d06-0318-4e4f-84d2-a771b74d0283"
+                },
+                {
+                  "id": "4a6c65fd-ab4e-4216-9330-dda4825dce7b",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-4a6c65fd-ab4e-4216-9330-dda4825dce7b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-ce2e8467-4dc6-4b8e-ae27-006d9f909060"
+            },
+            {
+              "name": "Update an assistant",
+              "id": "9eb212b1-0fd5-489e-bd10-4537e640592c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants/:assistant_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants",
+                    ":assistant_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "056f3dd5-99e9-45cb-b054-3e3e5e19b47a",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to update."
+                    }
+                  ]
+                },
+                "description": "Update an existing assistant. You can modify the assistant's instructions.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#add-instructions-to-an-assistant)."
+              },
+              "response": [
+                {
+                  "id": "16747fea-c9cd-44cb-9c78-2e2060b90009",
+                  "name": "Update request successful.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"assistant_name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-16747fea-c9cd-44cb-9c78-2e2060b90009"
+                },
+                {
+                  "id": "79dd373b-a01e-4f3c-ac75-9ef2ed33ac4d",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-79dd373b-a01e-4f3c-ac75-9ef2ed33ac4d"
+                },
+                {
+                  "id": "9f39085d-4f5b-4fc4-9f42-e531015b039f",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-9f39085d-4f5b-4fc4-9f42-e531015b039f"
+                },
+                {
+                  "id": "f08bb88a-3d66-4380-b5dd-cf836a6487c7",
+                  "name": "Assistant not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-f08bb88a-3d66-4380-b5dd-cf836a6487c7"
+                },
+                {
+                  "id": "f826f506-3aa3-48bb-92d3-f290bd3115bd",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instructions\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-f826f506-3aa3-48bb-92d3-f290bd3115bd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-9eb212b1-0fd5-489e-bd10-4537e640592c"
+            }
+          ],
+          "id": "140c4be0-d857-4fa9-b13a-5d237a941d7b",
+          "createdAt": "2026-07-28T02:36:31.000Z",
+          "updatedAt": "2026-07-28T02:36:31.000Z",
+          "uid": "35240-140c4be0-d857-4fa9-b13a-5d237a941d7b"
+        },
+        {
+          "name": "List assistants",
+          "id": "571ffd9c-d33d-45f2-ba06-909fea7659be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/assistants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assistants"
+              ]
+            },
+            "description": "List of all assistants in a project.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#list-assistants-for-a-project)."
+          },
+          "response": [
+            {
+              "id": "1bf6dade-6c10-4557-9604-d5a4c63ed334",
+              "name": "List all assistants in a project.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"assistants\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"metadata\": {},\n      \"host\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"metadata\": {},\n      \"host\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-1bf6dade-6c10-4557-9604-d5a4c63ed334"
+            },
+            {
+              "id": "66ac1e3c-80c6-4a66-bcb2-f747bf6f2f58",
+              "name": "Unauthorized. Possible causes: Invalid API key.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-66ac1e3c-80c6-4a66-bcb2-f747bf6f2f58"
+            },
+            {
+              "id": "ed59fbfa-e81f-4ac2-8f4e-b0c3e6f4b93a",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-ed59fbfa-e81f-4ac2-8f4e-b0c3e6f4b93a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:31.000Z",
+          "updatedAt": "2026-07-28T02:36:31.000Z",
+          "uid": "35240-571ffd9c-d33d-45f2-ba06-909fea7659be"
+        },
+        {
+          "name": "Create an assistant",
+          "id": "043b198f-e8f5-44d3-9237-c7336f53954f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Required date-based version header",
+                "key": "X-Pinecone-Api-Version",
+                "value": "2025-10"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/assistants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assistants"
+              ]
+            },
+            "description": "Create an assistant. This is where you specify the underlying training model, which cloud provider you would like to deploy with, and more.\n\nFor guidance and examples, see [Create an assistant](https://docs.pinecone.io/guides/assistant/create-assistant)"
+          },
+          "response": [
+            {
+              "id": "b313b7b9-3050-4f1b-9390-1b38cb2fc735",
+              "name": "Create request successful.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"host\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-b313b7b9-3050-4f1b-9390-1b38cb2fc735"
+            },
+            {
+              "id": "dac83a32-71d4-4833-a5c3-e0cbcbc1f6a4",
+              "name": "Bad request. The request body included invalid request parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-dac83a32-71d4-4833-a5c3-e0cbcbc1f6a4"
+            },
+            {
+              "id": "1788ec69-1e31-4d4e-9876-97860a34f961",
+              "name": "Unauthorized. Possible causes: Invalid API key.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-1788ec69-1e31-4d4e-9876-97860a34f961"
+            },
+            {
+              "id": "9db3fc87-28d0-45a9-a611-68db790468bf",
+              "name": "Assistant of given name already exists.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-9db3fc87-28d0-45a9-a611-68db790468bf"
+            },
+            {
+              "id": "b473e302-0384-4c08-b5df-d93d926c79e1",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"metadata\": {},\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistants"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-b473e302-0384-4c08-b5df-d93d926c79e1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:36:31.000Z",
+          "updatedAt": "2026-07-28T02:36:31.000Z",
+          "uid": "35240-043b198f-e8f5-44d3-9237-c7336f53954f"
+        }
+      ],
+      "id": "05fe3839-5559-49d6-a6f3-1737de84c8d4",
+      "createdAt": "2026-07-28T02:36:31.000Z",
+      "updatedAt": "2026-07-28T02:36:31.000Z",
+      "uid": "35240-05fe3839-5559-49d6-a6f3-1737de84c8d4"
+    },
+    {
+      "name": "files",
+      "item": [
+        {
+          "name": "{assistant_name}",
+          "item": [
+            {
+              "name": "{assistant_file_id}",
+              "item": [
+                {
+                  "name": "Describe a file upload",
+                  "id": "4baa6b0d-f2e5-4c0a-aded-f9bd1b3ece48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id?include_url=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name",
+                        ":assistant_file_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include the signed URL of the file in the response.",
+                          "key": "include_url",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "773cbb01-79b6-4b4d-96e0-37b07c0f7475",
+                          "key": "assistant_name",
+                          "value": "<string>",
+                          "description": "(Required) The name of the assistant to upload files to."
+                        },
+                        {
+                          "id": "d8a1dbd6-0be4-45d2-bead-2da8a4beb0c4",
+                          "key": "assistant_file_id",
+                          "value": "<string>",
+                          "description": "(Required) The uuid of the file to be described."
+                        }
+                      ]
+                    },
+                    "description": "Get the status and metadata of a file uploaded to an assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#get-the-status-of-a-file)."
+                  },
+                  "response": [
+                    {
+                      "id": "4c2c7daf-b1d6-44c0-962e-6725459c3dc7",
+                      "name": "Poll request successful.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id?include_url=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include the signed URL of the file in the response.",
+                              "key": "include_url",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"metadata\": {},\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"percent_done\": \"<double>\",\n  \"signed_url\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"multimodal\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-4c2c7daf-b1d6-44c0-962e-6725459c3dc7"
+                    },
+                    {
+                      "id": "8d9c9389-5ece-484f-9a3e-10739cb9e527",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id?include_url=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include the signed URL of the file in the response.",
+                              "key": "include_url",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-8d9c9389-5ece-484f-9a3e-10739cb9e527"
+                    },
+                    {
+                      "id": "f5be6052-cd77-4c67-80c3-1a345c7b0715",
+                      "name": "File not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id?include_url=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include the signed URL of the file in the response.",
+                              "key": "include_url",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-f5be6052-cd77-4c67-80c3-1a345c7b0715"
+                    },
+                    {
+                      "id": "e7bb8c8e-b0fb-4c55-a6ba-abde2e626a78",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id?include_url=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include the signed URL of the file in the response.",
+                              "key": "include_url",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-e7bb8c8e-b0fb-4c55-a6ba-abde2e626a78"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-4baa6b0d-f2e5-4c0a-aded-f9bd1b3ece48"
+                },
+                {
+                  "name": "Delete an uploaded file",
+                  "id": "3d140c0a-62ca-4442-ac12-7671020cbc3e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name",
+                        ":assistant_file_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6b539384-5077-42ad-9875-c696bd66d0a8",
+                          "key": "assistant_name",
+                          "value": "<string>",
+                          "description": "(Required) The name of the assistant to upload files to."
+                        },
+                        {
+                          "id": "7dbd1f62-ecbf-433f-89b5-91d7e53b8b09",
+                          "key": "assistant_file_id",
+                          "value": "<string>",
+                          "description": "(Required) The uuid of the file to be described."
+                        }
+                      ]
+                    },
+                    "description": "Delete an uploaded file from an assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#delete-a-file)."
+                  },
+                  "response": [
+                    {
+                      "id": "4c5c608d-077a-4a3b-b90b-5cf80b887fa0",
+                      "name": "The request to delete the file has been accepted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-4c5c608d-077a-4a3b-b90b-5cf80b887fa0"
+                    },
+                    {
+                      "id": "425828b9-7202-426d-9cbd-9ce5213817cd",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-425828b9-7202-426d-9cbd-9ce5213817cd"
+                    },
+                    {
+                      "id": "e37b9509-162d-46a3-a61e-4c2f040127d9",
+                      "name": "File not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-e37b9509-162d-46a3-a61e-4c2f040127d9"
+                    },
+                    {
+                      "id": "787686d5-443c-434f-8f87-a252ff2ee032",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:assistant_name/:assistant_file_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":assistant_name",
+                            ":assistant_file_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            },
+                            {
+                              "key": "assistant_file_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-787686d5-443c-434f-8f87-a252ff2ee032"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-3d140c0a-62ca-4442-ac12-7671020cbc3e"
+                }
+              ],
+              "id": "66a2bec5-1500-490c-a640-0416c1b9a9a6",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-66a2bec5-1500-490c-a640-0416c1b9a9a6"
+            },
+            {
+              "name": "List Files",
+              "id": "8a39c53b-3f38-4988-9542-faeef6baafd2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files/:assistant_name?filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files",
+                    ":assistant_name"
+                  ],
+                  "query": [
+                    {
+                      "description": "Optional JSON-encoded metadata filter for files.",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "28329646-0e87-4274-8203-18ed4cdba983",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to list files for."
+                    }
+                  ]
+                },
+                "description": "List all files in an assistant, with an option to filter files with metadata.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#list-files-in-an-assistant)."
+              },
+              "response": [
+                {
+                  "id": "295a444e-9609-4036-90a0-eeecb163dd84",
+                  "name": "This operation returns a list of all files that you have previously uploaded, and which are associated with the given assistant name.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata filter for files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"files\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"metadata\": {},\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"percent_done\": \"<double>\",\n      \"signed_url\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"multimodal\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"metadata\": {},\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"percent_done\": \"<double>\",\n      \"signed_url\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"multimodal\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-295a444e-9609-4036-90a0-eeecb163dd84"
+                },
+                {
+                  "id": "c3c42cf5-cda1-4ebb-a38b-d9f23f415fb7",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata filter for files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-c3c42cf5-cda1-4ebb-a38b-d9f23f415fb7"
+                },
+                {
+                  "id": "44f24297-72ba-4f14-a016-afd9bec9ab55",
+                  "name": "Assistant not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata filter for files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-44f24297-72ba-4f14-a016-afd9bec9ab55"
+                },
+                {
+                  "id": "7fd34f66-c56b-42a6-b522-b0b803fcc51d",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata filter for files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-7fd34f66-c56b-42a6-b522-b0b803fcc51d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-8a39c53b-3f38-4988-9542-faeef6baafd2"
+            },
+            {
+              "name": "Upload file to assistant",
+              "id": "6ab641dd-2fb9-4233-9a02-929d7d175bc3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) The file to upload.",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files",
+                    ":assistant_name"
+                  ],
+                  "query": [
+                    {
+                      "description": "Optional JSON-encoded metadata for files.",
+                      "key": "metadata",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                      "key": "multimodal",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "648cd6ed-81d0-4ef4-8c3c-b09f16aea436",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to upload files to."
+                    }
+                  ]
+                },
+                "description": "Upload a file to the specified assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#upload-a-local-file)."
+              },
+              "response": [
+                {
+                  "id": "cebc1a93-e931-41e1-a39d-2c7d4dacf7f7",
+                  "name": "File upload has been accepted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The file to upload.",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata for files.",
+                          "key": "metadata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                          "key": "multimodal",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"metadata\": {},\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"percent_done\": \"<double>\",\n  \"signed_url\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"multimodal\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-cebc1a93-e931-41e1-a39d-2c7d4dacf7f7"
+                },
+                {
+                  "id": "eacf98cd-e688-47f3-94ab-332d8146799b",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The file to upload.",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata for files.",
+                          "key": "metadata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                          "key": "multimodal",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-eacf98cd-e688-47f3-94ab-332d8146799b"
+                },
+                {
+                  "id": "545ea2de-e818-47ed-8704-d92e1104dcbd",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The file to upload.",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata for files.",
+                          "key": "metadata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                          "key": "multimodal",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-545ea2de-e818-47ed-8704-d92e1104dcbd"
+                },
+                {
+                  "id": "c2fcaeab-6c2b-4e34-8af9-93a161fe8089",
+                  "name": "Assistant not found.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The file to upload.",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata for files.",
+                          "key": "metadata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                          "key": "multimodal",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-c2fcaeab-6c2b-4e34-8af9-93a161fe8089"
+                },
+                {
+                  "id": "5ff11aef-0315-4f44-9353-22f367c8931a",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The file to upload.",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:assistant_name?metadata=<string>&multimodal=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":assistant_name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional JSON-encoded metadata for files.",
+                          "key": "metadata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`.",
+                          "key": "multimodal",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-5ff11aef-0315-4f44-9353-22f367c8931a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-6ab641dd-2fb9-4233-9a02-929d7d175bc3"
+            }
+          ],
+          "id": "9d9d5e55-6093-411c-9aa1-619942757847",
+          "createdAt": "2026-07-28T02:36:31.000Z",
+          "updatedAt": "2026-07-28T02:36:31.000Z",
+          "uid": "35240-9d9d5e55-6093-411c-9aa1-619942757847"
+        }
+      ],
+      "id": "c85c6faf-8be8-48e0-a82a-91538a32a730",
+      "createdAt": "2026-07-28T02:36:31.000Z",
+      "updatedAt": "2026-07-28T02:36:31.000Z",
+      "uid": "35240-c85c6faf-8be8-48e0-a82a-91538a32a730"
+    },
+    {
+      "name": "chat",
+      "item": [
+        {
+          "name": "{assistant_name}",
+          "item": [
+            {
+              "name": "chat",
+              "item": [
+                {
+                  "name": "completions",
+                  "item": [
+                    {
+                      "name": "Chat through an OpenAI-compatible interface",
+                      "id": "58100650-595f-4a39-bd63-441824f551ba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "chat",
+                            "completions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5357a9bd-a083-43c5-80bd-fe7a129ae59d",
+                              "key": "assistant_name",
+                              "value": "<string>",
+                              "description": "(Required) The name of the assistant to be described."
+                            }
+                          ]
+                        },
+                        "description": "Chat with an assistant. This endpoint is based on the OpenAI Chat Completion API, a commonly used and adopted API. \n\nIt is useful if you need inline citations or OpenAI-compatible responses, but has limited functionality compared to the standard chat interface.\n\nFor guidance and examples, see [Chat with an assistant](https://docs.pinecone.io/guides/assistant/chat-with-assistant)."
+                      },
+                      "response": [
+                        {
+                          "id": "99fd72ae-3dcc-4ccd-83e6-2dc62d6df506",
+                          "name": "Search request successful.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chat",
+                                ":assistant_name",
+                                "chat",
+                                "completions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "assistant_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    },\n    {\n      \"finish_reason\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    }\n  ],\n  \"model\": \"<string>\",\n  \"usage\": {\n    \"prompt_tokens\": \"<integer>\",\n    \"completion_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:31.000Z",
+                          "updatedAt": "2026-07-28T02:36:31.000Z",
+                          "uid": "35240-99fd72ae-3dcc-4ccd-83e6-2dc62d6df506"
+                        },
+                        {
+                          "id": "a451b42c-c30f-429c-9915-775eb385c405",
+                          "name": "Bad request. The request body included invalid request parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chat",
+                                ":assistant_name",
+                                "chat",
+                                "completions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "assistant_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:31.000Z",
+                          "updatedAt": "2026-07-28T02:36:31.000Z",
+                          "uid": "35240-a451b42c-c30f-429c-9915-775eb385c405"
+                        },
+                        {
+                          "id": "f0bcee61-03ff-4679-9ef4-b711cf109604",
+                          "name": "Unauthorized. Possible causes: Invalid API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chat",
+                                ":assistant_name",
+                                "chat",
+                                "completions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "assistant_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:31.000Z",
+                          "updatedAt": "2026-07-28T02:36:31.000Z",
+                          "uid": "35240-f0bcee61-03ff-4679-9ef4-b711cf109604"
+                        },
+                        {
+                          "id": "a3ca2898-7fbc-41f9-b293-ecd155a0700f",
+                          "name": "Assistant not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chat",
+                                ":assistant_name",
+                                "chat",
+                                "completions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "assistant_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:31.000Z",
+                          "updatedAt": "2026-07-28T02:36:31.000Z",
+                          "uid": "35240-a3ca2898-7fbc-41f9-b293-ecd155a0700f"
+                        },
+                        {
+                          "id": "2332db73-637f-4580-a5c7-e52807747681",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Required date-based version header",
+                                "key": "X-Pinecone-Api-Version",
+                                "value": "2025-10"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chat/:assistant_name/chat/completions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chat",
+                                ":assistant_name",
+                                "chat",
+                                "completions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "assistant_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:31.000Z",
+                          "updatedAt": "2026-07-28T02:36:31.000Z",
+                          "uid": "35240-2332db73-637f-4580-a5c7-e52807747681"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-58100650-595f-4a39-bd63-441824f551ba"
+                    }
+                  ],
+                  "id": "b80d8e86-eac0-4c7a-b310-167403214040",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-b80d8e86-eac0-4c7a-b310-167403214040"
+                }
+              ],
+              "id": "99400378-63cd-4453-a9b7-f74693c8ff61",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-99400378-63cd-4453-a9b7-f74693c8ff61"
+            },
+            {
+              "name": "context",
+              "item": [
+                {
+                  "name": "Retrieve context from an assistant",
+                  "id": "796ac4aa-48d0-45f4-85fa-e206f561033a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name",
+                        "context"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4781f64b-396d-45d6-bf3a-c63d7067286f",
+                          "key": "assistant_name",
+                          "value": "<string>",
+                          "description": "(Required) The name of the assistant to be described."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve context snippets from an assistant to use as part of RAG or any agentic flow.\n\nFor guidance and examples, see [Retrieve context snippets](https://docs.pinecone.io/guides/assistant/retrieve-context-snippets)."
+                  },
+                  "response": [
+                    {
+                      "id": "5a1d9368-1f39-46ae-9f2f-134cb5b76068",
+                      "name": "Context retrieval process successful.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "context"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"snippets\": [\n    {\n      \"type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"score\": \"<float>\",\n      \"reference\": {\n        \"type\": \"<string>\",\n        \"file\": {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"metadata\": {},\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"status\": \"<string>\",\n          \"percent_done\": \"<double>\",\n          \"signed_url\": \"<string>\",\n          \"error_message\": \"<string>\",\n          \"multimodal\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"score\": \"<float>\",\n      \"reference\": {\n        \"type\": \"<string>\",\n        \"file\": {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"metadata\": {},\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"status\": \"<string>\",\n          \"percent_done\": \"<double>\",\n          \"signed_url\": \"<string>\",\n          \"error_message\": \"<string>\",\n          \"multimodal\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": \"<integer>\",\n    \"completion_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\"\n  },\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-5a1d9368-1f39-46ae-9f2f-134cb5b76068"
+                    },
+                    {
+                      "id": "e5a97489-c54e-4a5b-a775-ce795bd2f182",
+                      "name": "Bad request. The request body included invalid request parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "context"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-e5a97489-c54e-4a5b-a775-ce795bd2f182"
+                    },
+                    {
+                      "id": "4f747efd-fd1d-478d-84b0-c6ef8369c86c",
+                      "name": "Unauthorized. Possible causes: Invalid API key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "context"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-4f747efd-fd1d-478d-84b0-c6ef8369c86c"
+                    },
+                    {
+                      "id": "c2c8ae68-5cc5-4c6f-988d-491231af723b",
+                      "name": "Assistant not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "context"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-c2c8ae68-5cc5-4c6f-988d-491231af723b"
+                    },
+                    {
+                      "id": "b2de1b8c-3d3d-4e5e-a6ce-a61569e5d312",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Required date-based version header",
+                            "key": "X-Pinecone-Api-Version",
+                            "value": "2025-10"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"filter\": {},\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"top_k\": \"<integer>\",\n  \"snippet_size\": \"<integer>\",\n  \"multimodal\": true,\n  \"include_binary_content\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chat/:assistant_name/context",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chat",
+                            ":assistant_name",
+                            "context"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:36:31.000Z",
+                      "updatedAt": "2026-07-28T02:36:31.000Z",
+                      "uid": "35240-b2de1b8c-3d3d-4e5e-a6ce-a61569e5d312"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-796ac4aa-48d0-45f4-85fa-e206f561033a"
+                }
+              ],
+              "id": "71166778-6883-4d28-b435-4fbe81b1c29c",
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-71166778-6883-4d28-b435-4fbe81b1c29c"
+            },
+            {
+              "name": "Chat with an assistant",
+              "id": "4ce9a1bc-7426-4628-90b8-b3c0263f40a5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Required date-based version header",
+                    "key": "X-Pinecone-Api-Version",
+                    "value": "2025-10"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/chat/:assistant_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chat",
+                    ":assistant_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cc928de2-25b5-4157-b438-5f2f66c03172",
+                      "key": "assistant_name",
+                      "value": "<string>",
+                      "description": "(Required) The name of the assistant to be described."
+                    }
+                  ]
+                },
+                "description": "Chat with an assistant and get back citations in structured form. \n\nThis is the recommended way to chat with an assistant, as it offers more functionality and control over the assistant's responses and references than the OpenAI-compatible chat interface.\n\nFor guidance and examples, see [Chat with an assistant](https://docs.pinecone.io/guides/assistant/chat-with-assistant)."
+              },
+              "response": [
+                {
+                  "id": "62cfd959-72e3-4f9d-bcce-7d865d1df448",
+                  "name": "Search request successful.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"finish_reason\": \"<string>\",\n  \"message\": {\n    \"role\": \"<string>\",\n    \"content\": \"<string>\"\n  },\n  \"model\": \"<string>\",\n  \"citations\": [\n    {\n      \"position\": \"<integer>\",\n      \"references\": [\n        {\n          \"file\": {\n            \"id\": \"<uuid>\",\n            \"name\": \"<string>\",\n            \"metadata\": {},\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"status\": \"<string>\",\n            \"percent_done\": \"<double>\",\n            \"signed_url\": \"<string>\",\n            \"error_message\": \"<string>\",\n            \"multimodal\": \"<boolean>\"\n          },\n          \"pages\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"highlight\": {\n            \"type\": \"<string>\",\n            \"content\": \"<string>\"\n          }\n        },\n        {\n          \"file\": {\n            \"id\": \"<uuid>\",\n            \"name\": \"<string>\",\n            \"metadata\": {},\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"status\": \"<string>\",\n            \"percent_done\": \"<double>\",\n            \"signed_url\": \"<string>\",\n            \"error_message\": \"<string>\",\n            \"multimodal\": \"<boolean>\"\n          },\n          \"pages\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"highlight\": {\n            \"type\": \"<string>\",\n            \"content\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"position\": \"<integer>\",\n      \"references\": [\n        {\n          \"file\": {\n            \"id\": \"<uuid>\",\n            \"name\": \"<string>\",\n            \"metadata\": {},\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"status\": \"<string>\",\n            \"percent_done\": \"<double>\",\n            \"signed_url\": \"<string>\",\n            \"error_message\": \"<string>\",\n            \"multimodal\": \"<boolean>\"\n          },\n          \"pages\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"highlight\": {\n            \"type\": \"<string>\",\n            \"content\": \"<string>\"\n          }\n        },\n        {\n          \"file\": {\n            \"id\": \"<uuid>\",\n            \"name\": \"<string>\",\n            \"metadata\": {},\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"status\": \"<string>\",\n            \"percent_done\": \"<double>\",\n            \"signed_url\": \"<string>\",\n            \"error_message\": \"<string>\",\n            \"multimodal\": \"<boolean>\"\n          },\n          \"pages\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"highlight\": {\n            \"type\": \"<string>\",\n            \"content\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": \"<integer>\",\n    \"completion_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-62cfd959-72e3-4f9d-bcce-7d865d1df448"
+                },
+                {
+                  "id": "47c298a4-5cc7-4d37-89f6-9f26f1b752d4",
+                  "name": "Bad request. The request body included invalid request parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-47c298a4-5cc7-4d37-89f6-9f26f1b752d4"
+                },
+                {
+                  "id": "168c1ae9-3dc7-4c49-ab23-fa49ae61c8fe",
+                  "name": "Unauthorized. Possible causes: Invalid API key.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-168c1ae9-3dc7-4c49-ab23-fa49ae61c8fe"
+                },
+                {
+                  "id": "9a8b2622-1236-4af3-b839-d06b3fc3a68f",
+                  "name": "Assistant not found.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-9a8b2622-1236-4af3-b839-d06b3fc3a68f"
+                },
+                {
+                  "id": "d81694ec-ba52-4a66-8036-8e629072fda6",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Required date-based version header",
+                        "key": "X-Pinecone-Api-Version",
+                        "value": "2025-10"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\",\n  \"temperature\": 0,\n  \"filter\": {},\n  \"json_response\": false,\n  \"include_highlights\": false,\n  \"context_options\": {\n    \"top_k\": \"<integer>\",\n    \"snippet_size\": \"<integer>\",\n    \"multimodal\": true,\n    \"include_binary_content\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/:assistant_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        ":assistant_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:36:31.000Z",
+                  "updatedAt": "2026-07-28T02:36:31.000Z",
+                  "uid": "35240-d81694ec-ba52-4a66-8036-8e629072fda6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:31.000Z",
+              "updatedAt": "2026-07-28T02:36:31.000Z",
+              "uid": "35240-4ce9a1bc-7426-4628-90b8-b3c0263f40a5"
+            }
+          ],
+          "id": "8d243571-d844-420a-b0cc-078aa0a69419",
+          "createdAt": "2026-07-28T02:36:31.000Z",
+          "updatedAt": "2026-07-28T02:36:31.000Z",
+          "uid": "35240-8d243571-d844-420a-b0cc-078aa0a69419"
+        }
+      ],
+      "id": "7cef9b76-2f05-4c18-8e56-44238309a64c",
+      "createdAt": "2026-07-28T02:36:31.000Z",
+      "updatedAt": "2026-07-28T02:36:31.000Z",
+      "uid": "35240-7cef9b76-2f05-4c18-8e56-44238309a64c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pinecone.io"
+    }
+  ]
+}

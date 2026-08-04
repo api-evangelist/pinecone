@@ -361,6 +361,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/admin-projects.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/pinecone/overview
 - type: AgentCard
   url: a2a/pinecone-a2a.yml
   name: A2A Agent Card

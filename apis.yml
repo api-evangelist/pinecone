@@ -30,32 +30,12 @@ apis:
     url: openapi/pinecone-api-keys-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-bulk-operations-api
   name: Pinecone Bulk Operations API
   description: The Bulk Operations API from Pinecone — 2 operation(s) for bulk operations.
@@ -68,32 +48,12 @@ apis:
     url: openapi/pinecone-bulk-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-inference-api
   name: Pinecone Inference API
   description: Model inference
@@ -106,32 +66,12 @@ apis:
     url: openapi/pinecone-inference-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-manage-assistants-api
   name: Pinecone Manage Assistants API
   description: Actions that manage Assistants
@@ -144,32 +84,12 @@ apis:
     url: openapi/pinecone-manage-assistants-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-manage-indexes-api
   name: Pinecone Manage Indexes API
   description: Actions that manage indexes
@@ -182,32 +102,12 @@ apis:
     url: openapi/pinecone-manage-indexes-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-namespace-operations-api
   name: Pinecone Namespace Operations API
   description: The Namespace Operations API from Pinecone — 2 operation(s) for namespace operations.
@@ -220,32 +120,12 @@ apis:
     url: openapi/pinecone-namespace-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-organizations-api
   name: Pinecone Organizations API
   description: Actions that manage organizations.
@@ -258,32 +138,12 @@ apis:
     url: openapi/pinecone-organizations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-projects-api
   name: Pinecone Projects API
   description: Actions that manage projects.
@@ -296,32 +156,12 @@ apis:
     url: openapi/pinecone-projects-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 - aid: pinecone:pinecone-vector-operations-api
   name: Pinecone Vector Operations API
   description: The Vector Operations API from Pinecone — 10 operation(s) for vector operations.
@@ -334,32 +174,12 @@ apis:
     url: openapi/pinecone-vector-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: X-NaftikoCapability
-    url: capabilities/db-control-manage-indexes.yaml
   - type: GraphQL
     url: graphql/pinecone-graphql.md
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-bulk-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-namespace-operations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/db-data-vector-operations.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
-  - type: X-NaftikoCapability
-    url: capabilities/inference-inference.yaml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-control-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/assistant-data-manage-assistants.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-api-keys.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-organizations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/admin-projects.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/pinecone/overview

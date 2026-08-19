@@ -16,7 +16,7 @@ tags:
 created: '2024-07-02'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: pinecone:pinecone-api-keys-api
   name: Pinecone API Keys API

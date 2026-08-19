@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Inference API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate vectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/embed",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate vector embeddings for input data. This endpoint uses Pinecone's [hosted embedding models](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models)."
+        },
+        {
+          "info": {
+            "name": "Rerank results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/rerank",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rerank results according to their relevance to a query.\n\nFor guidance and examples, see [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+        },
+        {
+          "info": {
+            "name": "List available models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/models",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "embed",
+                "type": "query",
+                "description": "Filter models by type ('embed' or 'rerank')."
+              },
+              {
+                "name": "vector_type",
+                "value": "sparse",
+                "type": "query",
+                "description": "Filter embedding models by vector type ('dense' or 'sparse'). Only relevant when `type=embed`."
+              }
+            ]
+          },
+          "docs": "List the embedding and reranking models hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+        },
+        {
+          "info": {
+            "name": "Describe a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/models/:model_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "model_name",
+                "value": "multilingual-e5-large",
+                "type": "path",
+                "description": "The name of the model to look up."
+              }
+            ]
+          },
+          "docs": "Get a description of a model hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

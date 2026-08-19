@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Namespace Operations API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Namespace Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/namespaces",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Max number namespaces to return per page."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token to continue a previous listing operation."
+              },
+              {
+                "name": "prefix",
+                "value": "prefixExample",
+                "type": "query",
+                "description": "Prefix of the namespaces to list. Acts as a filter to return only namespaces that start with this prefix."
+              }
+            ]
+          },
+          "docs": "List all namespaces in a serverless index.\n\nUp to 100 namespaces are returned at a time by default, in sorted order (bitwise “C” collation). If the `limit` parameter is set, up to that number of namespaces are returned instead. Whenever there are additional namespaces to return, the response also includes a `pagination_token` that you can use to get the next batch of namespaces. When the response does not include a `pagination_token`, there are no more namespaces to return.\n\nFor guidance and exa"
+        },
+        {
+          "info": {
+            "name": "Create a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/namespaces",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a namespace in a serverless index.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+        },
+        {
+          "info": {
+            "name": "Describe a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/namespaces/:namespace",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The namespace to describe."
+              }
+            ]
+          },
+          "docs": "Describe a namespace in a serverless index, including the total number of vectors in the namespace.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+        },
+        {
+          "info": {
+            "name": "Delete a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/namespaces/:namespace",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The namespace to delete."
+              }
+            ]
+          },
+          "docs": "Delete a namespace from a serverless index. Deleting a namespace is irreversible; all data in the namespace is permanently deleted.\n\nFor guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).\n\n**Note:** This operation is not supported for pod-based indexes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,374 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Manage Assistants API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Assistants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/assistants",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List of all assistants in a project.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#list-assistants-for-a-project)."
+        },
+        {
+          "info": {
+            "name": "Create an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/assistants",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an assistant. This is where you specify the underlying training model, which cloud provider you would like to deploy with, and more.\n\nFor guidance and examples, see [Create an assistant](https://docs.pinecone.io/guides/assistant/create-assistant)"
+        },
+        {
+          "info": {
+            "name": "Check assistant status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/assistants/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-model",
+                "type": "path",
+                "description": "The name of the assistant to get a status on."
+              }
+            ]
+          },
+          "docs": "Get the status of an assistant.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#get-the-status-of-an-assistant)"
+        },
+        {
+          "info": {
+            "name": "Update an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.pinecone.io/assistants/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the assistant to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing assistant. You can modify the assistant's instructions.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#add-instructions-to-an-assistant)."
+        },
+        {
+          "info": {
+            "name": "Delete an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/assistants/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "my-assistant",
+                "type": "path",
+                "description": "The name of the assistant to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing assistant.\n\nFor guidance and examples, see [Manage assistants](https://docs.pinecone.io/guides/assistant/manage-assistants#delete-an-assistant)"
+        },
+        {
+          "info": {
+            "name": "List Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/files/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-assistant",
+                "type": "path",
+                "description": "The name of the assistant to list files for."
+              },
+              {
+                "name": "filter",
+                "value": "{\"genre\":{\"$eq\":\"comedy\"}}",
+                "type": "query",
+                "description": "Optional JSON-encoded metadata filter for files."
+              }
+            ]
+          },
+          "docs": "List all files in an assistant, with an option to filter files with metadata.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#list-files-in-an-assistant)."
+        },
+        {
+          "info": {
+            "name": "Upload file to assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/files/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-model",
+                "type": "path",
+                "description": "The name of the assistant to upload files to."
+              },
+              {
+                "name": "metadata",
+                "value": "{\"genre\":{\"$eq\":\"comedy\"}}",
+                "type": "query",
+                "description": "Optional JSON-encoded metadata for files."
+              },
+              {
+                "name": "multimodal",
+                "value": "",
+                "type": "query",
+                "description": "Optional flag to opt in to multimodal file processing (PDFs only). Can be either `true` or `false`. Default is `false`."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file to the specified assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#upload-a-local-file)."
+        },
+        {
+          "info": {
+            "name": "Describe a file upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/files/:assistant_name/:assistant_file_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-model",
+                "type": "path",
+                "description": "The name of the assistant to upload files to."
+              },
+              {
+                "name": "assistant_file_id",
+                "value": "72490b32-46d9-4db1-b48b-666e9176d9be",
+                "type": "path",
+                "description": "The uuid of the file to be described."
+              },
+              {
+                "name": "include_url",
+                "value": "",
+                "type": "query",
+                "description": "Include the signed URL of the file in the response."
+              }
+            ]
+          },
+          "docs": "Get the status and metadata of a file uploaded to an assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#get-the-status-of-a-file)."
+        },
+        {
+          "info": {
+            "name": "Delete an uploaded file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/files/:assistant_name/:assistant_file_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-model",
+                "type": "path",
+                "description": "The name of the assistant to upload files to."
+              },
+              {
+                "name": "assistant_file_id",
+                "value": "72490b32-46d9-4db1-b48b-666e9176d9be",
+                "type": "path",
+                "description": "The uuid of the file to be described."
+              }
+            ]
+          },
+          "docs": "Delete an uploaded file from an assistant.\n\nFor guidance and examples, see [Manage files](https://docs.pinecone.io/guides/assistant/manage-files#delete-a-file)."
+        },
+        {
+          "info": {
+            "name": "Chat through an OpenAI-compatible interface",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/chat/:assistant_name/chat/completions",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-assistant",
+                "type": "path",
+                "description": "The name of the assistant to be described."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chat with an assistant. This endpoint is based on the OpenAI Chat Completion API, a commonly used and adopted API. \n\nIt is useful if you need inline citations or OpenAI-compatible responses, but has limited functionality compared to the standard chat interface.\n\nFor guidance and examples, see [Chat with an assistant](https://docs.pinecone.io/guides/assistant/chat-with-assistant)."
+        },
+        {
+          "info": {
+            "name": "Chat with an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/chat/:assistant_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-assistant",
+                "type": "path",
+                "description": "The name of the assistant to be described."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chat with an assistant and get back citations in structured form. \n\nThis is the recommended way to chat with an assistant, as it offers more functionality and control over the assistant's responses and references than the OpenAI-compatible chat interface.\n\nFor guidance and examples, see [Chat with an assistant](https://docs.pinecone.io/guides/assistant/chat-with-assistant)."
+        },
+        {
+          "info": {
+            "name": "Retrieve context from an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/chat/:assistant_name/context",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assistant_name",
+                "value": "test-assistant",
+                "type": "path",
+                "description": "The name of the assistant to be described."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve context snippets from an assistant to use as part of RAG or any agentic flow.\n\nFor guidance and examples, see [Retrieve context snippets](https://docs.pinecone.io/guides/assistant/retrieve-context-snippets)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

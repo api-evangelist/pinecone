@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Projects API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/admin/projects",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all projects in an organization."
+        },
+        {
+          "info": {
+            "name": "Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/admin/projects",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new project."
+        },
+        {
+          "info": {
+            "name": "Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/admin/projects/:project_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Get details about a project."
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.pinecone.io/admin/projects/:project_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project's configuration details.\nYou can update the project's name, maximum number of Pods, or enable encryption with a customer-managed encryption key (CMEK).\n"
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/admin/projects/:project_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Delete a project and all its associated configuration.\nBefore deleting a project, you must delete all indexes, assistants, backups, and collections associated with the project. Other project resources, such as API keys, are automatically deleted when the project is deleted.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

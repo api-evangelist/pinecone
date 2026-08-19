@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Bulk Operations API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List imports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/bulk/imports",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Max number of operations to return per page."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token to continue a previous listing operation."
+              }
+            ]
+          },
+          "docs": "List all recent and ongoing import operations.\n\nBy default, `list_imports` returns up to 100 imports per page. If the `limit` parameter is set, `list` returns up to that number of imports instead. Whenever there are additional IDs to return, the response also includes a `pagination_token` that you can use to get the next batch of imports. When the response does not include a `pagination_token`, there are no more imports to return.\n\nFor guidance and examples, see [Import data](https://docs.pineco"
+        },
+        {
+          "info": {
+            "name": "Start import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/bulk/imports",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start an asynchronous import of vectors from object storage into an index.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+        },
+        {
+          "info": {
+            "name": "Describe an import",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/bulk/imports/:id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "101",
+                "type": "path",
+                "description": "Unique identifier for the import operation."
+              }
+            ]
+          },
+          "docs": "Return details of a specific import operation.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+        },
+        {
+          "info": {
+            "name": "Cancel an import",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/bulk/imports/:id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "101",
+                "type": "path",
+                "description": "Unique identifier for the import operation."
+              }
+            ]
+          },
+          "docs": "Cancel an import operation if it is not yet finished. It has no effect if the operation is already finished.\n\nFor guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,482 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pinecone Admin API Keys Manage Indexes API",
+    "version": "2025-10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/indexes",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all indexes in a project."
+        },
+        {
+          "info": {
+            "name": "Create an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/indexes",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Pinecone index. This is where you specify the measure of similarity, the dimension of vectors to be stored in the index, which cloud provider you would like to deploy with, and more.\n  \nFor guidance and examples, see [Create an index](https://docs.pinecone.io/guides/index-data/create-an-index).\n"
+        },
+        {
+          "info": {
+            "name": "Describe an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/indexes/:index_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "index_name",
+                "value": "test-index",
+                "type": "path",
+                "description": "The name of the index to be described."
+              }
+            ]
+          },
+          "docs": "Get a description of an index."
+        },
+        {
+          "info": {
+            "name": "Configure an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.pinecone.io/indexes/:index_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "index_name",
+                "value": "test-index",
+                "type": "path",
+                "description": "The name of the index to configure."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure an existing index. For guidance and examples, see [Manage indexes](https://docs.pinecone.io/guides/manage-data/manage-indexes)."
+        },
+        {
+          "info": {
+            "name": "Delete an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/indexes/:index_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "index_name",
+                "value": "test-index",
+                "type": "path",
+                "description": "The name of the index to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing index."
+        },
+        {
+          "info": {
+            "name": "List backups for an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/indexes/:index_name/backups",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "index_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the backed up index"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to use to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "List all backups for an index."
+        },
+        {
+          "info": {
+            "name": "Create a backup of an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/indexes/:index_name/backups",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "index_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the index to backup"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a backup of an index.\n"
+        },
+        {
+          "info": {
+            "name": "List collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/collections",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all collections in a project.\nServerless indexes do not support collections.\n"
+        },
+        {
+          "info": {
+            "name": "Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/collections",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Pinecone collection.\n  \nServerless indexes do not support collections.\n"
+        },
+        {
+          "info": {
+            "name": "Create an index with integrated embedding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/indexes/create-for-model",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an index with integrated embedding.\nWith this type of index, you provide source text, and  Pinecone uses a [hosted embedding model](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models)  to convert the text automatically during [upsert](https://docs.pinecone.io/reference/api/2025-10/data-plane/upsert_records)  and [search](https://docs.pinecone.io/reference/api/2025-10/data-plane/search_records).  \nFor guidance and examples, see [Create an index](https://docs.pineco"
+        },
+        {
+          "info": {
+            "name": "List backups for all indexes in a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/backups",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to use to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "List all backups for a project."
+        },
+        {
+          "info": {
+            "name": "Describe a backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/backups/:backup_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "backup_id",
+                "value": "670e8400-e29b-41d4-a716-446655440000",
+                "type": "path",
+                "description": "The ID of the backup to describe."
+              }
+            ]
+          },
+          "docs": "Get a description of a backup."
+        },
+        {
+          "info": {
+            "name": "Delete a backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/backups/:backup_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "backup_id",
+                "value": "670e8400-e29b-41d4-a716-446655440000",
+                "type": "path",
+                "description": "The ID of the backup to delete."
+              }
+            ]
+          },
+          "docs": "Delete a backup."
+        },
+        {
+          "info": {
+            "name": "Create an index from a backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pinecone.io/backups/:backup_id/create-index",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "backup_id",
+                "value": "670e8400-e29b-41d4-a716-446655440000",
+                "type": "path",
+                "description": "The ID of the backup to create an index from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an index from a backup."
+        },
+        {
+          "info": {
+            "name": "List restore jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/restore-jobs",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to use to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "List all restore jobs for a project."
+        },
+        {
+          "info": {
+            "name": "Describe a restore job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/restore-jobs/:job_id",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "670e8400-e29b-41d4-a716-446655440000",
+                "type": "path",
+                "description": "The ID of the restore job to describe."
+              }
+            ]
+          },
+          "docs": "Get a description of a restore job."
+        },
+        {
+          "info": {
+            "name": "Describe a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pinecone.io/collections/:collection_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collection_name",
+                "value": "tiny-collection",
+                "type": "path",
+                "description": "The name of the collection to be described."
+              }
+            ]
+          },
+          "docs": "Get a description of a collection.\nServerless indexes do not support collections.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pinecone.io/collections/:collection_name",
+            "headers": [
+              {
+                "name": "X-Pinecone-Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collection_name",
+                "value": "test-collection",
+                "type": "path",
+                "description": "The name of the collection."
+              }
+            ]
+          },
+          "docs": "Delete an existing collection.\nServerless indexes do not support collections.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

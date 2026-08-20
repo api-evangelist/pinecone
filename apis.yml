@@ -10,6 +10,11 @@ access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/introduction-pinecone-docs.png
 tags:
 - Vector Databases
+- Artificial Intelligence
+- Embeddings
+- RAG
+tags_raw:
+- Vector Databases
 - AI
 - Embeddings
 - RAG
@@ -24,6 +29,8 @@ apis:
   humanURL: https://docs.pinecone.io/reference/api/introduction
   baseURL: https://api.pinecone.io
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -132,6 +139,8 @@ apis:
   humanURL: https://docs.pinecone.io/reference/api/introduction
   baseURL: https://api.pinecone.io
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -150,6 +159,8 @@ apis:
   humanURL: https://docs.pinecone.io/reference/api/introduction
   baseURL: https://api.pinecone.io
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI

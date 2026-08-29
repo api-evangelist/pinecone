@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Manage Assistants API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  title: Pinecone Manage Assistants API
+  version: 2025-10
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -11,12 +9,17 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 2025-10
+  description: 'Operations tagged Manage Assistants across 2 of this provider''s published API definitions: pinecone-assistant-control-openapi.yaml, pinecone-assistant-data-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.pinecone.io
+- url: https://api.pinecone.io/assistant
   description: Production API endpoints
+- url: https://{assistant_host}
+  variables:
+    assistant_host:
+      default: unknown
+      description: host of the created assistant
 security:
-- BearerAuth: []
+- ApiKeyAuth: []
 tags:
 - name: Manage Assistants
   description: Actions that manage Assistants
@@ -116,9 +119,10 @@ paths:
                   minLength: 1
                   maxLength: 63
                 instructions:
-                  nullable: true
                   description: Description or directive for the assistant to apply to all responses. Maximum 16 KB.
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 metadata:
                   description: Optional metadata associated with the assistant. Metadata is a JSON object that can store custom organizational data, tags, and attributes. Maximum size is 16KB.
                   type: object
@@ -186,6 +190,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    servers:
+    - url: https://api.pinecone.io/assistant
+      description: Production API endpoints
   /assistants/{assistant_name}:
     get:
       tags:
@@ -367,13 +374,15 @@ paths:
               type: object
               properties:
                 instructions:
-                  nullable: true
                   description: Description or directive for the assistant to apply to all responses. Maximum 16 KB.
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 metadata:
                   description: Optional metadata associated with the assistant. Metadata is a JSON object that can store custom organizational data, tags, and attributes. Maximum size is 16KB.
-                  nullable: true
-                  type: object
+                  type:
+                  - object
+                  - 'null'
         required: true
       responses:
         '200':
@@ -399,6 +408,9 @@ paths:
           description: Assistant not found
         '500':
           description: Internal Server Error
+    servers:
+    - url: https://api.pinecone.io/assistant
+      description: Production API endpoints
   /files/{assistant_name}:
     get:
       tags:
@@ -606,6 +618,12 @@ paths:
                       code: UNKNOWN
                       message: Internal server error
                     status: 500
+    servers:
+    - url: https://{assistant_host}
+      variables:
+        assistant_host:
+          default: unknown
+          description: host of the created assistant
   /files/{assistant_name}/{assistant_file_id}:
     get:
       tags:
@@ -778,6 +796,12 @@ paths:
                       code: UNKNOWN
                       message: Internal server error
                     status: 500
+    servers:
+    - url: https://{assistant_host}
+      variables:
+        assistant_host:
+          default: unknown
+          description: host of the created assistant
   /chat/{assistant_name}/chat/completions:
     post:
       tags:
@@ -875,6 +899,12 @@ paths:
                       code: UNKNOWN
                       message: Internal server error
                     status: 500
+    servers:
+    - url: https://{assistant_host}
+      variables:
+        assistant_host:
+          default: unknown
+          description: host of the created assistant
   /chat/{assistant_name}:
     post:
       tags:
@@ -969,6 +999,12 @@ paths:
                       code: UNKNOWN
                       message: Internal server error
                     status: 500
+    servers:
+    - url: https://{assistant_host}
+      variables:
+        assistant_host:
+          default: unknown
+          description: host of the created assistant
   /chat/{assistant_name}/context:
     post:
       tags:
@@ -1066,65 +1102,14 @@ paths:
                       code: UNKNOWN
                       message: Internal server error
                     status: 500
+    servers:
+    - url: https://{assistant_host}
+      variables:
+        assistant_host:
+          default: unknown
+          description: host of the created assistant
 components:
   schemas:
-    TextSnippetModel:
-      description: Represents a text context snippet.
-      type: object
-      properties:
-        type:
-          description: The type of context snippet.
-          type: string
-        content:
-          type: string
-        score:
-          type: number
-          format: float
-        reference:
-          $ref: '#/components/schemas/TypedReferenceModel'
-      required:
-      - type
-      - content
-      - score
-      - reference
-    ChoiceChunkModel:
-      description: Describes a single choice in a chat completion response.
-      type: object
-      properties:
-        finish_reason:
-          x-enum:
-          - stop
-          - length
-          - content_filter
-          - function_call
-          type: string
-        index:
-          type: integer
-        delta:
-          description: Chat completion message
-          type: object
-          properties:
-            role:
-              type: string
-            content:
-              type: string
-    DocxReferenceModel:
-      description: Represents a reference to a part of a docx document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "doc_x".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-        pages:
-          type: array
-          items:
-            type: integer
-      required:
-      - type
-      - file
-      - pages
     Assistant:
       description: Describes the configuration and status of a Pinecone Assistant.
       type: object
@@ -1138,13 +1123,15 @@ components:
           minLength: 1
           maxLength: 63
         instructions:
-          nullable: true
           description: Description or directive for the assistant to apply to all responses.
-          type: string
+          type:
+          - string
+          - 'null'
         metadata:
           description: Optional metadata associated with the assistant. Metadata is a JSON object that can store custom organizational data, tags, and attributes.
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
         status:
           x-enum:
           - Initializing
@@ -1165,132 +1152,6 @@ components:
       required:
       - name
       - status
-    SearchCompletions:
-      description: The list of queries / chats to chat an assistant
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageModel'
-        stream:
-          description: If false, the assistant will return a single JSON response. If true, the assistant will return a stream of responses.
-          default: false
-          type: boolean
-        model:
-          description: The large language model to use for answer generation
-          default: gpt-4o
-          x-enum:
-          - gpt-4o
-          - gpt-4.1
-          - o4-mini
-          - claude-3-5-sonnet
-          - claude-3-7-sonnet
-          - gemini-2.5-pro
-          type: string
-        temperature:
-          description: 'Controls the randomness of the model''s output: lower values make responses more deterministic, while higher values increase creativity and variability. If the model does not support a temperature parameter, the parameter will be ignored.'
-          default: 0.0
-          type: number
-          format: float
-        filter:
-          example:
-            genre:
-              $ne: documentary
-          description: Optionally filter which documents can be retrieved using the following metadata fields.
-          type: object
-      required:
-      - messages
-    MessageModel:
-      description: Describes the format of a message in a chat.
-      type: object
-      properties:
-        role:
-          description: Role of the message such as 'user' or 'assistant'
-          type: string
-        content:
-          description: Content of the message
-          type: string
-    ContextModel:
-      description: The response format containing the context from an assistant.
-      type: object
-      properties:
-        id:
-          type: string
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/SnippetModel'
-        usage:
-          $ref: '#/components/schemas/UsageModel'
-      required:
-      - snippets
-      - usage
-    JsonReferenceModel:
-      description: Represents a reference to a json document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "json".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-      required:
-      - type
-      - file
-    StreamChatCompletionChunkModel:
-      description: Describes the response format of a chat request.
-      type: object
-      properties:
-        id:
-          type: string
-        choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChoiceChunkModel'
-        model:
-          type: string
-    ImageModel:
-      nullable: true
-      description: Represents the data for an image.
-      type: object
-      properties:
-        type:
-          description: The format of the image data. Currently, this is always "base64".
-          type: string
-        mime_type:
-          description: The MIME type of the image (e.g., "image/jpeg").
-          type: string
-        data:
-          description: The image data. Currently, this is always a base64-encoded string.
-          type: string
-      required:
-      - type
-      - mime_type
-      - data
-    ChatModel:
-      description: Describes the response format of a chat request from the citation API.
-      type: object
-      properties:
-        id:
-          type: string
-        finish_reason:
-          x-enum:
-          - stop
-          - length
-          - content_filter
-          - function_call
-          type: string
-        message:
-          $ref: '#/components/schemas/MessageModel'
-        model:
-          type: string
-        citations:
-          type: array
-          items:
-            $ref: '#/components/schemas/CitationModel'
-        usage:
-          $ref: '#/components/schemas/UsageModel'
     ErrorResponse:
       example:
         error:
@@ -1344,29 +1205,57 @@ components:
       required:
       - status
       - error
-    HighlightModel:
-      nullable: true
-      description: Represents a portion of a referenced document that directly supports or is relevant to the response.
+    ContextOptionsModel:
+      description: Controls the context snippets sent to the LLM.
       type: object
       properties:
-        type:
-          description: The type of the highlight. Currently it is always text.
+        top_k:
+          example: 20
+          description: The maximum number of context snippets to use. Default is 16. Maximum is 64.
+          type: integer
+        snippet_size:
+          example: 4096
+          description: The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.
+          type: integer
+        multimodal:
+          description: Whether or not to send image-related context snippets to the LLM. If `false`, only text context snippets are sent.
+          default: true
+          type: boolean
+        include_binary_content:
+          description: If image-related context snippets are sent to the LLM, this field determines whether or not they should include base64 image data. If `false`, only the image caption is sent. Only available when `multimodal=true`.
+          default: true
+          type: boolean
+    MessageModel:
+      description: Describes the format of a message in a chat.
+      type: object
+      properties:
+        role:
+          description: Role of the message such as 'user' or 'assistant'
           type: string
         content:
+          description: Content of the message
           type: string
-      required:
-      - type
-      - content
-    UsageModel:
-      description: Describes the usage of a chat completion.
+    ChoiceChunkModel:
+      description: Describes a single choice in a chat completion response.
       type: object
       properties:
-        prompt_tokens:
+        finish_reason:
+          x-enum:
+          - stop
+          - length
+          - content_filter
+          - function_call
+          type: string
+        index:
           type: integer
-        completion_tokens:
-          type: integer
-        total_tokens:
-          type: integer
+        delta:
+          description: Chat completion message
+          type: object
+          properties:
+            role:
+              type: string
+            content:
+              type: string
     MultiModalContentBlocksModel:
       description: Represents a block in the multimodal content of a context snippet.
       discriminator:
@@ -1378,130 +1267,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MultiModalContentTextBlockModel'
       - $ref: '#/components/schemas/MultiModalContentImageBlockModel'
-    CitationModel:
-      description: Describes a single cited source returned by a chat request.
-      type: object
-      properties:
-        position:
-          description: The index position of the citation in the complete text response.
-          type: integer
-        references:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceModel'
-    SnippetModel:
-      description: Represents a part of a document that is relevant to the user query.
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/TextSnippetModel'
-          multimodal: '#/components/schemas/MultiModalSnippetModel'
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/TextSnippetModel'
-      - $ref: '#/components/schemas/MultiModalSnippetModel'
-    PdfReferenceModel:
-      description: Represents a reference to a part of a PDF document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "pdf".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-        pages:
-          type: array
-          items:
-            type: integer
-      required:
-      - type
-      - file
-      - pages
-    AssistantFileModel:
-      description: The response format for a successful file upload request.
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-          format: uuid
-        metadata:
-          nullable: true
-          type: object
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        status:
-          description: 'The current state of the uploaded file. Possible values:
-
-            - `Processing`: File is being processed (parsed, chunked, embedded)
-
-            - `Available`: Processing completed successfully; file is ready for use
-
-            - `Deleting`: Deletion has been initiated but not yet completed
-
-            - `ProcessingFailed`: Processing failed with an error
-
-
-            Note: Once a file is deleted, the API returns 404 Not Found instead of a file object.'
-          x-enum:
-          - Processing
-          - Available
-          - Deleting
-          - ProcessingFailed
-          type: string
-        percent_done:
-          nullable: true
-          description: The percentage of the file that has been processed
-          type: number
-          format: double
-        signed_url:
-          nullable: true
-          example: https://storage.googleapis.com/bucket/file.pdf?...
-          description: A [signed URL](https://cloud.google.com/storage/docs/access-control/signed-urls) that provides temporary, read-only access to the underlying file. Anyone with the link can access the file, so treat it as sensitive data. Expires after a short time.
-          type: string
-        error_message:
-          nullable: true
-          description: A message describing any error during file processing. Provided only if an error occurs.
-          type: string
-        multimodal:
-          description: Indicates whether the file was processed as multimodal.
-          type: boolean
-      required:
-      - id
-      - name
-    MultiModalContentImageBlockModel:
-      description: Represents an image block in a multimodal context snippet.
-      type: object
-      properties:
-        type:
-          description: The type of multimodal content block.
-          type: string
-        caption:
-          type: string
-        image:
-          $ref: '#/components/schemas/ImageModel'
-      required:
-      - type
-      - caption
-    ChatCompletionModel:
-      description: Describes the response format of a chat request.
-      type: object
-      properties:
-        id:
-          type: string
-        choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChoiceModel'
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/UsageModel'
     ChoiceModel:
       description: Describes a single choice in a chat completion response.
       type: object
@@ -1534,59 +1299,35 @@ components:
       - $ref: '#/components/schemas/MarkdownReferenceModel'
       - $ref: '#/components/schemas/PdfReferenceModel'
       - $ref: '#/components/schemas/DocxReferenceModel'
-    ContextOptionsModel:
-      description: Controls the context snippets sent to the LLM.
-      type: object
-      properties:
-        top_k:
-          example: 20
-          description: The maximum number of context snippets to use. Default is 16. Maximum is 64.
-          type: integer
-        snippet_size:
-          example: 4096
-          description: The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.
-          type: integer
-        multimodal:
-          description: Whether or not to send image-related context snippets to the LLM. If `false`, only text context snippets are sent.
-          default: true
-          type: boolean
-        include_binary_content:
-          description: If image-related context snippets are sent to the LLM, this field determines whether or not they should include base64 image data. If `false`, only the image caption is sent. Only available when `multimodal=true`.
-          default: true
-          type: boolean
-    MultiModalSnippetModel:
-      description: Represents a multimodal context snippet.
-      type: object
+    ImageModel:
+      description: Represents the data for an image.
+      type:
+      - object
+      - 'null'
       properties:
         type:
-          description: The type of context snippet.
+          description: The format of the image data. Currently, this is always "base64".
           type: string
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultiModalContentBlocksModel'
-        score:
-          type: number
-          format: float
-        reference:
-          $ref: '#/components/schemas/TypedReferenceModel'
+        mime_type:
+          description: The MIME type of the image (e.g., "image/jpeg").
+          type: string
+        data:
+          description: The image data. Currently, this is always a base64-encoded string.
+          type: string
       required:
       - type
-      - content
-      - score
-      - reference
-    TextReferenceModel:
-      description: Represents a reference to a part of a text document.
+      - mime_type
+      - data
+    UsageModel:
+      description: Describes the usage of a chat completion.
       type: object
       properties:
-        type:
-          description: The type of reference. Always "text".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-      required:
-      - type
-      - file
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
     MarkdownReferenceModel:
       description: Represents a reference to a part of a markdown document.
       type: object
@@ -1611,6 +1352,29 @@ components:
       required:
       - type
       - text
+    JsonReferenceModel:
+      description: Represents a reference to a json document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "json".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+      required:
+      - type
+      - file
+    SnippetModel:
+      description: Represents a part of a document that is relevant to the user query.
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TextSnippetModel'
+          multimodal: '#/components/schemas/MultiModalSnippetModel'
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/TextSnippetModel'
+      - $ref: '#/components/schemas/MultiModalSnippetModel'
     ContextRequest:
       description: Parameters to retrieve context from an assistant.
       type: object
@@ -1645,6 +1409,50 @@ components:
           description: If image-related context snippets are returned, this field determines whether or not they should include base64 image data. If `false`, only the image captions are returned. Only available when `multimodal=true`.
           default: true
           type: boolean
+    ContextModel:
+      description: The response format containing the context from an assistant.
+      type: object
+      properties:
+        id:
+          type: string
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnippetModel'
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+      required:
+      - snippets
+      - usage
+    DocxReferenceModel:
+      description: Represents a reference to a part of a docx document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "doc_x".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+        pages:
+          type: array
+          items:
+            type: integer
+      required:
+      - type
+      - file
+      - pages
+    StreamChatCompletionChunkModel:
+      description: Describes the response format of a chat request.
+      type: object
+      properties:
+        id:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceChunkModel'
+        model:
+          type: string
     ChatRequest:
       description: The list of queries / chats to chat an assistant
       type: object
@@ -1691,6 +1499,65 @@ components:
           $ref: '#/components/schemas/ContextOptionsModel'
       required:
       - messages
+    MultiModalContentImageBlockModel:
+      description: Represents an image block in a multimodal context snippet.
+      type: object
+      properties:
+        type:
+          description: The type of multimodal content block.
+          type: string
+        caption:
+          type: string
+        image:
+          $ref: '#/components/schemas/ImageModel'
+      required:
+      - type
+      - caption
+    HighlightModel:
+      description: Represents a portion of a referenced document that directly supports or is relevant to the response.
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          description: The type of the highlight. Currently it is always text.
+          type: string
+        content:
+          type: string
+      required:
+      - type
+      - content
+    TextReferenceModel:
+      description: Represents a reference to a part of a text document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "text".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+      required:
+      - type
+      - file
+    TextSnippetModel:
+      description: Represents a text context snippet.
+      type: object
+      properties:
+        type:
+          description: The type of context snippet.
+          type: string
+        content:
+          type: string
+        score:
+          type: number
+          format: float
+        reference:
+          $ref: '#/components/schemas/TypedReferenceModel'
+      required:
+      - type
+      - content
+      - score
+      - reference
     ReferenceModel:
       description: Describes a single reference in a citation.
       type: object
@@ -1703,10 +1570,195 @@ components:
             type: integer
         highlight:
           $ref: '#/components/schemas/HighlightModel'
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
+    SearchCompletions:
+      description: The list of queries / chats to chat an assistant
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageModel'
+        stream:
+          description: If false, the assistant will return a single JSON response. If true, the assistant will return a stream of responses.
+          default: false
+          type: boolean
+        model:
+          description: The large language model to use for answer generation
+          default: gpt-4o
+          x-enum:
+          - gpt-4o
+          - gpt-4.1
+          - o4-mini
+          - claude-3-5-sonnet
+          - claude-3-7-sonnet
+          - gemini-2.5-pro
+          type: string
+        temperature:
+          description: 'Controls the randomness of the model''s output: lower values make responses more deterministic, while higher values increase creativity and variability. If the model does not support a temperature parameter, the parameter will be ignored.'
+          default: 0.0
+          type: number
+          format: float
+        filter:
+          example:
+            genre:
+              $ne: documentary
+          description: Optionally filter which documents can be retrieved using the following metadata fields.
+          type: object
+      required:
+      - messages
+    ChatModel:
+      description: Describes the response format of a chat request from the citation API.
+      type: object
+      properties:
+        id:
+          type: string
+        finish_reason:
+          x-enum:
+          - stop
+          - length
+          - content_filter
+          - function_call
+          type: string
+        message:
+          $ref: '#/components/schemas/MessageModel'
+        model:
+          type: string
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CitationModel'
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+    CitationModel:
+      description: Describes a single cited source returned by a chat request.
+      type: object
+      properties:
+        position:
+          description: The index position of the citation in the complete text response.
+          type: integer
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceModel'
+    MultiModalSnippetModel:
+      description: Represents a multimodal context snippet.
+      type: object
+      properties:
+        type:
+          description: The type of context snippet.
+          type: string
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiModalContentBlocksModel'
+        score:
+          type: number
+          format: float
+        reference:
+          $ref: '#/components/schemas/TypedReferenceModel'
+      required:
+      - type
+      - content
+      - score
+      - reference
+    AssistantFileModel:
+      description: The response format for a successful file upload request.
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+        metadata:
+          type:
+          - object
+          - 'null'
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        status:
+          description: 'The current state of the uploaded file. Possible values:
 
-        '
+            - `Processing`: File is being processed (parsed, chunked, embedded)
+
+            - `Available`: Processing completed successfully; file is ready for use
+
+            - `Deleting`: Deletion has been initiated but not yet completed
+
+            - `ProcessingFailed`: Processing failed with an error
+
+
+            Note: Once a file is deleted, the API returns 404 Not Found instead of a file object.'
+          x-enum:
+          - Processing
+          - Available
+          - Deleting
+          - ProcessingFailed
+          type: string
+        percent_done:
+          description: The percentage of the file that has been processed
+          type:
+          - number
+          - 'null'
+          format: double
+        signed_url:
+          example: https://storage.googleapis.com/bucket/file.pdf?...
+          description: A [signed URL](https://cloud.google.com/storage/docs/access-control/signed-urls) that provides temporary, read-only access to the underlying file. Anyone with the link can access the file, so treat it as sensitive data. Expires after a short time.
+          type:
+          - string
+          - 'null'
+        error_message:
+          description: A message describing any error during file processing. Provided only if an error occurs.
+          type:
+          - string
+          - 'null'
+        multimodal:
+          description: Indicates whether the file was processed as multimodal.
+          type: boolean
+      required:
+      - id
+      - name
+    ChatCompletionModel:
+      description: Describes the response format of a chat request.
+      type: object
+      properties:
+        id:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceModel'
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+    PdfReferenceModel:
+      description: Represents a reference to a part of a PDF document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "pdf".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+        pages:
+          type: array
+          items:
+            type: integer
+      required:
+      - type
+      - file
+      - pages
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: Pinecone API Key
+x-refined-from:
+- pinecone-assistant-control-openapi.yaml
+- pinecone-assistant-data-openapi.yaml

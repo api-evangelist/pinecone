@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Inference API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  title: Pinecone Inference API
+  description: Pinecone is a vector database that makes it easy to search and retrieve billions of high-dimensional vectors.
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -16,7 +14,7 @@ servers:
 - url: https://api.pinecone.io
   description: Production API endpoints
 security:
-- BearerAuth: []
+- ApiKeyAuth: []
 tags:
 - name: Inference
   description: Model inference
@@ -446,54 +444,15 @@ paths:
                     status: 500
 components:
   schemas:
-    ModelInfoSupportedMetrics:
-      description: The distance metrics supported by the model for similarity search.
-      type: array
-      items:
-        $ref: '#/components/schemas/ModelInfoMetric'
-    RankedDocument:
-      description: A ranked document with a relevance score and an index position.
-      type: object
-      properties:
-        index:
-          description: The index position of the document from the original request.
-          type: integer
-        score:
-          example: 0.5
-          description: The relevance of the document to the query, normalized between 0 and 1, with scores closer to 1 indicating higher relevance.
-          type: number
-        document:
-          $ref: '#/components/schemas/Document'
-      required:
-      - index
-      - score
-    EmbedRequest:
-      type: object
-      properties:
-        model:
-          example: multilingual-e5-large
-          description: The [model](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) to use for embedding generation.
-          type: string
-        parameters:
-          example:
-            input_type: passage
-            truncate: END
-          description: Additional model-specific parameters. Refer to the [model guide](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) for available model parameters.
-          type: object
-          additionalProperties: true
-        inputs:
-          description: List of inputs to generate embeddings for.
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                example: The quick brown fox jumps over the lazy dog.
-                description: The text input to generate embeddings for.
-                type: string
-      required:
-      - model
-      - inputs
+    ModelInfoMetric:
+      description: 'A distance metric that the embedding model supports for similarity searches.
+
+        Possible values: `cosine`, `euclidean`, or `dotproduct`.'
+      x-enum:
+      - cosine
+      - euclidean
+      - dotproduct
+      type: string
     DenseEmbedding:
       title: Dense embedding
       description: A dense embedding of a single input
@@ -514,15 +473,17 @@ components:
       required:
       - values
       - vector_type
-    ModelInfoList:
-      description: The list of available models.
+    Embedding:
+      description: Embedding of a single input
+      discriminator:
+        propertyName: vector_type
+        mapping:
+          dense: '#/components/schemas/DenseEmbedding'
+          sparse: '#/components/schemas/SparseEmbedding'
       type: object
-      properties:
-        models:
-          description: List of available models.
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelInfo'
+      oneOf:
+      - $ref: '#/components/schemas/DenseEmbedding'
+      - $ref: '#/components/schemas/SparseEmbedding'
     ModelInfoSupportedParameter:
       description: Describes a parameter supported by the model, including parameter value constraints.
       type: object
@@ -582,38 +543,9 @@ components:
       - type
       - value_type
       - required
-    EmbeddingsList:
-      description: Embeddings generated for the input.
-      type: object
-      properties:
-        model:
-          example: multilingual-e5-large
-          description: The model used to generate the embeddings
-          type: string
-        vector_type:
-          example: dense
-          description: Indicates whether the response data contains 'dense' or 'sparse' embeddings.
-          type: string
-        data:
-          description: The embeddings generated for the inputs.
-          type: array
-          items:
-            $ref: '#/components/schemas/Embedding'
-        usage:
-          description: Usage statistics for the model inference.
-          type: object
-          properties:
-            total_tokens:
-              example: 205
-              description: Total number of tokens consumed across all inputs.
-              type: integer
-              format: int32
-              minimum: 0
-      required:
-      - model
-      - vector_type
-      - data
-      - usage
+    VectorType:
+      description: Indicates whether this is a 'dense' or 'sparse' embedding.
+      type: string
     RerankResult:
       description: The result of a reranking request.
       type: object
@@ -641,9 +573,6 @@ components:
       - model
       - data
       - usage
-    VectorType:
-      description: Indicates whether this is a 'dense' or 'sparse' embedding.
-      type: string
     RerankRequest:
       type: object
       properties:
@@ -691,48 +620,6 @@ components:
       - model
       - documents
       - query
-    SparseEmbedding:
-      title: Sparse embedding
-      description: A sparse embedding of a single input
-      type: object
-      properties:
-        sparse_values:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          description: The sparse embedding values.
-          type: array
-          items:
-            type: number
-            format: float
-        sparse_indices:
-          example:
-          - 10
-          - 3
-          - 156
-          description: The sparse embedding indices.
-          type: array
-          items:
-            type: integer
-            format: int64
-            minimum: 0
-            maximum: 4294967295
-        sparse_tokens:
-          example:
-          - quick
-          - brown
-          - fox
-          description: The normalized tokens used to create the sparse embedding.
-          type: array
-          items:
-            type: string
-        vector_type:
-          $ref: '#/components/schemas/VectorType'
-      required:
-      - sparse_values
-      - sparse_indices
-      - vector_type
     ModelInfo:
       description: Represents the model configuration including model type, supported parameters, and other model details.
       type: object
@@ -800,6 +687,42 @@ components:
       - short_description
       - type
       - supported_parameters
+    EmbedRequest:
+      type: object
+      properties:
+        model:
+          example: multilingual-e5-large
+          description: The [model](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) to use for embedding generation.
+          type: string
+        parameters:
+          example:
+            input_type: passage
+            truncate: END
+          description: Additional model-specific parameters. Refer to the [model guide](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models) for available model parameters.
+          type: object
+          additionalProperties: true
+        inputs:
+          description: List of inputs to generate embeddings for.
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                example: The quick brown fox jumps over the lazy dog.
+                description: The text input to generate embeddings for.
+                type: string
+      required:
+      - model
+      - inputs
+    ModelInfoList:
+      description: The list of available models.
+      type: object
+      properties:
+        models:
+          description: List of available models.
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelInfo'
     ErrorResponse:
       example:
         error:
@@ -857,17 +780,101 @@ components:
       required:
       - status
       - error
-    Embedding:
-      description: Embedding of a single input
-      discriminator:
-        propertyName: vector_type
-        mapping:
-          dense: '#/components/schemas/DenseEmbedding'
-          sparse: '#/components/schemas/SparseEmbedding'
+    ModelInfoSupportedMetrics:
+      description: The distance metrics supported by the model for similarity search.
+      type: array
+      items:
+        $ref: '#/components/schemas/ModelInfoMetric'
+    SparseEmbedding:
+      title: Sparse embedding
+      description: A sparse embedding of a single input
       type: object
-      oneOf:
-      - $ref: '#/components/schemas/DenseEmbedding'
-      - $ref: '#/components/schemas/SparseEmbedding'
+      properties:
+        sparse_values:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          description: The sparse embedding values.
+          type: array
+          items:
+            type: number
+            format: float
+        sparse_indices:
+          example:
+          - 10
+          - 3
+          - 156
+          description: The sparse embedding indices.
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 0
+            maximum: 4294967295
+        sparse_tokens:
+          example:
+          - quick
+          - brown
+          - fox
+          description: The normalized tokens used to create the sparse embedding.
+          type: array
+          items:
+            type: string
+        vector_type:
+          $ref: '#/components/schemas/VectorType'
+      required:
+      - sparse_values
+      - sparse_indices
+      - vector_type
+    RankedDocument:
+      description: A ranked document with a relevance score and an index position.
+      type: object
+      properties:
+        index:
+          description: The index position of the document from the original request.
+          type: integer
+        score:
+          example: 0.5
+          description: The relevance of the document to the query, normalized between 0 and 1, with scores closer to 1 indicating higher relevance.
+          type: number
+        document:
+          $ref: '#/components/schemas/Document'
+      required:
+      - index
+      - score
+    EmbeddingsList:
+      description: Embeddings generated for the input.
+      type: object
+      properties:
+        model:
+          example: multilingual-e5-large
+          description: The model used to generate the embeddings
+          type: string
+        vector_type:
+          example: dense
+          description: Indicates whether the response data contains 'dense' or 'sparse' embeddings.
+          type: string
+        data:
+          description: The embeddings generated for the inputs.
+          type: array
+          items:
+            $ref: '#/components/schemas/Embedding'
+        usage:
+          description: Usage statistics for the model inference.
+          type: object
+          properties:
+            total_tokens:
+              example: 205
+              description: Total number of tokens consumed across all inputs.
+              type: integer
+              format: int32
+              minimum: 0
+      required:
+      - model
+      - vector_type
+      - data
+      - usage
     Document:
       example:
         id: '1'
@@ -877,19 +884,12 @@ components:
       description: Document for reranking
       type: object
       additionalProperties: true
-    ModelInfoMetric:
-      description: 'A distance metric that the embedding model supports for similarity searches.
-
-        Possible values: `cosine`, `euclidean`, or `dotproduct`.'
-      x-enum:
-      - cosine
-      - euclidean
-      - dotproduct
-      type: string
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
-
-        '
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: An API Key is required to call Pinecone APIs. Get yours from the [console](https://app.pinecone.io/).
+externalDocs:
+  description: More Pinecone.io API docs
+  url: https://docs.pinecone.io/introduction

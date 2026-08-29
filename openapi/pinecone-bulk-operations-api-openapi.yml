@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Bulk Operations API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  title: Pinecone Data Plane Bulk Operations API
+  description: Pinecone is a vector database that makes it easy to search and retrieve billions of high-dimensional vectors.
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -13,10 +11,13 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: 2025-10
 servers:
-- url: https://api.pinecone.io
-  description: Production API endpoints
+- url: https://{index_host}
+  variables:
+    index_host:
+      default: unknown
+      description: host of the index
 security:
-- BearerAuth: []
+- ApiKeyAuth: []
 tags:
 - name: Bulk Operations
 paths:
@@ -242,16 +243,16 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    ListImportsResponse:
-      description: The response for the `list_imports` operation.
+    StartImportResponse:
+      description: The response for the `start_import` operation.
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportModel'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
     ImportErrorMode:
       description: Indicates how to respond to errors during the import process.
       type: object
@@ -264,6 +265,45 @@ components:
           - abort
           - continue
           type: string
+    ListImportsResponse:
+      description: The response for the `list_imports` operation.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportModel'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    CancelImportResponse:
+      description: The response for the `cancel_import` operation.
+      type: object
     ImportModel:
       description: The model for an import operation.
       type: object
@@ -312,29 +352,6 @@ components:
         error:
           description: The error message if the import process failed.
           type: string
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/protobufAny'
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
-    CancelImportResponse:
-      description: The response for the `cancel_import` operation.
-      type: object
     StartImportRequest:
       description: The request for the `start_import` operation.
       type: object
@@ -352,26 +369,12 @@ components:
           $ref: '#/components/schemas/ImportErrorMode'
       required:
       - uri
-    StartImportResponse:
-      description: The response for the `start_import` operation.
-      type: object
-      properties:
-        id:
-          example: '101'
-          description: Unique identifier for the import operation.
-          type: string
-          minLength: 1
-          maxLength: 1000
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
-
-        '
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: An API Key is required to call Pinecone APIs. Get yours from the [console](https://app.pinecone.io/).
+externalDocs:
+  description: More Pinecone.io API docs
+  url: https://docs.pinecone.io/introduction

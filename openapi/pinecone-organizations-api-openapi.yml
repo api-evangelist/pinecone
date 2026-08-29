@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Organizations API
+  title: Pinecone Admin Organizations API
   description: 'Provides an API for managing a Pinecone organization and its resources.
 
     '
@@ -325,6 +325,15 @@ paths:
                     status: 500
 components:
   schemas:
+    UpdateOrganizationRequest:
+      type: object
+      properties:
+        name:
+          example: organization-name
+          description: The new name for the organization.
+          type: string
+          minLength: 1
+          maxLength: 512
     Organization:
       description: The details of an organization.
       type: object
@@ -374,6 +383,15 @@ components:
       - payment_status
       - created_at
       - support_tier
+    OrganizationList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+      required:
+      - data
     ErrorResponse:
       example:
         error:
@@ -431,24 +449,6 @@ components:
       required:
       - status
       - error
-    UpdateOrganizationRequest:
-      type: object
-      properties:
-        name:
-          example: organization-name
-          description: The new name for the organization.
-          type: string
-          minLength: 1
-          maxLength: 512
-    OrganizationList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-      required:
-      - data
   securitySchemes:
     BearerAuth:
       type: http

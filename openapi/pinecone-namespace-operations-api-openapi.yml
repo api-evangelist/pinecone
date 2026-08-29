@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Namespace Operations API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  title: Pinecone Data Plane Namespace Operations API
+  description: Pinecone is a vector database that makes it easy to search and retrieve billions of high-dimensional vectors.
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -13,10 +11,13 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: 2025-10
 servers:
-- url: https://api.pinecone.io
-  description: Production API endpoints
+- url: https://{index_host}
+  variables:
+    index_host:
+      default: unknown
+      description: host of the index
 security:
-- BearerAuth: []
+- ApiKeyAuth: []
 tags:
 - name: Namespace Operations
 paths:
@@ -252,6 +253,83 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
+    DeleteResponse:
+      description: The response for the `delete` operation.
+      type: object
+    ListNamespacesResponse:
+      type: object
+      properties:
+        namespaces:
+          description: The list of namespaces belonging to this index.
+          type: array
+          items:
+            $ref: '#/components/schemas/NamespaceDescription'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        total_count:
+          example: 25
+          description: The total number of namespaces in the index matching the prefix
+          type: integer
+          format: int32
+    CreateNamespaceRequest:
+      description: A request for creating a namespace with the specified namespace name.
+      type: object
+      properties:
+        name:
+          example: example-namespace
+          description: The name of the namespace.
+          type: string
+        schema:
+          example:
+            fields:
+              description:
+                filterable: true
+              genre:
+                filterable: true
+              year:
+                filterable: true
+          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
+          type: object
+          properties:
+            fields:
+              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filterable:
+                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
+                    type: boolean
+          required:
+          - fields
+      required:
+      - name
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
     NamespaceDescription:
       description: A description of a namespace, including the name and record count.
       type: object
@@ -300,87 +378,12 @@ components:
               - genre
               - year
               - author
-    DeleteResponse:
-      description: The response for the `delete` operation.
-      type: object
-    CreateNamespaceRequest:
-      description: A request for creating a namespace with the specified namespace name.
-      type: object
-      properties:
-        name:
-          example: example-namespace
-          description: The name of the namespace.
-          type: string
-        schema:
-          example:
-            fields:
-              description:
-                filterable: true
-              genre:
-                filterable: true
-              year:
-                filterable: true
-          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
-          type: object
-          properties:
-            fields:
-              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  filterable:
-                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
-                    type: boolean
-          required:
-          - fields
-      required:
-      - name
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/protobufAny'
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
-    ListNamespacesResponse:
-      type: object
-      properties:
-        namespaces:
-          description: The list of namespaces belonging to this index.
-          type: array
-          items:
-            $ref: '#/components/schemas/NamespaceDescription'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        total_count:
-          example: 25
-          description: The total number of namespaces in the index matching the prefix
-          type: integer
-          format: int32
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
-
-        '
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: An API Key is required to call Pinecone APIs. Get yours from the [console](https://app.pinecone.io/).
+externalDocs:
+  description: More Pinecone.io API docs
+  url: https://docs.pinecone.io/introduction

@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Vector Operations API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  title: Pinecone Data Plane Vector Operations API
+  description: Pinecone is a vector database that makes it easy to search and retrieve billions of high-dimensional vectors.
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -13,10 +11,13 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: 2025-10
 servers:
-- url: https://api.pinecone.io
-  description: Production API endpoints
+- url: https://{index_host}
+  variables:
+    index_host:
+      default: unknown
+      description: host of the index
 security:
-- BearerAuth: []
+- ApiKeyAuth: []
 tags:
 - name: Vector Operations
 paths:
@@ -575,117 +576,36 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    Vector:
-      type: object
-      properties:
-        id:
-          example: example-vector-1
-          description: This is the vector's unique id.
-          type: string
-          required:
-          - id
-          minLength: 1
-          maxLength: 512
-        values:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          - 0.4
-          - 0.5
-          - 0.6
-          - 0.7
-          - 0.8
-          description: This is the vector data included in the request.
-          type: array
-          required:
-          - values
-          items:
-            type: number
-            format: float
-          minLength: 1
-          maxLength: 20000
-        sparseValues:
-          $ref: '#/components/schemas/SparseValues'
-        metadata:
-          example:
-            genre: documentary
-            year: 2019
-          description: This is the metadata included in the request.
-          type: object
-      required:
-      - id
-    DeleteRequest:
-      description: The request for the `delete` operation.
-      type: object
-      properties:
-        ids:
-          example:
-          - id-0
-          - id-1
-          description: Vectors to delete.
-          type: array
-          items:
-            type: string
-          minLength: 1
-          maxLength: 1000
-        deleteAll:
-          example: false
-          description: This indicates that all vectors in the index namespace should be deleted.
-          default: false
-          type: boolean
-        namespace:
-          example: example-namespace
-          description: The namespace to delete vectors from, if applicable.
-          type: string
-        filter:
-          description: If specified, the metadata filter here will be used to select the vectors to delete. This is mutually exclusive with specifying ids to delete in the ids param or using delete_all=True. See [Delete data](https://docs.pinecone.io/guides/manage-data/delete-data#delete-records-by-metadata).
-          type: object
     DeleteResponse:
       description: The response for the `delete` operation.
       type: object
-    ListItem:
+    QueryResponse:
+      description: The response for the `query` operation. These are the matches found for a particular query vector. The matches are ordered from most similar to least similar.
       type: object
       properties:
-        id:
-          example: document1#abb
-          type: string
-    QueryVector:
-      deprecated: true
-      description: A single query vector within a `QueryRequest`.
-      type: object
-      properties:
-        values:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          - 0.4
-          - 0.5
-          - 0.6
-          - 0.7
-          - 0.8
-          description: The query vector values. This should be the same length as the dimension of the index being queried.
+        results:
+          deprecated: true
+          description: DEPRECATED. The results of each query. The order is the same as `QueryRequest.queries`.
           type: array
-          required:
-          - values
           items:
-            type: number
-            format: float
-          minLength: 1
-          maxLength: 20000
-        sparseValues:
-          $ref: '#/components/schemas/SparseValues'
-        topK:
-          example: 10
-          description: An override for the number of results to return for this query vector.
-          type: integer
-          format: int64
-          minimum: 1
-          maximum: 10000
+            $ref: '#/components/schemas/SingleQueryResults'
+        matches:
+          description: The matches for the vectors.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoredVector'
+        namespace:
+          description: The namespace for the vectors.
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    FetchByMetadataRequest:
+      description: The request for the `fetch_by_metadata` operation.
+      type: object
+      properties:
         namespace:
           example: example-namespace
-          description: An override the namespace to search.
+          description: The namespace to fetch vectors from.
           type: string
         filter:
           example:
@@ -696,132 +616,19 @@ components:
               - drama
             year:
               $eq: 2019
-          description: An override for the metadata filter to apply. This replaces the request-level filter.
+          description: Metadata filter expression to select vectors. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).
           type: object
-      required:
-      - values
-    UpsertRecord:
-      example:
-        _id: example-record-1
-      description: The request for the `upsert` operation.
-      type: object
-      properties:
-        _id:
-          description: The unique ID of the record to upsert. Note that `id` can be used as an alias for `_id`.
+        limit:
+          example: 12
+          description: Max number of vectors to return.
+          default: 100
+          type: integer
+          format: int64
+          minimum: 1
+        paginationToken:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          description: Pagination token to continue a previous listing operation.
           type: string
-      required:
-      - _id
-    Hit:
-      example:
-        _id: example-record-1
-        _score: 0.9281134605407715
-        fields:
-          data: your example text
-          more_data:
-            text: your example text
-      description: A record whose vector values are similar to the provided search query.
-      type: object
-      properties:
-        _id:
-          description: The record id of the search hit.
-          type: string
-        _score:
-          description: The similarity score of the returned record.
-          type: number
-          format: float
-        fields:
-          description: The selected record fields associated with the search hit.
-          type: object
-      required:
-      - _id
-      - _score
-      - fields
-    UpsertRequest:
-      description: The request for the `upsert` operation.
-      type: object
-      properties:
-        vectors:
-          description: An array containing the vectors to upsert. Recommended batch limit is up to 1000 vectors.
-          type: array
-          items:
-            $ref: '#/components/schemas/Vector'
-          minLength: 1
-          maxLength: 1000
-        namespace:
-          example: example-namespace
-          description: The namespace where you upsert vectors.
-          type: string
-      required:
-      - vectors
-    VectorValues:
-      description: This is the vector data included in the request.
-      type: array
-      items:
-        type: number
-        format: float
-      minLength: 1
-      maxLength: 20000
-    ListResponse:
-      description: The response for the `list` operation.
-      type: object
-      properties:
-        vectors:
-          example:
-          - id: document1#abb
-          - id: document1#abc
-          title: A list of ids
-          type: array
-          items:
-            $ref: '#/components/schemas/ListItem'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        namespace:
-          example: example-namespace
-          description: The namespace of the vectors.
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
-    ScoredVector:
-      type: object
-      properties:
-        id:
-          example: example-vector-1
-          description: This is the vector's unique id.
-          type: string
-          required:
-          - id
-          minLength: 1
-          maxLength: 512
-        score:
-          example: 0.08
-          description: This is a measure of similarity between this vector and the query vector.  The higher the score, the more they are similar.
-          type: number
-          format: float
-        values:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          - 0.4
-          - 0.5
-          - 0.6
-          - 0.7
-          - 0.8
-          description: This is the vector data, if it is requested.
-          type: array
-          items:
-            type: number
-            format: float
-        sparseValues:
-          $ref: '#/components/schemas/SparseValues'
-        metadata:
-          example:
-            genre: documentary
-            year: 2019
-          description: This is the metadata, if it is requested.
-          type: object
-      required:
-      - id
     SearchRecordsVector:
       type: object
       properties:
@@ -848,6 +655,21 @@ components:
             type: integer
             format: int32
             minimum: 0
+    NamespaceSummary:
+      description: A summary of the contents of a namespace.
+      type: object
+      properties:
+        vectorCount:
+          example: 50000
+          description: The number of vectors stored in this namespace. Note that updates to this field may lag behind updates to the underlying index and corresponding query results, etc.
+          type: integer
+          format: int64
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
     Usage:
       type: object
       properties:
@@ -856,6 +678,157 @@ components:
           description: The number of read units consumed by this operation.
           type: integer
           format: int64
+    UpdateResponse:
+      description: The response for the `update` operation.
+      type: object
+      properties:
+        matchedRecords:
+          example: 42
+          description: The number of records that matched the filter (if a filter was provided).
+          type: integer
+          format: int32
+    Hit:
+      example:
+        _id: example-record-1
+        _score: 0.9281134605407715
+        fields:
+          data: your example text
+          more_data:
+            text: your example text
+      description: A record whose vector values are similar to the provided search query.
+      type: object
+      properties:
+        _id:
+          description: The record id of the search hit.
+          type: string
+        _score:
+          description: The similarity score of the returned record.
+          type: number
+          format: float
+        fields:
+          description: The selected record fields associated with the search hit.
+          type: object
+      required:
+      - _id
+      - _score
+      - fields
+    DeleteRequest:
+      description: The request for the `delete` operation.
+      type: object
+      properties:
+        ids:
+          example:
+          - id-0
+          - id-1
+          description: Vectors to delete.
+          type: array
+          items:
+            type: string
+          minLength: 1
+          maxLength: 1000
+        deleteAll:
+          example: false
+          description: This indicates that all vectors in the index namespace should be deleted.
+          default: false
+          type: boolean
+        namespace:
+          example: example-namespace
+          description: The namespace to delete vectors from, if applicable.
+          type: string
+        filter:
+          description: If specified, the metadata filter here will be used to select the vectors to delete. This is mutually exclusive with specifying ids to delete in the ids param or using delete_all=True. See [Delete data](https://docs.pinecone.io/guides/manage-data/delete-data#delete-records-by-metadata).
+          type: object
+    FetchByMetadataResponse:
+      example:
+        namespace: example-namespace
+        pagination:
+          next: Tm90aGluZyB0byBzZWUgaGVyZQo=
+        usage:
+          readUnits: 5
+        vectors:
+          id-1:
+            id: id-1
+            metadata:
+              genre: documentary
+              year: 2019
+            values:
+            - 1.0
+            - 1.5
+          id-2:
+            id: id-2
+            metadata:
+              genre: comedy
+              year: 2019
+            values:
+            - 2.0
+            - 1.0
+      description: The response for the `fetch_by_metadata` operation.
+      type: object
+      properties:
+        vectors:
+          description: The fetched vectors, in the form of a map between the fetched ids and the fetched vectors
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Vector'
+        namespace:
+          example: example-namespace
+          description: The namespace of the vectors.
+          default: ''
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ListResponse:
+      description: The response for the `list` operation.
+      type: object
+      properties:
+        vectors:
+          example:
+          - id: document1#abb
+          - id: document1#abc
+          title: A list of ids
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        namespace:
+          example: example-namespace
+          description: The namespace of the vectors.
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    FetchResponse:
+      example:
+        namespace: example-namespace
+        usage:
+          readUnits: 1
+        vectors:
+          id-1:
+            id: id-1
+            values:
+            - 1.0
+            - 1.5
+          id-2:
+            id: id-2
+            values:
+            - 2.0
+            - 1.0
+      description: The response for the `fetch` operation.
+      type: object
+      properties:
+        vectors:
+          title: The fetched vectors, in the form of a map between the fetched ids and the fetched vectors
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Vector'
+        namespace:
+          example: example-namespace
+          description: The namespace of the vectors.
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
     IndexDescription:
       example:
         dimension: 1024
@@ -911,10 +884,6 @@ components:
           description: The amount of storage used by a dedicated index
           type: number
           format: float
-    EmbedInputs:
-      example:
-        text: chunk_text
-      type: object
     rpcStatus:
       type: object
       properties:
@@ -927,6 +896,206 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/protobufAny'
+    QueryRequest:
+      description: The request for the `query` operation.
+      type: object
+      properties:
+        namespace:
+          example: example-namespace
+          description: The namespace to query.
+          type: string
+        topK:
+          example: 10
+          description: The number of results to return for each query.
+          type: integer
+          minimum: 1.0
+          maximum: 10000.0
+          required:
+          - top_k
+          format: int64
+        filter:
+          example:
+            genre:
+              $in:
+              - comedy
+              - documentary
+              - drama
+            year:
+              $eq: 2019
+          description: The filter to apply. You can use vector metadata to limit your search. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).
+          type: object
+        includeValues:
+          example: true
+          description: Indicates whether vector values are included in the response. For on-demand indexes, setting this to `true` may increase latency, especially with higher `topK` values, because vector values are retrieved from object storage. Unless you need vector values, set this to `false` for better performance.
+          default: false
+          type: boolean
+        includeMetadata:
+          example: true
+          description: Indicates whether metadata is included in the response as well as the ids.
+          default: false
+          type: boolean
+        queries:
+          deprecated: true
+          description: DEPRECATED. Use `vector` or `id` instead.
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryVector'
+          minLength: 1
+          maxLength: 10
+        vector:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          - 0.4
+          - 0.5
+          - 0.6
+          - 0.7
+          - 0.8
+          description: The query vector. This should be the same length as the dimension of the index being queried. Each `query` request can contain only one of the parameters `id` or `vector`.
+          type: array
+          items:
+            type: number
+            format: float
+          minLength: 1
+          maxLength: 20000
+        sparseVector:
+          $ref: '#/components/schemas/SparseValues'
+        id:
+          example: example-vector-1
+          description: The unique ID of the vector to be used as a query vector. Each request  can contain either the `vector` or `id` parameter.
+          type: string
+          maxLength: 512
+        scanFactor:
+          type: number
+          format: float
+          example: 2.0
+          minimum: 0.5
+          maximum: 4.0
+          description: 'An optimization parameter for IVF dense indexes in dedicated read node indexes. It adjusts how much of the index is scanned to find vector candidates. Range: 0.5 – 4 (default).
+
+            Keep the default (4.0) for the best search results. If query latency is too high, try lowering this value incrementally (minimum 0.5) to speed up the search at the cost of slightly lower accuracy. This parameter is only supported for dedicated (DRN) dense indexes. '
+        maxCandidates:
+          type: integer
+          format: int64
+          example: 1000
+          minimum: 1
+          maximum: 100000
+          description: 'An optimization parameter that controls the maximum number of candidate dense vectors to rerank. Reranking computes exact distances to improve recall but increases query latency. Range: top_k – 100000.
+
+            Keep the default for a balance of recall and latency. Increase this value if recall is too low, or decrease it to reduce latency at the cost of accuracy. This parameter is only supported for dedicated (DRN) dense indexes.'
+      required:
+      - topK
+    SingleQueryResults:
+      title: The query results for a single `QueryVector`
+      type: object
+      properties:
+        matches:
+          description: The matches for the vectors.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoredVector'
+        namespace:
+          example: example-namespace
+          description: The namespace for the vectors.
+          type: string
+    SearchRecordsResponse:
+      example:
+        result:
+          hits:
+          - _id: example-record-1
+            _score: 0.9281134605407715
+            fields:
+              data: your example text
+        usage:
+          embed_total_tokens: 10
+          read_units: 5
+      description: The records search response.
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            hits:
+              description: The hits for the search document request.
+              type: array
+              items:
+                $ref: '#/components/schemas/Hit'
+          required:
+          - hits
+        usage:
+          $ref: '#/components/schemas/SearchUsage'
+      required:
+      - usage
+      - result
+    UpsertRecord:
+      example:
+        _id: example-record-1
+      description: The request for the `upsert` operation.
+      type: object
+      properties:
+        _id:
+          description: The unique ID of the record to upsert. Note that `id` can be used as an alias for `_id`.
+          type: string
+      required:
+      - _id
+    Vector:
+      type: object
+      properties:
+        id:
+          example: example-vector-1
+          description: This is the vector's unique id.
+          type: string
+          required:
+          - id
+          minLength: 1
+          maxLength: 512
+        values:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          - 0.4
+          - 0.5
+          - 0.6
+          - 0.7
+          - 0.8
+          description: This is the vector data included in the request.
+          type: array
+          required:
+          - values
+          items:
+            type: number
+            format: float
+          minLength: 1
+          maxLength: 20000
+        sparseValues:
+          $ref: '#/components/schemas/SparseValues'
+        metadata:
+          example:
+            genre: documentary
+            year: 2019
+          description: This is the metadata included in the request.
+          type: object
+      required:
+      - id
+    UpsertRequest:
+      description: The request for the `upsert` operation.
+      type: object
+      properties:
+        vectors:
+          description: An array containing the vectors to upsert. Recommended batch limit is up to 1000 vectors.
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector'
+          minLength: 1
+          maxLength: 1000
+        namespace:
+          example: example-namespace
+          description: The namespace where you upsert vectors.
+          type: string
+      required:
+      - vectors
     protobufAny:
       type: object
       properties:
@@ -935,6 +1104,34 @@ components:
         value:
           type: string
           format: byte
+    SearchMatchTerms:
+      example:
+        strategy: all
+        terms:
+        - animal
+        - CHARACTER
+        - donald Duck
+      description: "Specifies which terms must be present in the text of each search hit based on the specified strategy. The match is performed\nagainst the text field specified in the integrated index `field_map` configuration.\n\nTerms are normalized and tokenized into single tokens before matching, and order does not matter.\n\nExample:\n\n  `\"match_terms\": {\"terms\": [\"animal\", \"CHARACTER\", \"donald Duck\"], \"strategy\": \"all\"}` will tokenize\n  to `[\"animal\", \"character\", \"donald\", \"duck\"]`, and would match\n  `\"Donald F. Duck is a funny animal character\"` but would not match `\"A duck is a funny animal\"`.\n\nMatch terms filtering is supported only for sparse indexes with [integrated embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding)\nconfigured to use the [pinecone-sparse-english-v0](https://docs.pinecone.io/models/pinecone-sparse-english-v0) model."
+      type: object
+      properties:
+        strategy:
+          description: The strategy for matching terms in the text. Currently, only `all` is supported, which means all specified terms must be present.
+          x-enum:
+          - all
+          type: string
+        terms:
+          description: A list of terms that must be present in the text of each search hit based on the specified strategy.
+          type: array
+          items:
+            type: string
+    VectorValues:
+      description: This is the vector data included in the request.
+      type: array
+      items:
+        type: number
+        format: float
+      minLength: 1
+      maxLength: 20000
     SparseValues:
       description: Vector sparse data. Represented as a list of indices and a list of  corresponded values, which must be with the same length.
       type: object
@@ -1029,15 +1226,139 @@ components:
           description: If `true`, return the number of records that match the `filter`, but do not execute the update.  Default is `false`.
           default: false
           type: boolean
-    NamespaceSummary:
-      description: A summary of the contents of a namespace.
+    QueryVector:
+      deprecated: true
+      description: A single query vector within a `QueryRequest`.
       type: object
       properties:
-        vectorCount:
-          example: 50000
-          description: The number of vectors stored in this namespace. Note that updates to this field may lag behind updates to the underlying index and corresponding query results, etc.
+        values:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          - 0.4
+          - 0.5
+          - 0.6
+          - 0.7
+          - 0.8
+          description: The query vector values. This should be the same length as the dimension of the index being queried.
+          type: array
+          required:
+          - values
+          items:
+            type: number
+            format: float
+          minLength: 1
+          maxLength: 20000
+        sparseValues:
+          $ref: '#/components/schemas/SparseValues'
+        topK:
+          example: 10
+          description: An override for the number of results to return for this query vector.
           type: integer
           format: int64
+          minimum: 1
+          maximum: 10000
+        namespace:
+          example: example-namespace
+          description: An override the namespace to search.
+          type: string
+        filter:
+          example:
+            genre:
+              $in:
+              - comedy
+              - documentary
+              - drama
+            year:
+              $eq: 2019
+          description: An override for the metadata filter to apply. This replaces the request-level filter.
+          type: object
+      required:
+      - values
+    ScoredVector:
+      type: object
+      properties:
+        id:
+          example: example-vector-1
+          description: This is the vector's unique id.
+          type: string
+          required:
+          - id
+          minLength: 1
+          maxLength: 512
+        score:
+          example: 0.08
+          description: This is a measure of similarity between this vector and the query vector.  The higher the score, the more they are similar.
+          type: number
+          format: float
+        values:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          - 0.4
+          - 0.5
+          - 0.6
+          - 0.7
+          - 0.8
+          description: This is the vector data, if it is requested.
+          type: array
+          items:
+            type: number
+            format: float
+        sparseValues:
+          $ref: '#/components/schemas/SparseValues'
+        metadata:
+          example:
+            genre: documentary
+            year: 2019
+          description: This is the metadata, if it is requested.
+          type: object
+      required:
+      - id
+    EmbedInputs:
+      example:
+        text: chunk_text
+      type: object
+    UpsertResponse:
+      description: The response for the `upsert` operation.
+      type: object
+      properties:
+        upsertedCount:
+          example: 2
+          description: The number of vectors upserted.
+          type: integer
+          format: int64
+    ListItem:
+      type: object
+      properties:
+        id:
+          example: document1#abb
+          type: string
+    SearchUsage:
+      type: object
+      properties:
+        read_units:
+          example: 5
+          description: The number of read units consumed by this operation.
+          type: integer
+          format: int32
+          minimum: 0
+        embed_total_tokens:
+          example: 2
+          description: The number of embedding tokens consumed by this operation.
+          type: integer
+          format: int32
+          minimum: 0
+        rerank_units:
+          example: 1
+          description: The number of rerank units consumed by this operation.
+          type: integer
+          format: int32
+          minimum: 0
+      required:
+      - read_units
     SearchRecordsRequest:
       example:
         fields:
@@ -1133,330 +1454,12 @@ components:
 
             Serverless indexes do not support filtering `describe_index_stats` by metadata.'
           type: object
-    QueryResponse:
-      description: The response for the `query` operation. These are the matches found for a particular query vector. The matches are ordered from most similar to least similar.
-      type: object
-      properties:
-        results:
-          deprecated: true
-          description: DEPRECATED. The results of each query. The order is the same as `QueryRequest.queries`.
-          type: array
-          items:
-            $ref: '#/components/schemas/SingleQueryResults'
-        matches:
-          description: The matches for the vectors.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScoredVector'
-        namespace:
-          description: The namespace for the vectors.
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
-    SearchMatchTerms:
-      example:
-        strategy: all
-        terms:
-        - animal
-        - CHARACTER
-        - donald Duck
-      description: "Specifies which terms must be present in the text of each search hit based on the specified strategy. The match is performed\nagainst the text field specified in the integrated index `field_map` configuration.\n\nTerms are normalized and tokenized into single tokens before matching, and order does not matter.\n\nExample:\n\n  `\"match_terms\": {\"terms\": [\"animal\", \"CHARACTER\", \"donald Duck\"], \"strategy\": \"all\"}` will tokenize\n  to `[\"animal\", \"character\", \"donald\", \"duck\"]`, and would match\n  `\"Donald F. Duck is a funny animal character\"` but would not match `\"A duck is a funny animal\"`.\n\nMatch terms filtering is supported only for sparse indexes with [integrated embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding)\nconfigured to use the [pinecone-sparse-english-v0](https://docs.pinecone.io/models/pinecone-sparse-english-v0) model."
-      type: object
-      properties:
-        strategy:
-          description: The strategy for matching terms in the text. Currently, only `all` is supported, which means all specified terms must be present.
-          x-enum:
-          - all
-          type: string
-        terms:
-          description: A list of terms that must be present in the text of each search hit based on the specified strategy.
-          type: array
-          items:
-            type: string
-    FetchByMetadataResponse:
-      example:
-        namespace: example-namespace
-        pagination:
-          next: Tm90aGluZyB0byBzZWUgaGVyZQo=
-        usage:
-          readUnits: 5
-        vectors:
-          id-1:
-            id: id-1
-            metadata:
-              genre: documentary
-              year: 2019
-            values:
-            - 1.0
-            - 1.5
-          id-2:
-            id: id-2
-            metadata:
-              genre: comedy
-              year: 2019
-            values:
-            - 2.0
-            - 1.0
-      description: The response for the `fetch_by_metadata` operation.
-      type: object
-      properties:
-        vectors:
-          description: The fetched vectors, in the form of a map between the fetched ids and the fetched vectors
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Vector'
-        namespace:
-          example: example-namespace
-          description: The namespace of the vectors.
-          default: ''
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    SearchUsage:
-      type: object
-      properties:
-        read_units:
-          example: 5
-          description: The number of read units consumed by this operation.
-          type: integer
-          format: int32
-          minimum: 0
-        embed_total_tokens:
-          example: 2
-          description: The number of embedding tokens consumed by this operation.
-          type: integer
-          format: int32
-          minimum: 0
-        rerank_units:
-          example: 1
-          description: The number of rerank units consumed by this operation.
-          type: integer
-          format: int32
-          minimum: 0
-      required:
-      - read_units
-    UpdateResponse:
-      description: The response for the `update` operation.
-      type: object
-      properties:
-        matchedRecords:
-          example: 42
-          description: The number of records that matched the filter (if a filter was provided).
-          type: integer
-          format: int32
-    SearchRecordsResponse:
-      example:
-        result:
-          hits:
-          - _id: example-record-1
-            _score: 0.9281134605407715
-            fields:
-              data: your example text
-        usage:
-          embed_total_tokens: 10
-          read_units: 5
-      description: The records search response.
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            hits:
-              description: The hits for the search document request.
-              type: array
-              items:
-                $ref: '#/components/schemas/Hit'
-          required:
-          - hits
-        usage:
-          $ref: '#/components/schemas/SearchUsage'
-      required:
-      - usage
-      - result
-    UpsertResponse:
-      description: The response for the `upsert` operation.
-      type: object
-      properties:
-        upsertedCount:
-          example: 2
-          description: The number of vectors upserted.
-          type: integer
-          format: int64
-    QueryRequest:
-      description: The request for the `query` operation.
-      type: object
-      properties:
-        namespace:
-          example: example-namespace
-          description: The namespace to query.
-          type: string
-        topK:
-          example: 10
-          description: The number of results to return for each query.
-          type: integer
-          minimum: 1.0
-          maximum: 10000.0
-          required:
-          - top_k
-          format: int64
-        filter:
-          example:
-            genre:
-              $in:
-              - comedy
-              - documentary
-              - drama
-            year:
-              $eq: 2019
-          description: The filter to apply. You can use vector metadata to limit your search. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).
-          type: object
-        includeValues:
-          example: true
-          description: Indicates whether vector values are included in the response. For on-demand indexes, setting this to `true` may increase latency, especially with higher `topK` values, because vector values are retrieved from object storage. Unless you need vector values, set this to `false` for better performance.
-          default: false
-          type: boolean
-        includeMetadata:
-          example: true
-          description: Indicates whether metadata is included in the response as well as the ids.
-          default: false
-          type: boolean
-        queries:
-          deprecated: true
-          description: DEPRECATED. Use `vector` or `id` instead.
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryVector'
-          minLength: 1
-          maxLength: 10
-        vector:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          - 0.4
-          - 0.5
-          - 0.6
-          - 0.7
-          - 0.8
-          description: The query vector. This should be the same length as the dimension of the index being queried. Each `query` request can contain only one of the parameters `id` or `vector`.
-          type: array
-          items:
-            type: number
-            format: float
-          minLength: 1
-          maxLength: 20000
-        sparseVector:
-          $ref: '#/components/schemas/SparseValues'
-        id:
-          example: example-vector-1
-          description: The unique ID of the vector to be used as a query vector. Each request  can contain either the `vector` or `id` parameter.
-          type: string
-          maxLength: 512
-        scanFactor:
-          type: number
-          format: float
-          example: 2.0
-          minimum: 0.5
-          maximum: 4.0
-          description: 'An optimization parameter for IVF dense indexes in dedicated read node indexes. It adjusts how much of the index is scanned to find vector candidates. Range: 0.5 – 4 (default).
-
-            Keep the default (4.0) for the best search results. If query latency is too high, try lowering this value incrementally (minimum 0.5) to speed up the search at the cost of slightly lower accuracy. This parameter is only supported for dedicated (DRN) dense indexes. '
-        maxCandidates:
-          type: integer
-          format: int64
-          example: 1000
-          minimum: 1
-          maximum: 100000
-          description: 'An optimization parameter that controls the maximum number of candidate dense vectors to rerank. Reranking computes exact distances to improve recall but increases query latency. Range: top_k – 100000.
-
-            Keep the default for a balance of recall and latency. Increase this value if recall is too low, or decrease it to reduce latency at the cost of accuracy. This parameter is only supported for dedicated (DRN) dense indexes.'
-      required:
-      - topK
-    FetchResponse:
-      example:
-        namespace: example-namespace
-        usage:
-          readUnits: 1
-        vectors:
-          id-1:
-            id: id-1
-            values:
-            - 1.0
-            - 1.5
-          id-2:
-            id: id-2
-            values:
-            - 2.0
-            - 1.0
-      description: The response for the `fetch` operation.
-      type: object
-      properties:
-        vectors:
-          title: The fetched vectors, in the form of a map between the fetched ids and the fetched vectors
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Vector'
-        namespace:
-          example: example-namespace
-          description: The namespace of the vectors.
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
-    SingleQueryResults:
-      title: The query results for a single `QueryVector`
-      type: object
-      properties:
-        matches:
-          description: The matches for the vectors.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScoredVector'
-        namespace:
-          example: example-namespace
-          description: The namespace for the vectors.
-          type: string
-    FetchByMetadataRequest:
-      description: The request for the `fetch_by_metadata` operation.
-      type: object
-      properties:
-        namespace:
-          example: example-namespace
-          description: The namespace to fetch vectors from.
-          type: string
-        filter:
-          example:
-            genre:
-              $in:
-              - comedy
-              - documentary
-              - drama
-            year:
-              $eq: 2019
-          description: Metadata filter expression to select vectors. See [Understanding metadata](https://docs.pinecone.io/guides/index-data/indexing-overview#metadata).
-          type: object
-        limit:
-          example: 12
-          description: Max number of vectors to return.
-          default: 100
-          type: integer
-          format: int64
-          minimum: 1
-        paginationToken:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          description: Pagination token to continue a previous listing operation.
-          type: string
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: 'An [access token](https://docs.pinecone.io/guides/organizations/manage-service-accounts#retrieve-an-access-token) must be provided in the `Authorization` header using the `Bearer` scheme.
-
-        '
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: An API Key is required to call Pinecone APIs. Get yours from the [console](https://app.pinecone.io/).
+externalDocs:
+  description: More Pinecone.io API docs
+  url: https://docs.pinecone.io/introduction

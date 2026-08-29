@@ -1,30 +1,46 @@
 {
   "provider": "pinecone",
   "sources": [
-    "pinecone-api-keys-api-openapi.yml",
-    "pinecone-bulk-operations-api-openapi.yml",
-    "pinecone-inference-api-openapi.yml",
-    "pinecone-manage-assistants-api-openapi.yml",
-    "pinecone-manage-indexes-api-openapi.yml",
-    "pinecone-namespace-operations-api-openapi.yml",
-    "pinecone-organizations-api-openapi.yml",
-    "pinecone-projects-api-openapi.yml",
-    "pinecone-vector-operations-api-openapi.yml"
+    "_original/pinecone-admin-openapi.yaml",
+    "_original/pinecone-assistant-control-openapi.yaml",
+    "_original/pinecone-assistant-data-openapi.yaml",
+    "_original/pinecone-db-control-openapi.yaml",
+    "_original/pinecone-db-data-openapi.yaml",
+    "_original/pinecone-inference-openapi.yaml"
   ],
   "outputs": [
     "pinecone-api-keys-api-openapi.yml",
-    "pinecone-bulk-operations-api-openapi.yml",
-    "pinecone-inference-api-openapi.yml",
-    "pinecone-manage-assistants-api-openapi.yml",
-    "pinecone-manage-indexes-api-openapi.yml",
-    "pinecone-namespace-operations-api-openapi.yml",
     "pinecone-organizations-api-openapi.yml",
     "pinecone-projects-api-openapi.yml",
-    "pinecone-vector-operations-api-openapi.yml"
+    "pinecone-manage-assistants-api-openapi.yml",
+    "pinecone-manage-indexes-api-openapi.yml",
+    "pinecone-bulk-operations-api-openapi.yml",
+    "pinecone-namespace-operations-api-openapi.yml",
+    "pinecone-vector-operations-api-openapi.yml",
+    "pinecone-inference-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (6 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pinecone-admin-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pinecone-assistant-control-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pinecone-assistant-data-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pinecone-db-control-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pinecone-db-data-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pinecone-inference-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tag 'Manage Assistants' spans 2 source specs (pinecone-assistant-control-openapi.yaml, pinecone-assistant-data-openapi.yaml): per-path servers applied"
+  ],
+  "skipped": [
+    "pinecone-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-bulk-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-inference-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-manage-assistants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-manage-indexes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-namespace-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pinecone-vector-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

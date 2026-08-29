@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pinecone Admin API Keys Projects API
+  title: Pinecone Admin Projects API
   description: 'Provides an API for managing a Pinecone organization and its resources.
 
     '
@@ -419,25 +419,15 @@ paths:
                     status: 500
 components:
   schemas:
-    UpdateProjectRequest:
+    ProjectList:
       type: object
       properties:
-        name:
-          example: chatbot-prod
-          description: The name of the new project.
-          type: string
-          minLength: 1
-          maxLength: 512
-        max_pods:
-          description: 'The maximum number of Pods that can be created in the project.
-
-            '
-          type: integer
-        force_encryption_with_cmek:
-          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Once enabled, CMEK encryption cannot be disabled.
-
-            '
-          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+      required:
+      - data
     CreateProjectRequest:
       type: object
       properties:
@@ -459,6 +449,57 @@ components:
           type: boolean
       required:
       - name
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          example: chatbot-prod
+          description: The name of the new project.
+          type: string
+          minLength: 1
+          maxLength: 512
+        max_pods:
+          description: 'The maximum number of Pods that can be created in the project.
+
+            '
+          type: integer
+        force_encryption_with_cmek:
+          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Once enabled, CMEK encryption cannot be disabled.
+
+            '
+          type: boolean
+    Project:
+      description: The details of a project.
+      type: object
+      properties:
+        id:
+          description: The unique ID of the project.
+          type: string
+          format: uuid
+        name:
+          description: The name of the project.
+          type: string
+          minLength: 1
+          maxLength: 512
+        max_pods:
+          description: The maximum number of Pods that can be created in the project.
+          type: integer
+        force_encryption_with_cmek:
+          description: Whether to force encryption with a customer-managed encryption key (CMEK).
+          type: boolean
+        organization_id:
+          description: The unique ID of the organization that the project belongs to.
+          type: string
+        created_at:
+          description: The date and time when the project was created.
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - max_pods
+      - force_encryption_with_cmek
+      - organization_id
     ErrorResponse:
       example:
         error:
@@ -516,47 +557,6 @@ components:
       required:
       - status
       - error
-    ProjectList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-      required:
-      - data
-    Project:
-      description: The details of a project.
-      type: object
-      properties:
-        id:
-          description: The unique ID of the project.
-          type: string
-          format: uuid
-        name:
-          description: The name of the project.
-          type: string
-          minLength: 1
-          maxLength: 512
-        max_pods:
-          description: The maximum number of Pods that can be created in the project.
-          type: integer
-        force_encryption_with_cmek:
-          description: Whether to force encryption with a customer-managed encryption key (CMEK).
-          type: boolean
-        organization_id:
-          description: The unique ID of the organization that the project belongs to.
-          type: string
-        created_at:
-          description: The date and time when the project was created.
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - max_pods
-      - force_encryption_with_cmek
-      - organization_id
   securitySchemes:
     BearerAuth:
       type: http

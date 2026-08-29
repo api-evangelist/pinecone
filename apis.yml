@@ -5,6 +5,19 @@ description: With its vector database at the core, Pinecone is the leading knowl
   APIs cover Database (vector storage and search), Inference (embeddings and reranking),
   Assistant (RAG over documents), and Admin (organization and project management).
 kind: contract
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/introduction-pinecone-docs.png
@@ -192,6 +205,10 @@ apis:
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
 common:
+- type: IssueTracker
+  url: https://github.com/pinecone-io/pinecone-api/issues
+- type: Releases
+  url: https://github.com/pinecone-io/pinecone-api/releases
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/pinecone/overview
 - type: AgentCard

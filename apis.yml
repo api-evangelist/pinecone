@@ -36,7 +36,7 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/introduction-pinecone-docs.png
 tags:
-- Vector Databases
+- Vector Database
 - Artificial Intelligence
 - Embeddings
 - RAG

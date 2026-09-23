@@ -32,7 +32,7 @@ paths:
         By default, `list_imports` returns up to 100 imports per page. If the `limit` parameter is set, `list` returns up to that number of imports instead. Whenever there are additional IDs to return, the response also includes a `pagination_token` that you can use to get the next batch of imports. When the response does not include a `pagination_token`, there are no more imports to return.
 
 
-        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+        For guidance and examples, see Import data.'
       operationId: listBulkImports
       parameters:
       - in: header
@@ -92,7 +92,7 @@ paths:
       description: 'Start an asynchronous import of vectors from object storage into an index.
 
 
-        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+        For guidance and examples, see Import data.'
       operationId: startBulkImport
       parameters:
       - in: header
@@ -142,7 +142,7 @@ paths:
       description: 'Return details of a specific import operation.
 
 
-        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+        For guidance and examples, see Import data.'
       operationId: describeBulkImport
       parameters:
       - in: header
@@ -195,7 +195,7 @@ paths:
       description: 'Cancel an import operation if it is not yet finished. It has no effect if the operation is already finished.
 
 
-        For guidance and examples, see [Import data](https://docs.pinecone.io/guides/index-data/import-data).'
+        For guidance and examples, see Import data.'
       operationId: cancelBulkImport
       parameters:
       - in: header
@@ -243,28 +243,18 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    StartImportResponse:
-      description: The response for the `start_import` operation.
+    rpcStatus:
       type: object
       properties:
-        id:
-          example: '101'
-          description: Unique identifier for the import operation.
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-          minLength: 1
-          maxLength: 1000
-    ImportErrorMode:
-      description: Indicates how to respond to errors during the import process.
-      type: object
-      properties:
-        onError:
-          description: 'Indicates how to respond to errors during the import process.
-
-            Possible values: `abort` or `continue`.'
-          x-enum:
-          - abort
-          - continue
-          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
     ListImportsResponse:
       description: The response for the `list_imports` operation.
       type: object
@@ -283,27 +273,6 @@ components:
         value:
           type: string
           format: byte
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/protobufAny'
-    CancelImportResponse:
-      description: The response for the `cancel_import` operation.
-      type: object
     ImportModel:
       description: The model for an import operation.
       type: object
@@ -352,6 +321,15 @@ components:
         error:
           description: The error message if the import process failed.
           type: string
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+    CancelImportResponse:
+      description: The response for the `cancel_import` operation.
+      type: object
     StartImportRequest:
       description: The request for the `start_import` operation.
       type: object
@@ -369,6 +347,28 @@ components:
           $ref: '#/components/schemas/ImportErrorMode'
       required:
       - uri
+    StartImportResponse:
+      description: The response for the `start_import` operation.
+      type: object
+      properties:
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
+    ImportErrorMode:
+      description: Indicates how to respond to errors during the import process.
+      type: object
+      properties:
+        onError:
+          description: 'Indicates how to respond to errors during the import process.
+
+            Possible values: `abort` or `continue`.'
+          x-enum:
+          - abort
+          - continue
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

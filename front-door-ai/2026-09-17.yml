@@ -1,0 +1,34 @@
+# Front Door AI Index — pinecone — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: pinecone
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.pinecone.io
+  final_host: www.pinecone.io
+  ownership: own
+  owner: pinecone
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 22
+  host_score: 22
+  density: 39.71
+  words: 554
+  tiers:
+    agentic: 7
+    core: 10
+    model: 5
+  ambiguous: 5
+  top_terms:
+    AI: 10
+    agent: 5
+    Claude: 4
+    RAG: 2
+    AI agent: 1
+    Gemini: 1
+    MCP: 1
+    agentic: 1
+    copilot: 1
+    vector database: 1

@@ -32,7 +32,7 @@ paths:
         Up to 100 namespaces are returned at a time by default, in sorted order (bitwise “C” collation). If the `limit` parameter is set, up to that number of namespaces are returned instead. Whenever there are additional namespaces to return, the response also includes a `pagination_token` that you can use to get the next batch of namespaces. When the response does not include a `pagination_token`, there are no more namespaces to return.
 
 
-        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+        For guidance and examples, see Manage namespaces.
 
 
         **Note:** This operation is not supported for pod-based indexes.'
@@ -93,7 +93,7 @@ paths:
       description: 'Create a namespace in a serverless index.
 
 
-        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+        For guidance and examples, see Manage namespaces.
 
 
         **Note:** This operation is not supported for pod-based indexes.'
@@ -152,7 +152,7 @@ paths:
       description: 'Describe a namespace in a serverless index, including the total number of vectors in the namespace.
 
 
-        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+        For guidance and examples, see Manage namespaces.
 
 
         **Note:** This operation is not supported for pod-based indexes.'
@@ -205,7 +205,7 @@ paths:
       description: 'Delete a namespace from a serverless index. Deleting a namespace is irreversible; all data in the namespace is permanently deleted.
 
 
-        For guidance and examples, see [Manage namespaces](https://docs.pinecone.io/guides/manage-data/manage-namespaces).
+        For guidance and examples, see Manage namespaces.
 
 
         **Note:** This operation is not supported for pod-based indexes.'
@@ -253,83 +253,6 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    DeleteResponse:
-      description: The response for the `delete` operation.
-      type: object
-    ListNamespacesResponse:
-      type: object
-      properties:
-        namespaces:
-          description: The list of namespaces belonging to this index.
-          type: array
-          items:
-            $ref: '#/components/schemas/NamespaceDescription'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        total_count:
-          example: 25
-          description: The total number of namespaces in the index matching the prefix
-          type: integer
-          format: int32
-    CreateNamespaceRequest:
-      description: A request for creating a namespace with the specified namespace name.
-      type: object
-      properties:
-        name:
-          example: example-namespace
-          description: The name of the namespace.
-          type: string
-        schema:
-          example:
-            fields:
-              description:
-                filterable: true
-              genre:
-                filterable: true
-              year:
-                filterable: true
-          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
-          type: object
-          properties:
-            fields:
-              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  filterable:
-                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
-                    type: boolean
-          required:
-          - fields
-      required:
-      - name
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/protobufAny'
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
     NamespaceDescription:
       description: A description of a namespace, including the name and record count.
       type: object
@@ -378,6 +301,83 @@ components:
               - genre
               - year
               - author
+    ListNamespacesResponse:
+      type: object
+      properties:
+        namespaces:
+          description: The list of namespaces belonging to this index.
+          type: array
+          items:
+            $ref: '#/components/schemas/NamespaceDescription'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        total_count:
+          example: 25
+          description: The total number of namespaces in the index matching the prefix
+          type: integer
+          format: int32
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    DeleteResponse:
+      description: The response for the `delete` operation.
+      type: object
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+    CreateNamespaceRequest:
+      description: A request for creating a namespace with the specified namespace name.
+      type: object
+      properties:
+        name:
+          example: example-namespace
+          description: The name of the namespace.
+          type: string
+        schema:
+          example:
+            fields:
+              description:
+                filterable: true
+              genre:
+                filterable: true
+              year:
+                filterable: true
+          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
+          type: object
+          properties:
+            fields:
+              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filterable:
+                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
+                    type: boolean
+          required:
+          - fields
+      required:
+      - name
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -24,7 +24,7 @@ paths:
       tags:
       - Inference
       summary: Generate vectors
-      description: Generate vector embeddings for input data. This endpoint uses Pinecone's [hosted embedding models](https://docs.pinecone.io/guides/index-data/create-an-index#embedding-models).
+      description: Generate vector embeddings for input data. This endpoint uses Pinecone's hosted embedding models.
       operationId: embed
       parameters:
       - in: header
@@ -98,7 +98,7 @@ paths:
       description: 'Rerank results according to their relevance to a query.
 
 
-        For guidance and examples, see [Rerank results](https://docs.pinecone.io/guides/search/rerank-results).'
+        For guidance and examples, see Rerank results.'
       operationId: rerank
       parameters:
       - in: header
@@ -169,7 +169,10 @@ paths:
       tags:
       - Inference
       summary: List available models
-      description: "List the embedding and reranking models hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+      description: 'List the embedding and reranking models hosted by Pinecone.
+
+
+        You can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see Vector embedding and Rerank results.'
       operationId: list_models
       parameters:
       - in: header
@@ -316,7 +319,10 @@ paths:
       tags:
       - Inference
       summary: Describe a model
-      description: "Get a description of a model hosted by Pinecone. \n\nYou can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see [Vector embedding](https://docs.pinecone.io/guides/index-data/indexing-overview#vector-embedding) and [Rerank results](https://docs.pinecone.io/guides/search/rerank-results)."
+      description: 'Get a description of a model hosted by Pinecone.
+
+
+        You can use hosted models as an integrated part of Pinecone operations or for standalone embedding and reranking. For more details, see Vector embedding and Rerank results.'
       operationId: get_model
       parameters:
       - in: header
@@ -453,37 +459,6 @@ components:
       - euclidean
       - dotproduct
       type: string
-    DenseEmbedding:
-      title: Dense embedding
-      description: A dense embedding of a single input
-      type: object
-      properties:
-        values:
-          example:
-          - 0.1
-          - 0.2
-          - 0.3
-          description: The dense embedding values.
-          type: array
-          items:
-            type: number
-            format: float
-        vector_type:
-          $ref: '#/components/schemas/VectorType'
-      required:
-      - values
-      - vector_type
-    Embedding:
-      description: Embedding of a single input
-      discriminator:
-        propertyName: vector_type
-        mapping:
-          dense: '#/components/schemas/DenseEmbedding'
-          sparse: '#/components/schemas/SparseEmbedding'
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/DenseEmbedding'
-      - $ref: '#/components/schemas/SparseEmbedding'
     ModelInfoSupportedParameter:
       description: Describes a parameter supported by the model, including parameter value constraints.
       type: object
@@ -543,83 +518,155 @@ components:
       - type
       - value_type
       - required
-    VectorType:
-      description: Indicates whether this is a 'dense' or 'sparse' embedding.
-      type: string
-    RerankResult:
-      description: The result of a reranking request.
+    ModelInfoList:
+      description: The list of available models.
+      type: object
+      properties:
+        models:
+          description: List of available models.
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelInfo'
+    Document:
+      example:
+        id: '1'
+        text: Paris is the capital of France.
+        title: France
+        url: https://example.com
+      description: Document for reranking
+      type: object
+      additionalProperties: true
+    ErrorResponse:
+      example:
+        error:
+          code: QUOTA_EXCEEDED
+          message: The index exceeds the project quota of 5 pods by 2 pods. Upgrade your account or change the project settings to increase the quota.
+        status: 429
+      description: The response shape used for all error responses.
+      type: object
+      properties:
+        status:
+          example: 500
+          description: The HTTP status code of the error.
+          type: integer
+        error:
+          example:
+            code: INVALID_ARGUMENT
+            message: Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen.
+          description: Detailed information about the error that occurred.
+          type: object
+          properties:
+            code:
+              description: 'The error code.
+
+                Possible values: `OK`, `UNKNOWN`, `INVALID_ARGUMENT`, `DEADLINE_EXCEEDED`, `QUOTA_EXCEEDED`, `NOT_FOUND`, `ALREADY_EXISTS`, `PERMISSION_DENIED`, `UNAUTHENTICATED`, `RESOURCE_EXHAUSTED`, `FAILED_PRECONDITION`, `ABORTED`, `OUT_OF_RANGE`, `UNIMPLEMENTED`, `INTERNAL`, `UNAVAILABLE`, `DATA_LOSS`, or `FORBIDDEN`.'
+              x-enum:
+              - OK
+              - UNKNOWN
+              - INVALID_ARGUMENT
+              - DEADLINE_EXCEEDED
+              - QUOTA_EXCEEDED
+              - NOT_FOUND
+              - ALREADY_EXISTS
+              - PERMISSION_DENIED
+              - UNAUTHENTICATED
+              - RESOURCE_EXHAUSTED
+              - FAILED_PRECONDITION
+              - ABORTED
+              - OUT_OF_RANGE
+              - UNIMPLEMENTED
+              - INTERNAL
+              - UNAVAILABLE
+              - DATA_LOSS
+              - FORBIDDEN
+              type: string
+            message:
+              example: Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen.
+              description: A human-readable error message describing the error.
+              type: string
+            details:
+              description: Additional information about the error. This field is not guaranteed to be present.
+              type: object
+          required:
+          - code
+          - message
+      required:
+      - status
+      - error
+    EmbeddingsList:
+      description: Embeddings generated for the input.
       type: object
       properties:
         model:
-          example: bge-reranker-v2-m3
-          description: The model used to rerank documents.
+          example: multilingual-e5-large
+          description: The model used to generate the embeddings
+          type: string
+        vector_type:
+          example: dense
+          description: Indicates whether the response data contains 'dense' or 'sparse' embeddings.
           type: string
         data:
-          description: The reranked documents.
+          description: The embeddings generated for the inputs.
           type: array
           items:
-            $ref: '#/components/schemas/RankedDocument'
+            $ref: '#/components/schemas/Embedding'
         usage:
           description: Usage statistics for the model inference.
           type: object
           properties:
-            rerank_units:
-              example: 1
-              description: The number of rerank units consumed by this operation.
+            total_tokens:
+              example: 205
+              description: Total number of tokens consumed across all inputs.
               type: integer
               format: int32
               minimum: 0
       required:
       - model
+      - vector_type
       - data
       - usage
-    RerankRequest:
+    SparseEmbedding:
+      title: Sparse embedding
+      description: A sparse embedding of a single input
       type: object
       properties:
-        model:
-          example: bge-reranker-v2-m3
-          description: The [model](https://docs.pinecone.io/guides/search/rerank-results#reranking-models) to use for reranking.
-          type: string
-        query:
-          example: What is the capital of France?
-          description: The query to rerank documents against.
-          type: string
-        top_n:
-          example: 5
-          description: The number of results to return sorted by relevance. Defaults to the number of inputs.
-          type: integer
-        return_documents:
-          example: true
-          description: Whether to return the documents in the response.
-          default: true
-          type: boolean
-        rank_fields:
-          description: 'The field(s) to consider for reranking. If not provided, the default is `["text"]`.
-
-
-            The number of fields supported is [model-specific](https://docs.pinecone.io/guides/search/rerank-results#reranking-models).
-
-            '
-          default:
-          - text
+        sparse_values:
+          example:
+          - 0.1
+          - 0.2
+          - 0.3
+          description: The sparse embedding values.
+          type: array
+          items:
+            type: number
+            format: float
+        sparse_indices:
+          example:
+          - 10
+          - 3
+          - 156
+          description: The sparse embedding indices.
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 0
+            maximum: 4294967295
+        sparse_tokens:
+          example:
+          - quick
+          - brown
+          - fox
+          description: The normalized tokens used to create the sparse embedding.
           type: array
           items:
             type: string
-        documents:
-          description: The documents to rerank.
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        parameters:
-          example:
-            truncate: END
-          description: Additional model-specific parameters. Refer to the [model guide](https://docs.pinecone.io/guides/search/rerank-results#reranking-models) for available model parameters.
-          type: object
-          additionalProperties: true
+        vector_type:
+          $ref: '#/components/schemas/VectorType'
       required:
-      - model
-      - documents
-      - query
+      - sparse_values
+      - sparse_indices
+      - vector_type
     ModelInfo:
       description: Represents the model configuration including model type, supported parameters, and other model details.
       type: object
@@ -687,6 +734,44 @@ components:
       - short_description
       - type
       - supported_parameters
+    RerankResult:
+      description: The result of a reranking request.
+      type: object
+      properties:
+        model:
+          example: bge-reranker-v2-m3
+          description: The model used to rerank documents.
+          type: string
+        data:
+          description: The reranked documents.
+          type: array
+          items:
+            $ref: '#/components/schemas/RankedDocument'
+        usage:
+          description: Usage statistics for the model inference.
+          type: object
+          properties:
+            rerank_units:
+              example: 1
+              description: The number of rerank units consumed by this operation.
+              type: integer
+              format: int32
+              minimum: 0
+      required:
+      - model
+      - data
+      - usage
+    Embedding:
+      description: Embedding of a single input
+      discriminator:
+        propertyName: vector_type
+        mapping:
+          dense: '#/components/schemas/DenseEmbedding'
+          sparse: '#/components/schemas/SparseEmbedding'
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/DenseEmbedding'
+      - $ref: '#/components/schemas/SparseEmbedding'
     EmbedRequest:
       type: object
       properties:
@@ -714,119 +799,81 @@ components:
       required:
       - model
       - inputs
-    ModelInfoList:
-      description: The list of available models.
-      type: object
-      properties:
-        models:
-          description: List of available models.
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelInfo'
-    ErrorResponse:
-      example:
-        error:
-          code: QUOTA_EXCEEDED
-          message: The index exceeds the project quota of 5 pods by 2 pods. Upgrade your account or change the project settings to increase the quota.
-        status: 429
-      description: The response shape used for all error responses.
-      type: object
-      properties:
-        status:
-          example: 500
-          description: The HTTP status code of the error.
-          type: integer
-        error:
-          example:
-            code: INVALID_ARGUMENT
-            message: Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen.
-          description: Detailed information about the error that occurred.
-          type: object
-          properties:
-            code:
-              description: 'The error code.
-
-                Possible values: `OK`, `UNKNOWN`, `INVALID_ARGUMENT`, `DEADLINE_EXCEEDED`, `QUOTA_EXCEEDED`, `NOT_FOUND`, `ALREADY_EXISTS`, `PERMISSION_DENIED`, `UNAUTHENTICATED`, `RESOURCE_EXHAUSTED`, `FAILED_PRECONDITION`, `ABORTED`, `OUT_OF_RANGE`, `UNIMPLEMENTED`, `INTERNAL`, `UNAVAILABLE`, `DATA_LOSS`, or `FORBIDDEN`.'
-              x-enum:
-              - OK
-              - UNKNOWN
-              - INVALID_ARGUMENT
-              - DEADLINE_EXCEEDED
-              - QUOTA_EXCEEDED
-              - NOT_FOUND
-              - ALREADY_EXISTS
-              - PERMISSION_DENIED
-              - UNAUTHENTICATED
-              - RESOURCE_EXHAUSTED
-              - FAILED_PRECONDITION
-              - ABORTED
-              - OUT_OF_RANGE
-              - UNIMPLEMENTED
-              - INTERNAL
-              - UNAVAILABLE
-              - DATA_LOSS
-              - FORBIDDEN
-              type: string
-            message:
-              example: Index name must contain only lowercase alphanumeric characters or hyphens, and must not begin or end with a hyphen.
-              description: A human-readable error message describing the error.
-              type: string
-            details:
-              description: Additional information about the error. This field is not guaranteed to be present.
-              type: object
-          required:
-          - code
-          - message
-      required:
-      - status
-      - error
     ModelInfoSupportedMetrics:
       description: The distance metrics supported by the model for similarity search.
       type: array
       items:
         $ref: '#/components/schemas/ModelInfoMetric'
-    SparseEmbedding:
-      title: Sparse embedding
-      description: A sparse embedding of a single input
+    DenseEmbedding:
+      title: Dense embedding
+      description: A dense embedding of a single input
       type: object
       properties:
-        sparse_values:
+        values:
           example:
           - 0.1
           - 0.2
           - 0.3
-          description: The sparse embedding values.
+          description: The dense embedding values.
           type: array
           items:
             type: number
             format: float
-        sparse_indices:
-          example:
-          - 10
-          - 3
-          - 156
-          description: The sparse embedding indices.
-          type: array
-          items:
-            type: integer
-            format: int64
-            minimum: 0
-            maximum: 4294967295
-        sparse_tokens:
-          example:
-          - quick
-          - brown
-          - fox
-          description: The normalized tokens used to create the sparse embedding.
-          type: array
-          items:
-            type: string
         vector_type:
           $ref: '#/components/schemas/VectorType'
       required:
-      - sparse_values
-      - sparse_indices
+      - values
       - vector_type
+    VectorType:
+      description: Indicates whether this is a 'dense' or 'sparse' embedding.
+      type: string
+    RerankRequest:
+      type: object
+      properties:
+        model:
+          example: bge-reranker-v2-m3
+          description: The [model](https://docs.pinecone.io/guides/search/rerank-results#reranking-models) to use for reranking.
+          type: string
+        query:
+          example: What is the capital of France?
+          description: The query to rerank documents against.
+          type: string
+        top_n:
+          example: 5
+          description: The number of results to return sorted by relevance. Defaults to the number of inputs.
+          type: integer
+        return_documents:
+          example: true
+          description: Whether to return the documents in the response.
+          default: true
+          type: boolean
+        rank_fields:
+          description: 'The field(s) to consider for reranking. If not provided, the default is `["text"]`.
+
+
+            The number of fields supported is [model-specific](https://docs.pinecone.io/guides/search/rerank-results#reranking-models).
+
+            '
+          default:
+          - text
+          type: array
+          items:
+            type: string
+        documents:
+          description: The documents to rerank.
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        parameters:
+          example:
+            truncate: END
+          description: Additional model-specific parameters. Refer to the [model guide](https://docs.pinecone.io/guides/search/rerank-results#reranking-models) for available model parameters.
+          type: object
+          additionalProperties: true
+      required:
+      - model
+      - documents
+      - query
     RankedDocument:
       description: A ranked document with a relevance score and an index position.
       type: object
@@ -843,47 +890,6 @@ components:
       required:
       - index
       - score
-    EmbeddingsList:
-      description: Embeddings generated for the input.
-      type: object
-      properties:
-        model:
-          example: multilingual-e5-large
-          description: The model used to generate the embeddings
-          type: string
-        vector_type:
-          example: dense
-          description: Indicates whether the response data contains 'dense' or 'sparse' embeddings.
-          type: string
-        data:
-          description: The embeddings generated for the inputs.
-          type: array
-          items:
-            $ref: '#/components/schemas/Embedding'
-        usage:
-          description: Usage statistics for the model inference.
-          type: object
-          properties:
-            total_tokens:
-              example: 205
-              description: Total number of tokens consumed across all inputs.
-              type: integer
-              format: int32
-              minimum: 0
-      required:
-      - model
-      - vector_type
-      - data
-      - usage
-    Document:
-      example:
-        id: '1'
-        text: Paris is the capital of France.
-        title: France
-        url: https://example.com
-      description: Document for reranking
-      type: object
-      additionalProperties: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

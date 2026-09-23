@@ -30,7 +30,8 @@
     "pinecone-db-control-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "pinecone-db-data-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "pinecone-inference-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "tag 'Manage Assistants' spans 2 source specs (pinecone-assistant-control-openapi.yaml, pinecone-assistant-data-openapi.yaml): per-path servers applied"
+    "tag 'Manage Assistants' spans 2 source specs (pinecone-assistant-control-openapi.yaml, pinecone-assistant-data-openapi.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "pinecone-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",

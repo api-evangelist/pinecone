@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Pinecone Admin API Keys API
-  description: 'Provides an API for managing a Pinecone organization and its resources.
-
-    '
+  description: Provides an API for managing a Pinecone organization and its resources.
   contact:
     name: Pinecone Support
     url: https://support.pinecone.io
@@ -90,9 +88,7 @@ paths:
       tags:
       - API Keys
       summary: Create an API key
-      description: 'Create a new API key for a project. Developers can use the API key to authenticate requests to Pinecone''s Data Plane and Control Plane APIs.
-
-        '
+      description: Create a new API key for a project. Developers can use the API key to authenticate requests to Pinecone's Data Plane and Control Plane APIs.
       operationId: create_api_key
       parameters:
       - in: header
@@ -326,9 +322,7 @@ paths:
       tags:
       - API Keys
       summary: Update an API key
-      description: 'Update the name and roles of an API key.
-
-        '
+      description: Update the name and roles of an API key.
       operationId: update_api_key
       parameters:
       - in: header
@@ -417,62 +411,6 @@ paths:
                     status: 500
 components:
   schemas:
-    ListApiKeysResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIKey'
-      required:
-      - data
-    APIKeyWithSecret:
-      description: 'The details of an API key, including the secret. Only returned on API key creation.
-
-        '
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/APIKey'
-        value:
-          description: 'The value to use as an API key. New keys will have the format `"pckey_<public-label>_<unique-key>"`. The entire string should be used when authenticating.
-
-            '
-          type: string
-      required:
-      - key
-      - value
-    CreateAPIKeyRequest:
-      type: object
-      properties:
-        name:
-          example: devkey
-          description: 'The name of the API key. The name must be 1-80 characters long.
-
-            '
-          type: string
-          minLength: 1
-          maxLength: 80
-        roles:
-          description: 'The roles to create the API key with. Default is `["ProjectEditor"]`.
-
-            '
-          type: array
-          items:
-            example: ProjectEditor
-            description: 'A role that can be assigned to an API key.
-
-              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
-            x-enum:
-            - ProjectEditor
-            - ProjectViewer
-            - ControlPlaneEditor
-            - ControlPlaneViewer
-            - DataPlaneEditor
-            - DataPlaneViewer
-            type: string
-      required:
-      - name
     UpdateAPIKeyRequest:
       type: object
       properties:
@@ -504,42 +442,6 @@ components:
             - DataPlaneEditor
             - DataPlaneViewer
             type: string
-    APIKey:
-      description: The details of an API key, without the secret.
-      type: object
-      properties:
-        id:
-          description: The unique ID of the API key.
-          type: string
-          format: uuid
-        name:
-          description: The name of the API key.
-          type: string
-        project_id:
-          description: The ID of the project containing the API key.
-          type: string
-          format: uuid
-        roles:
-          description: The roles assigned to the API key.
-          type: array
-          items:
-            example: ProjectEditor
-            description: 'A role that can be assigned to an API key.
-
-              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
-            x-enum:
-            - ProjectEditor
-            - ProjectViewer
-            - ControlPlaneEditor
-            - ControlPlaneViewer
-            - DataPlaneEditor
-            - DataPlaneViewer
-            type: string
-      required:
-      - id
-      - name
-      - project_id
-      - roles
     ErrorResponse:
       example:
         error:
@@ -597,6 +499,98 @@ components:
       required:
       - status
       - error
+    CreateAPIKeyRequest:
+      type: object
+      properties:
+        name:
+          example: devkey
+          description: 'The name of the API key. The name must be 1-80 characters long.
+
+            '
+          type: string
+          minLength: 1
+          maxLength: 80
+        roles:
+          description: 'The roles to create the API key with. Default is `["ProjectEditor"]`.
+
+            '
+          type: array
+          items:
+            example: ProjectEditor
+            description: 'A role that can be assigned to an API key.
+
+              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
+            x-enum:
+            - ProjectEditor
+            - ProjectViewer
+            - ControlPlaneEditor
+            - ControlPlaneViewer
+            - DataPlaneEditor
+            - DataPlaneViewer
+            type: string
+      required:
+      - name
+    APIKeyWithSecret:
+      description: 'The details of an API key, including the secret. Only returned on API key creation.
+
+        '
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/APIKey'
+        value:
+          description: 'The value to use as an API key. New keys will have the format `"pckey_<public-label>_<unique-key>"`. The entire string should be used when authenticating.
+
+            '
+          type: string
+      required:
+      - key
+      - value
+    APIKey:
+      description: The details of an API key, without the secret.
+      type: object
+      properties:
+        id:
+          description: The unique ID of the API key.
+          type: string
+          format: uuid
+        name:
+          description: The name of the API key.
+          type: string
+        project_id:
+          description: The ID of the project containing the API key.
+          type: string
+          format: uuid
+        roles:
+          description: The roles assigned to the API key.
+          type: array
+          items:
+            example: ProjectEditor
+            description: 'A role that can be assigned to an API key.
+
+              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
+            x-enum:
+            - ProjectEditor
+            - ProjectViewer
+            - ControlPlaneEditor
+            - ControlPlaneViewer
+            - DataPlaneEditor
+            - DataPlaneViewer
+            type: string
+      required:
+      - id
+      - name
+      - project_id
+      - roles
+    ListApiKeysResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIKey'
+      required:
+      - data
   securitySchemes:
     BearerAuth:
       type: http

@@ -40,11 +40,15 @@ tags:
 - Artificial Intelligence
 - Embeddings
 - RAG
+- Database
+- A2A
 tags_raw:
 - Vector Databases
 - AI
 - Embeddings
 - RAG
+- Database
+- A2A
 created: '2024-07-02'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/apis.yml
@@ -64,8 +68,6 @@ apis:
     url: openapi/pinecone-api-keys-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -82,8 +84,6 @@ apis:
     url: openapi/pinecone-bulk-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -100,8 +100,6 @@ apis:
     url: openapi/pinecone-inference-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -118,8 +116,6 @@ apis:
     url: openapi/pinecone-manage-assistants-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -136,8 +132,6 @@ apis:
     url: openapi/pinecone-manage-indexes-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -154,8 +148,6 @@ apis:
     url: openapi/pinecone-namespace-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -174,8 +166,6 @@ apis:
     url: openapi/pinecone-organizations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -194,8 +184,6 @@ apis:
     url: openapi/pinecone-projects-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation
@@ -212,8 +200,6 @@ apis:
     url: openapi/pinecone-vector-operations-api-openapi.yml
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction
-  - type: GraphQL
-    url: graphql/pinecone-graphql.md
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#inference-api
   - type: Documentation

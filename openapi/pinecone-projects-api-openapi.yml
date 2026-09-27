@@ -413,6 +413,15 @@ paths:
                     status: 500
 components:
   schemas:
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+      required:
+      - data
     UpdateProjectRequest:
       type: object
       properties:
@@ -489,15 +498,6 @@ components:
       required:
       - status
       - error
-    ProjectList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-      required:
-      - data
     Project:
       description: The details of a project.
       type: object

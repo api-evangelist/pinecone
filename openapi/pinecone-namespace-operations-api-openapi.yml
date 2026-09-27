@@ -253,6 +253,20 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
     NamespaceDescription:
       description: A description of a namespace, including the name and record count.
       type: object
@@ -301,21 +315,6 @@ components:
               - genre
               - year
               - author
-    ListNamespacesResponse:
-      type: object
-      properties:
-        namespaces:
-          description: The list of namespaces belonging to this index.
-          type: array
-          items:
-            $ref: '#/components/schemas/NamespaceDescription'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        total_count:
-          example: 25
-          description: The total number of namespaces in the index matching the prefix
-          type: integer
-          format: int32
     rpcStatus:
       type: object
       properties:
@@ -328,15 +327,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/protobufAny'
-    DeleteResponse:
-      description: The response for the `delete` operation.
-      type: object
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
     CreateNamespaceRequest:
       description: A request for creating a namespace with the specified namespace name.
       type: object
@@ -370,14 +360,24 @@ components:
           - fields
       required:
       - name
-    protobufAny:
+    DeleteResponse:
+      description: The response for the `delete` operation.
+      type: object
+    ListNamespacesResponse:
       type: object
       properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
+        namespaces:
+          description: The list of namespaces belonging to this index.
+          type: array
+          items:
+            $ref: '#/components/schemas/NamespaceDescription'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        total_count:
+          example: 25
+          description: The total number of namespaces in the index matching the prefix
+          type: integer
+          format: int32
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

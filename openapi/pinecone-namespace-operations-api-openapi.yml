@@ -253,20 +253,45 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
     Pagination:
       type: object
       properties:
         next:
           example: Tm90aGluZyB0byBzZWUgaGVyZQo=
           type: string
+    CreateNamespaceRequest:
+      description: A request for creating a namespace with the specified namespace name.
+      type: object
+      properties:
+        name:
+          example: example-namespace
+          description: The name of the namespace.
+          type: string
+        schema:
+          example:
+            fields:
+              description:
+                filterable: true
+              genre:
+                filterable: true
+              year:
+                filterable: true
+          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
+          type: object
+          properties:
+            fields:
+              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filterable:
+                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
+                    type: boolean
+          required:
+          - fields
+      required:
+      - name
     NamespaceDescription:
       description: A description of a namespace, including the name and record count.
       type: object
@@ -315,6 +340,9 @@ components:
               - genre
               - year
               - author
+    DeleteResponse:
+      description: The response for the `delete` operation.
+      type: object
     rpcStatus:
       type: object
       properties:
@@ -327,42 +355,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/protobufAny'
-    CreateNamespaceRequest:
-      description: A request for creating a namespace with the specified namespace name.
-      type: object
-      properties:
-        name:
-          example: example-namespace
-          description: The name of the namespace.
-          type: string
-        schema:
-          example:
-            fields:
-              description:
-                filterable: true
-              genre:
-                filterable: true
-              year:
-                filterable: true
-          description: 'Schema for the behavior of Pinecone''s internal metadata index. By default, all metadata is indexed; when `schema` is present, only fields which are present in the `fields` object with a `filterable: true` are indexed. Note that `filterable: false` is not currently supported.'
-          type: object
-          properties:
-            fields:
-              description: A map of metadata field names to their configuration. The field name must be a valid metadata field name. The field name must be unique.
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  filterable:
-                    description: Whether the field is filterable. If true, the field is indexed and can be used in filters. Only true values are allowed.
-                    type: boolean
-          required:
-          - fields
-      required:
-      - name
-    DeleteResponse:
-      description: The response for the `delete` operation.
-      type: object
     ListNamespacesResponse:
       type: object
       properties:
@@ -378,6 +370,14 @@ components:
           description: The total number of namespaces in the index matching the prefix
           type: integer
           format: int32
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

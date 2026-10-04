@@ -411,15 +411,6 @@ paths:
                     status: 500
 components:
   schemas:
-    ListApiKeysResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIKey'
-      required:
-      - data
     APIKeyWithSecret:
       description: 'The details of an API key, including the secret. Only returned on API key creation.
 
@@ -436,37 +427,6 @@ components:
       required:
       - key
       - value
-    CreateAPIKeyRequest:
-      type: object
-      properties:
-        name:
-          example: devkey
-          description: 'The name of the API key. The name must be 1-80 characters long.
-
-            '
-          type: string
-          minLength: 1
-          maxLength: 80
-        roles:
-          description: 'The roles to create the API key with. Default is `["ProjectEditor"]`.
-
-            '
-          type: array
-          items:
-            example: ProjectEditor
-            description: 'A role that can be assigned to an API key.
-
-              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
-            x-enum:
-            - ProjectEditor
-            - ProjectViewer
-            - ControlPlaneEditor
-            - ControlPlaneViewer
-            - DataPlaneEditor
-            - DataPlaneViewer
-            type: string
-      required:
-      - name
     ErrorResponse:
       example:
         error:
@@ -524,21 +484,19 @@ components:
       required:
       - status
       - error
-    UpdateAPIKeyRequest:
+    CreateAPIKeyRequest:
       type: object
       properties:
         name:
           example: devkey
-          description: 'A new name for the API key. The name must be 1-80 characters long. If omitted, the name will not be updated.
+          description: 'The name of the API key. The name must be 1-80 characters long.
 
             '
           type: string
           minLength: 1
           maxLength: 80
         roles:
-          description: 'A new set of roles for the API key. Existing roles will be removed if not included.
-
-            If this field is omitted, the roles will not be updated.
+          description: 'The roles to create the API key with. Default is `["ProjectEditor"]`.
 
             '
           type: array
@@ -555,6 +513,8 @@ components:
             - DataPlaneEditor
             - DataPlaneViewer
             type: string
+      required:
+      - name
     APIKey:
       description: The details of an API key, without the secret.
       type: object
@@ -591,6 +551,46 @@ components:
       - name
       - project_id
       - roles
+    ListApiKeysResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIKey'
+      required:
+      - data
+    UpdateAPIKeyRequest:
+      type: object
+      properties:
+        name:
+          example: devkey
+          description: 'A new name for the API key. The name must be 1-80 characters long. If omitted, the name will not be updated.
+
+            '
+          type: string
+          minLength: 1
+          maxLength: 80
+        roles:
+          description: 'A new set of roles for the API key. Existing roles will be removed if not included.
+
+            If this field is omitted, the roles will not be updated.
+
+            '
+          type: array
+          items:
+            example: ProjectEditor
+            description: 'A role that can be assigned to an API key.
+
+              Possible values: `ProjectEditor`, `ProjectViewer`, `ControlPlaneEditor`, `ControlPlaneViewer`, `DataPlaneEditor`, or `DataPlaneViewer`.'
+            x-enum:
+            - ProjectEditor
+            - ProjectViewer
+            - ControlPlaneEditor
+            - ControlPlaneViewer
+            - DataPlaneEditor
+            - DataPlaneViewer
+            type: string
   securitySchemes:
     BearerAuth:
       type: http

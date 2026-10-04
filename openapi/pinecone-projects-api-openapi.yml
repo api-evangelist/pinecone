@@ -413,27 +413,6 @@ paths:
                     status: 500
 components:
   schemas:
-    CreateProjectRequest:
-      type: object
-      properties:
-        name:
-          example: chatbot-prod
-          description: The name of the new project.
-          type: string
-          minLength: 1
-          maxLength: 512
-        max_pods:
-          description: 'The maximum number of Pods that can be created in the project. Default is `0` (serverless only).
-
-            '
-          type: integer
-        force_encryption_with_cmek:
-          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Default is `false`.
-
-            '
-          type: boolean
-      required:
-      - name
     ProjectList:
       type: object
       properties:
@@ -443,25 +422,6 @@ components:
             $ref: '#/components/schemas/Project'
       required:
       - data
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          example: chatbot-prod
-          description: The name of the new project.
-          type: string
-          minLength: 1
-          maxLength: 512
-        max_pods:
-          description: 'The maximum number of Pods that can be created in the project.
-
-            '
-          type: integer
-        force_encryption_with_cmek:
-          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Once enabled, CMEK encryption cannot be disabled.
-
-            '
-          type: boolean
     Project:
       description: The details of a project.
       type: object
@@ -551,6 +511,46 @@ components:
       required:
       - status
       - error
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          example: chatbot-prod
+          description: The name of the new project.
+          type: string
+          minLength: 1
+          maxLength: 512
+        max_pods:
+          description: 'The maximum number of Pods that can be created in the project.
+
+            '
+          type: integer
+        force_encryption_with_cmek:
+          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Once enabled, CMEK encryption cannot be disabled.
+
+            '
+          type: boolean
+    CreateProjectRequest:
+      type: object
+      properties:
+        name:
+          example: chatbot-prod
+          description: The name of the new project.
+          type: string
+          minLength: 1
+          maxLength: 512
+        max_pods:
+          description: 'The maximum number of Pods that can be created in the project. Default is `0` (serverless only).
+
+            '
+          type: integer
+        force_encryption_with_cmek:
+          description: 'Whether to force encryption with a customer-managed encryption key (CMEK). Default is `false`.
+
+            '
+          type: boolean
+      required:
+      - name
   securitySchemes:
     BearerAuth:
       type: http

@@ -243,25 +243,31 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
-    Pagination:
+    ListImportsResponse:
+      description: The response for the `list_imports` operation.
       type: object
       properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportModel'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     CancelImportResponse:
       description: The response for the `cancel_import` operation.
       type: object
-    StartImportResponse:
-      description: The response for the `start_import` operation.
+    rpcStatus:
       type: object
       properties:
-        id:
-          example: '101'
-          description: Unique identifier for the import operation.
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-          minLength: 1
-          maxLength: 1000
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
     StartImportRequest:
       description: The request for the `start_import` operation.
       type: object
@@ -279,6 +285,30 @@ components:
           $ref: '#/components/schemas/ImportErrorMode'
       required:
       - uri
+    Pagination:
+      type: object
+      properties:
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
+          type: string
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
+    StartImportResponse:
+      description: The response for the `start_import` operation.
+      type: object
+      properties:
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
     ImportModel:
       description: The model for an import operation.
       type: object
@@ -327,16 +357,6 @@ components:
         error:
           description: The error message if the import process failed.
           type: string
-    ListImportsResponse:
-      description: The response for the `list_imports` operation.
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportModel'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     ImportErrorMode:
       description: Indicates how to respond to errors during the import process.
       type: object
@@ -349,26 +369,6 @@ components:
           - abort
           - continue
           type: string
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/protobufAny'
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -45,6 +45,7 @@ tags:
 - RAG
 - Database
 - A2A
+- Vector Search
 tags_raw:
 - Vector Databases
 - AI
@@ -52,6 +53,7 @@ tags_raw:
 - RAG
 - Database
 - A2A
+- Vector Search
 created: '2024-07-02'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/apis.yml
@@ -208,6 +210,9 @@ apis:
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
 common:
+- type: CapabilityMap
+  url: capabilities/pinecone-capability-edges.yml
+  name: Pinecone Business Capability Map
 - type: IssueTracker
   url: https://github.com/pinecone-io/pinecone-api/issues
 - type: Releases

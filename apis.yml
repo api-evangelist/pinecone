@@ -210,6 +210,10 @@ apis:
   - type: Documentation
     url: https://docs.pinecone.io/reference/api/introduction#assistant-api
 common:
+- type: RateLimits
+  url: rate-limits/pinecone-rate-limits.yml
+- type: FinOps
+  url: finops/pinecone-finops.yml
 - type: Plans
   url: plans/pinecone-plans-pricing.yml
 - type: CapabilityMap

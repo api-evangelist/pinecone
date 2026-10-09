@@ -1,193 +1,116 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Pinecone
-providerId: pinecone
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
-tags:
-  - Vector Database
-  - AI Infrastructure
-description: Pinecone Serverless plans across Starter / Builder / Standard / Enterprise.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.pinecone.io/pricing/
 sources:
-  - https://www.pinecone.io/pricing/
+- https://www.pinecone.io/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: Bring-your-own-cloud (BYOC) runs Pinecone in your cloud account and VPC.
+  managed_tier: Builder
+published: true
+note: Tiered plans with usage-based (read/write units, tokens, GB) overages; Starter free; BYOC quoted
+  on request.
+plan_count: 6
+currency: USD
 plans:
-  - id: pinecone-starter
-    name: Starter
-    type: freemium
-    description: Free; 2 GB storage, 2M write units, 1M read units.
-    entries:
-      - label: Storage
-        name: storage
-        type: quota
-        metric: GB
-        limit: 2
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Write units
-        name: writes
-        type: quota
-        metric: unit
-        limit: 2000000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Read units
-        name: reads
-        type: quota
-        metric: unit
-        limit: 1000000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Community Discord support
-  - id: pinecone-builder
-    name: Builder
-    type: paid
-    description: $20/month flat. 10 GB, 5M writes, 2M reads.
-    entries:
-      - label: Monthly base
-        name: base
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '20.00'
-        userMultiplied: false
-      - label: Storage
-        name: storage
-        type: quota
-        metric: GB
-        limit: 10
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Write units
-        name: writes
-        type: quota
-        metric: unit
-        limit: 5000000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Read units
-        name: reads
-        type: quota
-        metric: unit
-        limit: 2000000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Multiple projects/users
-      - name: Free support included
-  - id: pinecone-standard
-    name: Standard
-    type: paid
-    description: $50/month minimum, then pay-as-you-go.
-    entries:
-      - label: Monthly minimum
-        name: minimum
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '50.00'
-        userMultiplied: false
-      - label: Storage per GB
-        name: storage
-        type: metered
-        metric: GB
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.33'
-        userMultiplied: false
-      - label: Write units (per million)
-        name: writes
-        type: metered
-        metric: million_writes
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: 4.00-4.50
-        userMultiplied: false
-      - label: Read units (per million)
-        name: reads
-        type: metered
-        metric: million_reads
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: 16.00-18.00
-        userMultiplied: false
-    elements:
-      - name: Unlimited storage
-      - name: Dedicated Read Nodes available
-      - name: SAML SSO
-      - name: Backup/restore
-  - id: pinecone-enterprise
-    name: Enterprise
-    type: enterprise
-    description: $500/month minimum.
-    entries:
-      - label: Monthly minimum
-        name: minimum
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '500.00'
-        userMultiplied: false
-      - label: Write units (per million)
-        name: writes
-        type: metered
-        metric: million_writes
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: 6.00-6.75
-        userMultiplied: false
-      - label: Read units (per million)
-        name: reads
-        type: metered
-        metric: million_reads
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: 24.00-27.00
-        userMultiplied: false
-    elements:
-      - name: 99.95% uptime SLA
-      - name: Private networking
-      - name: Audit logs
-      - name: Pro support
+- name: Starter
+  price_text: Free
+  currency: USD
+  period: month
+  included_quota: Up to 2 GB storage, 2M write units/mo, 1M read units/mo, 1GB egress/mo, 5M embedding
+    tokens/mo, 1 project, up to 2 users
+- name: Builder
+  price_text: $20/month flat
+  price: 20
+  currency: USD
+  period: month
+  included_quota: Up to 10 GB storage, 5M write units/mo, 2M read units/mo, 10GB egress/mo, 10M embedding
+    tokens/mo, 5 projects, up to 5 users
+- name: Standard
+  price_text: $50/month min. usage
+  price: 50
+  currency: USD
+  period: month
+  included_quota: 3 week trial includes $300 credits; minimum $50/month applied to usage
+  overage: $0.33/GB/mo storage; $4-$4.50 per million write units; $16-$18 per million read units; $0.10/GB
+    egress (100GB/mo included)
+- name: Enterprise
+  price_text: $500/month min. usage
+  price: 500
+  currency: USD
+  period: month
+  included_quota: 99.95% Uptime SLA, BYOC, Pro support
+  overage: $0.33/GB/mo storage; $6-$6.75 per million write units; $24-$27 per million read units; $0.10/GB
+    egress (100GB/mo included)
+- name: Bring your own cloud
+  price_text: Contact Us for Pricing
+  period: none
+  included_quota: Pinecone in your cloud account, zero-access operations, Pro support
+- name: HIPAA add-on
+  price_text: $190/mo
+  price: 190
+  currency: USD
+  period: month
+rate_limit_statements:
+- Indexes Up to 5
+- Namespaces per Index 100
+- Users Up to 2
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units: []
+  plans:
+  - name: Starter
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Builder
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Standard
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Bring your own cloud
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: HIPAA add-on
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month

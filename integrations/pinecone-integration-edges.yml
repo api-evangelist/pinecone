@@ -37,3 +37,21 @@ edges:
   seller_name: Pinecone Systems, Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: OpenAI
+  partner: openai
+  partner_match: domain
+  type: contract
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/pinecone/blob/main/openapi/pinecone-manage-assistants-api-openapi.yml#L809
+  contract_reference:
+    repo: pinecone
+    spec_file: pinecone-manage-assistants-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'pinecone declares OpenAI compatibility: ''summary: Chat through an OpenAI-compatible interface'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-13'
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'

@@ -1,6 +1,7 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- https://a2aregistry.org/api/agents
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
 - https://fivetran.com/docs/activations/destinations/available-destinations/pinecone
@@ -40,24 +41,6 @@ edges:
   seller_name: Pinecone Systems, Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: OpenAI
-  partner: openai
-  partner_match: domain
-  type: contract
-  channel: provider-built
-  relationship: compatible
-  direction: provider-built
-  evidence: https://github.com/api-evangelist/pinecone/blob/main/openapi/pinecone-manage-assistants-api-openapi.yml#L809
-  contract_reference:
-    repo: pinecone
-    spec_file: pinecone-manage-assistants-api-openapi.yml
-    property: description
-    value: OpenAI-compatible
-    note: 'pinecone declares OpenAI compatibility: ''summary: Chat through an OpenAI-compatible interface'''
-    detected_by: sweep-model-routing.py
-    detected: '2026-10-13'
-  detected_by: sweep-model-routing.py
-  first_seen: '2026-10-13'
 - partner_name: Census
   partner: getcensus
   partner_match: aggregator
@@ -78,6 +61,24 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: OpenAI
+  partner: openai
+  partner_match: domain
+  type: contract
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/pinecone/blob/main/openapi/pinecone-manage-assistants-api-openapi.yml#L809
+  contract_reference:
+    repo: pinecone
+    spec_file: pinecone-manage-assistants-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'pinecone declares OpenAI compatibility: ''summary: Chat through an OpenAI-compatible interface'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-15'
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
 - partner_name: LlamaIndex
   partner: llamaindex
   partner_match: framework
@@ -118,5 +119,38 @@ edges:
     vendor_domain: pinecone.io
   matched_by: verified-domain-table
   detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: A2A protocol (own Agent Card)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: A2A agent
+  evidence: https://www.pinecone.io/.well-known/agent-card.json
+  channel: provider-built
+  relationship: compatible
+  shape: a2a
+  evidence_kind: own-wellknown
+  degree: flavored
+  report_only: true
+  a2a_card:
+    grade: flavored
+    verdict: flavored
+    protocol_version: null
+    deviations:
+    - no-protocolVersion
+    card_subject: unknown
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Pinecone
+    organization: Pinecone Systems, Inc.
+    matched_domain: pinecone.io
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-15'
+  detected_by: sweep-ai-agents.py
   first_seen: '2026-10-15'
 source: https://fivetran.com/docs/activations/destinations/available-destinations/pinecone

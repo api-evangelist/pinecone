@@ -243,6 +243,16 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
 components:
   schemas:
+    StartImportResponse:
+      description: The response for the `start_import` operation.
+      type: object
+      properties:
+        id:
+          example: '101'
+          description: Unique identifier for the import operation.
+          type: string
+          minLength: 1
+          maxLength: 1000
     ListImportsResponse:
       description: The response for the `list_imports` operation.
       type: object
@@ -253,9 +263,18 @@ components:
             $ref: '#/components/schemas/ImportModel'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    CancelImportResponse:
-      description: The response for the `cancel_import` operation.
+    ImportErrorMode:
+      description: Indicates how to respond to errors during the import process.
       type: object
+      properties:
+        onError:
+          description: 'Indicates how to respond to errors during the import process.
+
+            Possible values: `abort` or `continue`.'
+          x-enum:
+          - abort
+          - continue
+          type: string
     rpcStatus:
       type: object
       properties:
@@ -268,47 +287,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/protobufAny'
-    StartImportRequest:
-      description: The request for the `start_import` operation.
+    CancelImportResponse:
+      description: The response for the `cancel_import` operation.
       type: object
-      properties:
-        integrationId:
-          description: The id of the [storage integration](https://docs.pinecone.io/guides/operations/integrations/manage-storage-integrations) that should be used to access the data.
-          type: string
-          maxLength: 1000
-        uri:
-          description: The URI of the bucket (or container) and import directory containing the namespaces and Parquet files you want to import. For example, `s3://BUCKET_NAME/IMPORT_DIR` for Amazon S3, `gs://BUCKET_NAME/IMPORT_DIR` for Google Cloud Storage, or `https://STORAGE_ACCOUNT.blob.core.windows.net/CONTAINER_NAME/IMPORT_DIR` for Azure Blob Storage. For more information, see [Import records](https://docs.pinecone.io/guides/index-data/import-data#prepare-your-data).
-          type: string
-          minLength: 1
-          maxLength: 1500
-        errorMode:
-          $ref: '#/components/schemas/ImportErrorMode'
-      required:
-      - uri
-    Pagination:
-      type: object
-      properties:
-        next:
-          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
-          type: string
-    protobufAny:
-      type: object
-      properties:
-        typeUrl:
-          type: string
-        value:
-          type: string
-          format: byte
-    StartImportResponse:
-      description: The response for the `start_import` operation.
-      type: object
-      properties:
-        id:
-          example: '101'
-          description: Unique identifier for the import operation.
-          type: string
-          minLength: 1
-          maxLength: 1000
     ImportModel:
       description: The model for an import operation.
       type: object
@@ -357,18 +338,37 @@ components:
         error:
           description: The error message if the import process failed.
           type: string
-    ImportErrorMode:
-      description: Indicates how to respond to errors during the import process.
+    Pagination:
       type: object
       properties:
-        onError:
-          description: 'Indicates how to respond to errors during the import process.
-
-            Possible values: `abort` or `continue`.'
-          x-enum:
-          - abort
-          - continue
+        next:
+          example: Tm90aGluZyB0byBzZWUgaGVyZQo=
           type: string
+    StartImportRequest:
+      description: The request for the `start_import` operation.
+      type: object
+      properties:
+        integrationId:
+          description: The id of the [storage integration](https://docs.pinecone.io/guides/operations/integrations/manage-storage-integrations) that should be used to access the data.
+          type: string
+          maxLength: 1000
+        uri:
+          description: The URI of the bucket (or container) and import directory containing the namespaces and Parquet files you want to import. For example, `s3://BUCKET_NAME/IMPORT_DIR` for Amazon S3, `gs://BUCKET_NAME/IMPORT_DIR` for Google Cloud Storage, or `https://STORAGE_ACCOUNT.blob.core.windows.net/CONTAINER_NAME/IMPORT_DIR` for Azure Blob Storage. For more information, see [Import records](https://docs.pinecone.io/guides/index-data/import-data#prepare-your-data).
+          type: string
+          minLength: 1
+          maxLength: 1500
+        errorMode:
+          $ref: '#/components/schemas/ImportErrorMode'
+      required:
+      - uri
+    protobufAny:
+      type: object
+      properties:
+        typeUrl:
+          type: string
+        value:
+          type: string
+          format: byte
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

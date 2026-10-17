@@ -1217,209 +1217,6 @@ components:
       required:
       - status
       - error
-    ChoiceChunkModel:
-      description: Describes a single choice in a chat completion response.
-      type: object
-      properties:
-        finish_reason:
-          x-enum:
-          - stop
-          - length
-          - content_filter
-          - function_call
-          type: string
-        index:
-          type: integer
-        delta:
-          description: Chat completion message
-          type: object
-          properties:
-            role:
-              type: string
-            content:
-              type: string
-    ContextRequest:
-      description: Parameters to retrieve context from an assistant.
-      type: object
-      properties:
-        query:
-          description: The query that is used to generate the context. Exactly one of query or messages should be provided.
-          type: string
-        filter:
-          example:
-            genre:
-              $ne: documentary
-          description: Optionally filter which documents can be retrieved using the following metadata fields.
-          type: object
-        messages:
-          description: The list of messages to use for generating the context. Exactly one of query or messages should be provided.
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageModel'
-        top_k:
-          example: 20
-          description: The maximum number of context snippets to return. Default is 16. Maximum is 64.
-          type: integer
-        snippet_size:
-          example: 4096
-          description: The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.
-          type: integer
-        multimodal:
-          description: Whether or not to retrieve image-related context snippets. If `false`, only text snippets are returned.
-          default: true
-          type: boolean
-        include_binary_content:
-          description: If image-related context snippets are returned, this field determines whether or not they should include base64 image data. If `false`, only the image captions are returned. Only available when `multimodal=true`.
-          default: true
-          type: boolean
-    MarkdownReferenceModel:
-      description: Represents a reference to a part of a markdown document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "markdown".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-      required:
-      - type
-      - file
-    ImageModel:
-      description: Represents the data for an image.
-      type:
-      - object
-      - 'null'
-      properties:
-        type:
-          description: The format of the image data. Currently, this is always "base64".
-          type: string
-        mime_type:
-          description: The MIME type of the image (e.g., "image/jpeg").
-          type: string
-        data:
-          description: The image data. Currently, this is always a base64-encoded string.
-          type: string
-      required:
-      - type
-      - mime_type
-      - data
-    MultiModalSnippetModel:
-      description: Represents a multimodal context snippet.
-      type: object
-      properties:
-        type:
-          description: The type of context snippet.
-          type: string
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultiModalContentBlocksModel'
-        score:
-          type: number
-          format: float
-        reference:
-          $ref: '#/components/schemas/TypedReferenceModel'
-      required:
-      - type
-      - content
-      - score
-      - reference
-    PdfReferenceModel:
-      description: Represents a reference to a part of a PDF document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "pdf".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-        pages:
-          type: array
-          items:
-            type: integer
-      required:
-      - type
-      - file
-      - pages
-    TextReferenceModel:
-      description: Represents a reference to a part of a text document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "text".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-      required:
-      - type
-      - file
-    UsageModel:
-      description: Describes the usage of a chat completion.
-      type: object
-      properties:
-        prompt_tokens:
-          type: integer
-        completion_tokens:
-          type: integer
-        total_tokens:
-          type: integer
-    ContextModel:
-      description: The response format containing the context from an assistant.
-      type: object
-      properties:
-        id:
-          type: string
-        snippets:
-          type: array
-          items:
-            $ref: '#/components/schemas/SnippetModel'
-        usage:
-          $ref: '#/components/schemas/UsageModel'
-      required:
-      - snippets
-      - usage
-    SnippetModel:
-      description: Represents a part of a document that is relevant to the user query.
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/TextSnippetModel'
-          multimodal: '#/components/schemas/MultiModalSnippetModel'
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/TextSnippetModel'
-      - $ref: '#/components/schemas/MultiModalSnippetModel'
-    DocxReferenceModel:
-      description: Represents a reference to a part of a docx document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "doc_x".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
-        pages:
-          type: array
-          items:
-            type: integer
-      required:
-      - type
-      - file
-      - pages
-    HighlightModel:
-      description: Represents a portion of a referenced document that directly supports or is relevant to the response.
-      type:
-      - object
-      - 'null'
-      properties:
-        type:
-          description: The type of the highlight. Currently it is always text.
-          type: string
-        content:
-          type: string
-      required:
-      - type
-      - content
     SearchCompletions:
       description: The list of queries / chats to chat an assistant
       type: object
@@ -1456,6 +1253,135 @@ components:
           type: object
       required:
       - messages
+    ReferenceModel:
+      description: Describes a single reference in a citation.
+      type: object
+      properties:
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+        pages:
+          type: array
+          items:
+            type: integer
+        highlight:
+          $ref: '#/components/schemas/HighlightModel'
+    MultiModalContentBlocksModel:
+      description: Represents a block in the multimodal content of a context snippet.
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/MultiModalContentTextBlockModel'
+          image: '#/components/schemas/MultiModalContentImageBlockModel'
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/MultiModalContentTextBlockModel'
+      - $ref: '#/components/schemas/MultiModalContentImageBlockModel'
+    TextSnippetModel:
+      description: Represents a text context snippet.
+      type: object
+      properties:
+        type:
+          description: The type of context snippet.
+          type: string
+        content:
+          type: string
+        score:
+          type: number
+          format: float
+        reference:
+          $ref: '#/components/schemas/TypedReferenceModel'
+      required:
+      - type
+      - content
+      - score
+      - reference
+    TextReferenceModel:
+      description: Represents a reference to a part of a text document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "text".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+      required:
+      - type
+      - file
+    JsonReferenceModel:
+      description: Represents a reference to a json document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "json".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+      required:
+      - type
+      - file
+    ChatCompletionModel:
+      description: Describes the response format of a chat request.
+      type: object
+      properties:
+        id:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceModel'
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+    ContextRequest:
+      description: Parameters to retrieve context from an assistant.
+      type: object
+      properties:
+        query:
+          description: The query that is used to generate the context. Exactly one of query or messages should be provided.
+          type: string
+        filter:
+          example:
+            genre:
+              $ne: documentary
+          description: Optionally filter which documents can be retrieved using the following metadata fields.
+          type: object
+        messages:
+          description: The list of messages to use for generating the context. Exactly one of query or messages should be provided.
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageModel'
+        top_k:
+          example: 20
+          description: The maximum number of context snippets to return. Default is 16. Maximum is 64.
+          type: integer
+        snippet_size:
+          example: 4096
+          description: The maximum context snippet size. Default is 2048 tokens. Minimum is 512 tokens. Maximum is 8192 tokens.
+          type: integer
+        multimodal:
+          description: Whether or not to retrieve image-related context snippets. If `false`, only text snippets are returned.
+          default: true
+          type: boolean
+        include_binary_content:
+          description: If image-related context snippets are returned, this field determines whether or not they should include base64 image data. If `false`, only the image captions are returned. Only available when `multimodal=true`.
+          default: true
+          type: boolean
+    ContextModel:
+      description: The response format containing the context from an assistant.
+      type: object
+      properties:
+        id:
+          type: string
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnippetModel'
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+      required:
+      - snippets
+      - usage
     MessageModel:
       description: Describes the format of a message in a chat.
       type: object
@@ -1466,6 +1392,237 @@ components:
         content:
           description: Content of the message
           type: string
+    ChoiceModel:
+      description: Describes a single choice in a chat completion response.
+      type: object
+      properties:
+        finish_reason:
+          x-enum:
+          - stop
+          - length
+          - content_filter
+          - function_call
+          type: string
+        index:
+          type: integer
+        message:
+          $ref: '#/components/schemas/MessageModel'
+    StreamChatCompletionChunkModel:
+      description: Describes the response format of a chat request.
+      type: object
+      properties:
+        id:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceChunkModel'
+        model:
+          type: string
+    PdfReferenceModel:
+      description: Represents a reference to a part of a PDF document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "pdf".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+        pages:
+          type: array
+          items:
+            type: integer
+      required:
+      - type
+      - file
+      - pages
+    MultiModalContentImageBlockModel:
+      description: Represents an image block in a multimodal context snippet.
+      type: object
+      properties:
+        type:
+          description: The type of multimodal content block.
+          type: string
+        caption:
+          type: string
+        image:
+          $ref: '#/components/schemas/ImageModel'
+      required:
+      - type
+      - caption
+    ImageModel:
+      description: Represents the data for an image.
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          description: The format of the image data. Currently, this is always "base64".
+          type: string
+        mime_type:
+          description: The MIME type of the image (e.g., "image/jpeg").
+          type: string
+        data:
+          description: The image data. Currently, this is always a base64-encoded string.
+          type: string
+      required:
+      - type
+      - mime_type
+      - data
+    CitationModel:
+      description: Describes a single cited source returned by a chat request.
+      type: object
+      properties:
+        position:
+          description: The index position of the citation in the complete text response.
+          type: integer
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceModel'
+    ChatModel:
+      description: Describes the response format of a chat request from the citation API.
+      type: object
+      properties:
+        id:
+          type: string
+        finish_reason:
+          x-enum:
+          - stop
+          - length
+          - content_filter
+          - function_call
+          type: string
+        message:
+          $ref: '#/components/schemas/MessageModel'
+        model:
+          type: string
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CitationModel'
+        usage:
+          $ref: '#/components/schemas/UsageModel'
+    UsageModel:
+      description: Describes the usage of a chat completion.
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+    ChoiceChunkModel:
+      description: Describes a single choice in a chat completion response.
+      type: object
+      properties:
+        finish_reason:
+          x-enum:
+          - stop
+          - length
+          - content_filter
+          - function_call
+          type: string
+        index:
+          type: integer
+        delta:
+          description: Chat completion message
+          type: object
+          properties:
+            role:
+              type: string
+            content:
+              type: string
+    TypedReferenceModel:
+      description: Represents a reference for the information provided.
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TextReferenceModel'
+          json: '#/components/schemas/JsonReferenceModel'
+          markdown: '#/components/schemas/MarkdownReferenceModel'
+          pdf: '#/components/schemas/PdfReferenceModel'
+          doc_x: '#/components/schemas/DocxReferenceModel'
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/TextReferenceModel'
+      - $ref: '#/components/schemas/JsonReferenceModel'
+      - $ref: '#/components/schemas/MarkdownReferenceModel'
+      - $ref: '#/components/schemas/PdfReferenceModel'
+      - $ref: '#/components/schemas/DocxReferenceModel'
+    HighlightModel:
+      description: Represents a portion of a referenced document that directly supports or is relevant to the response.
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          description: The type of the highlight. Currently it is always text.
+          type: string
+        content:
+          type: string
+      required:
+      - type
+      - content
+    MarkdownReferenceModel:
+      description: Represents a reference to a part of a markdown document.
+      type: object
+      properties:
+        type:
+          description: The type of reference. Always "markdown".
+          type: string
+        file:
+          $ref: '#/components/schemas/AssistantFileModel'
+      required:
+      - type
+      - file
+    ChatRequest:
+      description: The list of queries / chats to chat an assistant
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageModel'
+        stream:
+          description: If false, the assistant will return a single JSON response. If true, the assistant will return a stream of responses.
+          default: false
+          type: boolean
+        model:
+          description: The large language model to use for answer generation
+          default: gpt-4o
+          x-enum:
+          - gpt-4o
+          - gpt-4.1
+          - o4-mini
+          - claude-3-5-sonnet
+          - claude-3-7-sonnet
+          - gemini-2.5-pro
+          type: string
+        temperature:
+          description: 'Controls the randomness of the model''s output: lower values make responses more deterministic, while higher values increase creativity and variability. If the model does not support a temperature parameter, the parameter will be ignored.'
+          default: 0.0
+          type: number
+          format: float
+        filter:
+          example:
+            genre:
+              $ne: documentary
+          description: Optionally filter which documents can be retrieved using the following metadata fields.
+          type: object
+        json_response:
+          description: If true, the assistant will be instructed to return a JSON response. Cannot be used with streaming.
+          default: false
+          type: boolean
+        include_highlights:
+          description: If true, the assistant will be instructed to return highlights from the referenced documents that support its response.
+          default: false
+          type: boolean
+        context_options:
+          $ref: '#/components/schemas/ContextOptionsModel'
+      required:
+      - messages
     ContextOptionsModel:
       description: Controls the context snippets sent to the LLM.
       type: object
@@ -1486,82 +1643,6 @@ components:
           description: If image-related context snippets are sent to the LLM, this field determines whether or not they should include base64 image data. If `false`, only the image caption is sent. Only available when `multimodal=true`.
           default: true
           type: boolean
-    ChoiceModel:
-      description: Describes a single choice in a chat completion response.
-      type: object
-      properties:
-        finish_reason:
-          x-enum:
-          - stop
-          - length
-          - content_filter
-          - function_call
-          type: string
-        index:
-          type: integer
-        message:
-          $ref: '#/components/schemas/MessageModel'
-    CitationModel:
-      description: Describes a single cited source returned by a chat request.
-      type: object
-      properties:
-        position:
-          description: The index position of the citation in the complete text response.
-          type: integer
-        references:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceModel'
-    MultiModalContentImageBlockModel:
-      description: Represents an image block in a multimodal context snippet.
-      type: object
-      properties:
-        type:
-          description: The type of multimodal content block.
-          type: string
-        caption:
-          type: string
-        image:
-          $ref: '#/components/schemas/ImageModel'
-      required:
-      - type
-      - caption
-    TypedReferenceModel:
-      description: Represents a reference for the information provided.
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/TextReferenceModel'
-          json: '#/components/schemas/JsonReferenceModel'
-          markdown: '#/components/schemas/MarkdownReferenceModel'
-          pdf: '#/components/schemas/PdfReferenceModel'
-          doc_x: '#/components/schemas/DocxReferenceModel'
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/TextReferenceModel'
-      - $ref: '#/components/schemas/JsonReferenceModel'
-      - $ref: '#/components/schemas/MarkdownReferenceModel'
-      - $ref: '#/components/schemas/PdfReferenceModel'
-      - $ref: '#/components/schemas/DocxReferenceModel'
-    TextSnippetModel:
-      description: Represents a text context snippet.
-      type: object
-      properties:
-        type:
-          description: The type of context snippet.
-          type: string
-        content:
-          type: string
-        score:
-          type: number
-          format: float
-        reference:
-          $ref: '#/components/schemas/TypedReferenceModel'
-      required:
-      - type
-      - content
-      - score
-      - reference
     MultiModalContentTextBlockModel:
       description: Represents a text block in a multimodal context snippet.
       type: object
@@ -1574,20 +1655,38 @@ components:
       required:
       - type
       - text
-    ChatCompletionModel:
-      description: Describes the response format of a chat request.
+    SnippetModel:
+      description: Represents a part of a document that is relevant to the user query.
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TextSnippetModel'
+          multimodal: '#/components/schemas/MultiModalSnippetModel'
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/TextSnippetModel'
+      - $ref: '#/components/schemas/MultiModalSnippetModel'
+    MultiModalSnippetModel:
+      description: Represents a multimodal context snippet.
       type: object
       properties:
-        id:
+        type:
+          description: The type of context snippet.
           type: string
-        choices:
+        content:
           type: array
           items:
-            $ref: '#/components/schemas/ChoiceModel'
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/UsageModel'
+            $ref: '#/components/schemas/MultiModalContentBlocksModel'
+        score:
+          type: number
+          format: float
+        reference:
+          $ref: '#/components/schemas/TypedReferenceModel'
+      required:
+      - type
+      - content
+      - score
+      - reference
     AssistantFileModel:
       description: The response format for a successful file upload request.
       type: object
@@ -1649,122 +1748,23 @@ components:
       required:
       - id
       - name
-    ChatModel:
-      description: Describes the response format of a chat request from the citation API.
+    DocxReferenceModel:
+      description: Represents a reference to a part of a docx document.
       type: object
       properties:
-        id:
+        type:
+          description: The type of reference. Always "doc_x".
           type: string
-        finish_reason:
-          x-enum:
-          - stop
-          - length
-          - content_filter
-          - function_call
-          type: string
-        message:
-          $ref: '#/components/schemas/MessageModel'
-        model:
-          type: string
-        citations:
-          type: array
-          items:
-            $ref: '#/components/schemas/CitationModel'
-        usage:
-          $ref: '#/components/schemas/UsageModel'
-    StreamChatCompletionChunkModel:
-      description: Describes the response format of a chat request.
-      type: object
-      properties:
-        id:
-          type: string
-        choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChoiceChunkModel'
-        model:
-          type: string
-    ChatRequest:
-      description: The list of queries / chats to chat an assistant
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageModel'
-        stream:
-          description: If false, the assistant will return a single JSON response. If true, the assistant will return a stream of responses.
-          default: false
-          type: boolean
-        model:
-          description: The large language model to use for answer generation
-          default: gpt-4o
-          x-enum:
-          - gpt-4o
-          - gpt-4.1
-          - o4-mini
-          - claude-3-5-sonnet
-          - claude-3-7-sonnet
-          - gemini-2.5-pro
-          type: string
-        temperature:
-          description: 'Controls the randomness of the model''s output: lower values make responses more deterministic, while higher values increase creativity and variability. If the model does not support a temperature parameter, the parameter will be ignored.'
-          default: 0.0
-          type: number
-          format: float
-        filter:
-          example:
-            genre:
-              $ne: documentary
-          description: Optionally filter which documents can be retrieved using the following metadata fields.
-          type: object
-        json_response:
-          description: If true, the assistant will be instructed to return a JSON response. Cannot be used with streaming.
-          default: false
-          type: boolean
-        include_highlights:
-          description: If true, the assistant will be instructed to return highlights from the referenced documents that support its response.
-          default: false
-          type: boolean
-        context_options:
-          $ref: '#/components/schemas/ContextOptionsModel'
-      required:
-      - messages
-    ReferenceModel:
-      description: Describes a single reference in a citation.
-      type: object
-      properties:
         file:
           $ref: '#/components/schemas/AssistantFileModel'
         pages:
           type: array
           items:
             type: integer
-        highlight:
-          $ref: '#/components/schemas/HighlightModel'
-    JsonReferenceModel:
-      description: Represents a reference to a json document.
-      type: object
-      properties:
-        type:
-          description: The type of reference. Always "json".
-          type: string
-        file:
-          $ref: '#/components/schemas/AssistantFileModel'
       required:
       - type
       - file
-    MultiModalContentBlocksModel:
-      description: Represents a block in the multimodal content of a context snippet.
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/MultiModalContentTextBlockModel'
-          image: '#/components/schemas/MultiModalContentImageBlockModel'
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/MultiModalContentTextBlockModel'
-      - $ref: '#/components/schemas/MultiModalContentImageBlockModel'
+      - pages
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

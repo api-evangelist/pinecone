@@ -153,3 +153,68 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: pinecone-airbyte
+  label: Airbyte
+  partner: airbyte
+  partner_name: Airbyte
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  evidence: https://docs.airbyte.com/integrations/destinations/pinecone
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
+    spec_file: null
+    role: elt-connector:airbyte-certified
+    registered_name: Pinecone
+    matched_domain: pinecone.io
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/destination-pinecone
+    support_level:
+    - certified
+    release_stage:
+    - beta
+    in_cloud: true
+    builder: Airbyte (certified)
+    standard: Airbyte certified connector
+    certified_products:
+    - product: Airbyte certified destination
+      type: destination
+      lapsed: false
+      cloud: true
+  status: pending-generation
+  arazzo: null
+- slug: pinecone-meltano
+  label: Meltano
+  partner: meltano
+  partner_name: Meltano
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  evidence: https://hub.meltano.com/loaders/target-pinecone--meltanolabs
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Pinecone
+    matched_domain: pinecone.io
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - target-pinecone--meltanolabs
+    maintenance_status:
+    - beta
+    quality:
+    - silver
+    builder: 'community (Meltano Hub variant maintainers: meltanolabs)'
+  status: pending-partner-spec
+  arazzo: null

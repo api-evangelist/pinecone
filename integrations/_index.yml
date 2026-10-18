@@ -187,7 +187,7 @@
       type: destination
       lapsed: false
       cloud: true
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: pinecone-meltano
   label: Meltano
@@ -216,5 +216,5 @@
     quality:
     - silver
     builder: 'community (Meltano Hub variant maintainers: meltanolabs)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null

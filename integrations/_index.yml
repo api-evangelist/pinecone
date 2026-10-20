@@ -27,37 +27,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: pinecone-census
-  label: Census
-  partner: getcensus
-  partner_name: Census
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/pinecone
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: pinecone-openai
-  label: OpenAI
-  partner: openai
-  partner_name: OpenAI
-  type: contract
-  channel: provider-built
-  evidence: https://github.com/api-evangelist/pinecone/blob/main/openapi/pinecone-manage-assistants-api-openapi.yml#L809
-  source: edge
-  relationship: compatible
-  contract_reference:
-    repo: pinecone
-    spec_file: pinecone-manage-assistants-api-openapi.yml
-    property: description
-    value: OpenAI-compatible
-    note: 'pinecone declares OpenAI compatibility: ''summary: Chat through an OpenAI-compatible interface'''
-    detected_by: sweep-model-routing.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
 - slug: pinecone-llamaindex
   label: LlamaIndex
   partner: llamaindex
@@ -99,58 +68,19 @@
     matched_domain: pinecone.io
     matched_by: own-domain
     detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
-- slug: pinecone-zapier
-  label: Zapier
-  partner: zapier
-  partner_name: Zapier
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  evidence: https://zapier.com/apps/pinecone/integrations
+- slug: pinecone-census
+  label: Census
+  partner: getcensus
+  partner_name: Census
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/pinecone
   source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Pinecone
-    matched_domain: pinecone.io
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: pinecone
-    beta: false
-    builder: unknown (not in the directory record)
-  status: not-a-workflow
-  arazzo: null
-- slug: pinecone-pipedream
-  label: Pipedream
-  partner: pipedream
-  partner_name: Pipedream
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/pinecone
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: pinecone
-    matched_domain: pinecone.io
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: pinecone
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
+  relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
 - slug: pinecone-airbyte
@@ -216,5 +146,75 @@
     quality:
     - silver
     builder: 'community (Meltano Hub variant maintainers: meltanolabs)'
+  status: not-a-workflow
+  arazzo: null
+- slug: pinecone-openai
+  label: OpenAI
+  partner: openai
+  partner_name: OpenAI
+  type: contract
+  channel: provider-built
+  evidence: https://github.com/api-evangelist/pinecone/blob/main/openapi/pinecone-manage-assistants-api-openapi.yml#L809
+  source: edge
+  relationship: compatible
+  contract_reference:
+    repo: pinecone
+    spec_file: pinecone-manage-assistants-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'pinecone declares OpenAI compatibility: ''summary: Chat through an OpenAI-compatible interface'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: pinecone-zapier
+  label: Zapier
+  partner: zapier
+  partner_name: Zapier
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  evidence: https://zapier.com/apps/pinecone/integrations
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Pinecone
+    matched_domain: pinecone.io
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: pinecone
+    beta: false
+    builder: unknown (not in the directory record)
+  status: not-a-workflow
+  arazzo: null
+- slug: pinecone-pipedream
+  label: Pipedream
+  partner: pipedream
+  partner_name: Pipedream
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/pinecone
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: pinecone
+    matched_domain: pinecone.io
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: pinecone
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null

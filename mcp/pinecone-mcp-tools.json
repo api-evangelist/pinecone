@@ -1,0 +1,41 @@
+{
+  "endpoint": "https://www.pinecone.io/mcp/",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "pinecone-marketing",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "search_website",
+        "title": "Search Pinecone Website",
+        "description": "Semantic search across pinecone.io marketing content (blog, learn, customers, product, pricing, etc.)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 200,
+              "description": "Search keywords"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "annotations": {
+          "readOnlyHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ]
+  }
+}

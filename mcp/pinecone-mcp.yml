@@ -43,3 +43,8 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools:
+- name: search_website
+  description: Semantic search across pinecone.io marketing content (blog, learn, customers, product,
+    pricing, etc.)
+tools_count: 1

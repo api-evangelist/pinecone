@@ -25,6 +25,7 @@ checked:
 - vercel/integrations/vercel-integration-edges.yml
 - https://api.apis.guru/v2/list.json
 - https://api.apis.guru/v2/providers.json
+- hugging-face/integrations/hugging-face-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -316,6 +317,47 @@ edges:
     sector: Enterprise;Infra
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: pinecone.io
+    matched_domain: pinecone.io
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2023-04-02'
+    last_updated: '2023-04-02'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - raw.githubusercontent.com
+    categories:
+    - backend
+    own_openapi_files: 9
+    listings:
+    - key: pinecone.io
+      title: Pinecone API
+      preferred: '20230401.1'
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/pinecone.io/20230401.1/openapi.json
+      origin_url: https://raw.githubusercontent.com/sigpwned/pinecone-openapi-spec/main/openapi.yml
+      openapi_version: 3.0.2
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 - partner_name: OpenTofu (opentofu-registry)
   partner: opentofu
   partner_match: mirror
@@ -392,45 +434,39 @@ edges:
   detected_by: mirror-platform-listings.py
   category: Storage
   partner_tier: third-party
-- partner_name: APIs.guru OpenAPI Directory
-  partner: apis-guru
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
   direction: third-party
-  evidence: https://apis.guru/
-  category: API definition directory listing (OpenAPI)
-  contract_reference:
-    register: APIs.guru OpenAPI Directory
-    spec_file: null
-    standard: APIs.guru OpenAPI Directory
-    role: listed-in-directory
-    directory_provider: pinecone.io
-    matched_domain: pinecone.io
-    matched_by: domain
-    apis_listed: 1
-    version_count: 1
-    first_added: '2023-04-02'
-    last_updated: '2023-04-02'
-    origin_publisher_hosted: false
-    origin_hosts:
-    - raw.githubusercontent.com
-    categories:
-    - backend
-    own_openapi_files: 9
-    listings:
-    - key: pinecone.io
-      title: Pinecone API
-      preferred: '20230401.1'
-      versions: 1
-      swagger_url: https://api.apis.guru/v2/specs/pinecone.io/20230401.1/openapi.json
-      origin_url: https://raw.githubusercontent.com/sigpwned/pinecone-openapi-spec/main/openapi.yml
-      openapi_version: 3.0.2
-    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
-      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
-    detected_by: sweep-openapi-directory-apis-guru.py
-    detected: '2026-10-22'
-  detected_by: sweep-openapi-directory-apis-guru.py
-  first_seen: '2026-10-22'
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/pinecone
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - pinecone/msmarco-beir-e5
+  - pinecone/msmarco-beir-constbert
+  - pinecone/movie-posters
+  - pinecone/core-2020-05-10-deduplication
+  - pinecone/refinedweb-generated-questions
+  - pinecone/example-context-wealth-advisory
+  - pinecone/yt-transcriptions
+  - pinecone/wikipedia-me5
+  - pinecone/ConstBERT
+  - pinecone/mpnet-retriever-discourse
+  - pinecone/mpnet-retriever-squad2
+  - pinecone/bert-retriever-squad2
+  - pinecone/bert-reader-squad2
+  - pinecone/msmarco-distilbert-base-tas-b-covid
+  - pinecone/distiluse-podcast-nq
+  - pinecone/bert-medqp-cross-encoder
+  - pinecone
+  listing_count: 3
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub datasets
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
 source: https://fivetran.com/docs/activations/destinations/available-destinations/pinecone

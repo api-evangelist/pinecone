@@ -1,4 +1,4 @@
-# Pinecone (pinecone)
+# Pinecone
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,98 +66,241 @@
 
 With its vector database at the core, Pinecone is the leading knowledge platform for building accurate, secure, and scalable AI applications. The Pinecone APIs cover Database (vector storage and search), Inference (embeddings and reranking), Assistant (RAG over documents), and Admin (organization and project management).
 
-**APIs.json:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/pinecone/refs/heads/main/apis.yml)
+**Areas:** Vector Search · Artificial Intelligence · Embeddings · RAG · Database · A2A
 
-## Scope
+## Pinecone on APIs.io
 
-- **Type:** Contract
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Pinecone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pinecone/](https://apis.io/providers/pinecone/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Vector Databases
-- AI
-- Embeddings
-- RAG
+- [Pinecone API Keys API](https://apis.io/apis/pinecone/pinecone-api-keys-api/) — Actions that manage API Keys.
+- [Pinecone Bulk Operations API](https://apis.io/apis/pinecone/pinecone-bulk-operations-api/) — The Bulk Operations API from Pinecone — 2 operation(s) for bulk operations.
+- [Pinecone Inference API](https://apis.io/apis/pinecone/pinecone-inference-api/) — Model inference
+- [Pinecone Manage Assistants API](https://apis.io/apis/pinecone/pinecone-manage-assistants-api/) — Actions that manage Assistants
+- [Pinecone Manage Indexes API](https://apis.io/apis/pinecone/pinecone-manage-indexes-api/) — Actions that manage indexes
+- [Pinecone Namespace Operations API](https://apis.io/apis/pinecone/pinecone-namespace-operations-api/) — The Namespace Operations API from Pinecone — 2 operation(s) for namespace operations.
+- [Pinecone Organizations API](https://apis.io/apis/pinecone/pinecone-organizations-api/) — Actions that manage organizations.
+- [Pinecone Projects API](https://apis.io/apis/pinecone/pinecone-projects-api/) — Actions that manage projects.
+- [Pinecone Vector Operations API](https://apis.io/apis/pinecone/pinecone-vector-operations-api/) — The Vector Operations API from Pinecone — 10 operation(s) for vector operations.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-07-02
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Pinecone Database Control API
+GraphQL schemas.
 
-Use the Database Control API to manage indexes, collections, and backups in Pinecone Database. The control plane handles lifecycle and configuration of vector storage resources.
+- [Moved to /providers/pinecone/](https://apis.io/graphqls/pinecone/pinecone-graphql/)
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction
-- **Base URL:** `https://api.pinecone.io`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-db-control-openapi.yaml)
+#### MCP servers (1)
 
-### Pinecone Database Data API
+Model Context Protocol servers that expose the API to agents.
 
-Use the Database Data API to upsert, query, fetch, update, and delete vector records in Pinecone indexes. The data plane is the high-throughput interface for real-time vector search.
+- [pinecone](https://apis.io/servers/pinecone/pinecone/)
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction
-- **Base URL:** `https://{index_host}`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-db-data-openapi.yaml)
+#### Agentic access (1)
 
-### Pinecone Inference API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Use the Inference API to generate vector embeddings and rerank results using models hosted on Pinecone's infrastructure.
+- [Pinecone Agentic Access](https://apis.io/agentic-access/pinecone/pinecone-agentic-access/)
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction#inference-api
-- **Base URL:** `https://api.pinecone.io`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#inference-api) | [OpenAPI](openapi/pinecone-inference-openapi.yaml)
+#### JSON Schema (136)
 
-### Pinecone Assistant Control API
+The data models the API reads and writes.
 
-Use the Assistant Control API to create and manage Pinecone Assistants for retrieval-augmented generation (RAG) over your documents.
+- [APIKey](https://apis.io/schemas/pinecone/pinecone-apikey/)
+- [APIKeyWithSecret](https://apis.io/schemas/pinecone/pinecone-apikeywithsecret/)
+- [Assistant](https://apis.io/schemas/pinecone/pinecone-assistant/)
+- [AssistantFileModel](https://apis.io/schemas/pinecone/pinecone-assistantfilemodel/)
+- [BackupList](https://apis.io/schemas/pinecone/pinecone-backuplist/)
+- [BackupModel](https://apis.io/schemas/pinecone/pinecone-backupmodel/)
+- [BYOC](https://apis.io/schemas/pinecone/pinecone-byocspec/)
+- [BYOC](https://apis.io/schemas/pinecone/pinecone-byocspecresponse/)
+- [CancelImportResponse](https://apis.io/schemas/pinecone/pinecone-cancelimportresponse/)
+- [ChatCompletionModel](https://apis.io/schemas/pinecone/pinecone-chatcompletionmodel/)
+- [ChatModel](https://apis.io/schemas/pinecone/pinecone-chatmodel/)
+- [ChatRequest](https://apis.io/schemas/pinecone/pinecone-chatrequest/)
+- [ChoiceChunkModel](https://apis.io/schemas/pinecone/pinecone-choicechunkmodel/)
+- [ChoiceModel](https://apis.io/schemas/pinecone/pinecone-choicemodel/)
+- [CitationModel](https://apis.io/schemas/pinecone/pinecone-citationmodel/)
+- [CollectionList](https://apis.io/schemas/pinecone/pinecone-collectionlist/)
+- [CollectionModel](https://apis.io/schemas/pinecone/pinecone-collectionmodel/)
+- [ConfigureIndexRequest](https://apis.io/schemas/pinecone/pinecone-configureindexrequest/)
+- [ContextModel](https://apis.io/schemas/pinecone/pinecone-contextmodel/)
+- [ContextOptionsModel](https://apis.io/schemas/pinecone/pinecone-contextoptionsmodel/)
+- [ContextRequest](https://apis.io/schemas/pinecone/pinecone-contextrequest/)
+- [CreateAPIKeyRequest](https://apis.io/schemas/pinecone/pinecone-createapikeyrequest/)
+- [CreateBackupRequest](https://apis.io/schemas/pinecone/pinecone-createbackuprequest/)
+- [CreateCollectionRequest](https://apis.io/schemas/pinecone/pinecone-createcollectionrequest/)
+- [CreateIndexForModelRequest](https://apis.io/schemas/pinecone/pinecone-createindexformodelrequest/)
+- …and 111 more published on APIs.io
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction#assistant-api
-- **Base URL:** `https://api.pinecone.io`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#assistant-api) | [OpenAPI](openapi/pinecone-assistant-control-openapi.yaml)
+#### JSON Structure (1)
 
-### Pinecone Assistant Data API
+Data models expressed in JSON Structure.
 
-Use the Assistant Data API to upload documents to a Pinecone Assistant, ask questions, and receive responses grounded in those documents.
+- [Pinecone Structure](https://apis.io/json-structure/pinecone/pinecone-structure/)
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction#assistant-api
-- **Base URL:** `https://prod-1-data.ke.pinecone.io`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction#assistant-api) | [OpenAPI](openapi/pinecone-assistant-data-openapi.yaml)
+#### Vocabulary (1)
 
-### Pinecone Admin API
+The provider's domain terms, defined.
 
-Use the Admin API to manage Pinecone organizations, projects, API keys, and service accounts at the platform level.
+- [Pinecone Domain Vocabulary](https://apis.io/vocabularies/pinecone/pinecone-vocabulary/)
 
-- **Human URL:** https://docs.pinecone.io/reference/api/introduction
-- **Base URL:** `https://api.pinecone.io`
-- [Documentation](https://docs.pinecone.io/reference/api/introduction) | [OpenAPI](openapi/pinecone-admin-openapi.yaml)
+#### Examples (47)
 
-## Common Properties
+Example requests and responses.
+
+- [Pinecone Chat Assistant Example](https://apis.io/examples/pinecone/pinecone-chat-assistant-example/)
+- [Pinecone Chat Completion Assistant Example](https://apis.io/examples/pinecone/pinecone-chat-completion-assistant-example/)
+- [Pinecone Configure Index Example](https://apis.io/examples/pinecone/pinecone-configure-index-example/)
+- [Pinecone Context Assistant Example](https://apis.io/examples/pinecone/pinecone-context-assistant-example/)
+- [Pinecone Create Api Key Example](https://apis.io/examples/pinecone/pinecone-create-api-key-example/)
+- [Pinecone Create Assistant Example](https://apis.io/examples/pinecone/pinecone-create-assistant-example/)
+- [Pinecone Create Backup Example](https://apis.io/examples/pinecone/pinecone-create-backup-example/)
+- [Pinecone Create Collection Example](https://apis.io/examples/pinecone/pinecone-create-collection-example/)
+- [Pinecone Create Index Example](https://apis.io/examples/pinecone/pinecone-create-index-example/)
+- [Pinecone Create Index For Model Example](https://apis.io/examples/pinecone/pinecone-create-index-for-model-example/)
+- [Pinecone Create Index From Backup Operation Example](https://apis.io/examples/pinecone/pinecone-create-index-from-backup-operation-example/)
+- [Pinecone Create Project Example](https://apis.io/examples/pinecone/pinecone-create-project-example/)
+- [Pinecone Delete Api Key Example](https://apis.io/examples/pinecone/pinecone-delete-api-key-example/)
+- [Pinecone Delete Assistant Example](https://apis.io/examples/pinecone/pinecone-delete-assistant-example/)
+- [Pinecone Delete Backup Example](https://apis.io/examples/pinecone/pinecone-delete-backup-example/)
+- [Pinecone Delete Collection Example](https://apis.io/examples/pinecone/pinecone-delete-collection-example/)
+- [Pinecone Delete File Example](https://apis.io/examples/pinecone/pinecone-delete-file-example/)
+- [Pinecone Delete Index Example](https://apis.io/examples/pinecone/pinecone-delete-index-example/)
+- [Pinecone Delete Organization Example](https://apis.io/examples/pinecone/pinecone-delete-organization-example/)
+- [Pinecone Delete Project Example](https://apis.io/examples/pinecone/pinecone-delete-project-example/)
+- [Pinecone Describe Backup Example](https://apis.io/examples/pinecone/pinecone-describe-backup-example/)
+- [Pinecone Describe Collection Example](https://apis.io/examples/pinecone/pinecone-describe-collection-example/)
+- [Pinecone Describe File Example](https://apis.io/examples/pinecone/pinecone-describe-file-example/)
+- [Pinecone Describe Index Example](https://apis.io/examples/pinecone/pinecone-describe-index-example/)
+- [Pinecone Describe Restore Job Example](https://apis.io/examples/pinecone/pinecone-describe-restore-job-example/)
+- …and 22 more published on APIs.io
+
+#### Collections (18)
+
+Postman and Open Collection request collections.
+
+- [Pinecone Admin API Keys API](https://apis.io/collections/pinecone/open-pinecone-api-keys-api/)
+- [Pinecone Admin API Keys Bulk Operations API](https://apis.io/collections/pinecone/open-pinecone-bulk-operations-api/)
+- [Pinecone Admin API Keys Inference API](https://apis.io/collections/pinecone/open-pinecone-inference-api/)
+- [Pinecone Admin API Keys Manage Assistants API](https://apis.io/collections/pinecone/open-pinecone-manage-assistants-api/)
+- [Pinecone Admin API Keys Manage Indexes API](https://apis.io/collections/pinecone/open-pinecone-manage-indexes-api/)
+- [Pinecone Admin API Keys Namespace Operations API](https://apis.io/collections/pinecone/open-pinecone-namespace-operations-api/)
+- [Pinecone Admin API Keys Organizations API](https://apis.io/collections/pinecone/open-pinecone-organizations-api/)
+- [Pinecone Admin API Keys Projects API](https://apis.io/collections/pinecone/open-pinecone-projects-api/)
+- [Pinecone Admin API Keys Vector Operations API](https://apis.io/collections/pinecone/open-pinecone-vector-operations-api/)
+- [Pinecone Admin API Keys API](https://apis.io/collections/pinecone/postman-pinecone-api-keys-api/)
+- [Pinecone Admin API Keys Bulk Operations API](https://apis.io/collections/pinecone/postman-pinecone-bulk-operations-api/)
+- [Pinecone Admin API Keys Inference API](https://apis.io/collections/pinecone/postman-pinecone-inference-api/)
+- [Pinecone Admin API Keys Manage Assistants API](https://apis.io/collections/pinecone/postman-pinecone-manage-assistants-api/)
+- [Pinecone Admin API Keys Manage Indexes API](https://apis.io/collections/pinecone/postman-pinecone-manage-indexes-api/)
+- [Pinecone Admin API Keys Namespace Operations API](https://apis.io/collections/pinecone/postman-pinecone-namespace-operations-api/)
+- [Pinecone Admin API Keys Organizations API](https://apis.io/collections/pinecone/postman-pinecone-organizations-api/)
+- [Pinecone Admin API Keys Projects API](https://apis.io/collections/pinecone/postman-pinecone-projects-api/)
+- [Pinecone Admin API Keys Vector Operations API](https://apis.io/collections/pinecone/postman-pinecone-vector-operations-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Pinecone — jsonschema rules](https://apis.io/rules/pinecone/pinecone-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pinecone Authentication](https://apis.io/security/pinecone/pinecone-authentication/)
+- [Pinecone Domain Security](https://apis.io/security/pinecone/pinecone-domain-security/)
+- [Pinecone Trust Center](https://apis.io/security/pinecone/pinecone-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Pinecone Plans Pricing](https://apis.io/plans/pinecone/pinecone-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Pinecone Rate Limits](https://apis.io/rate-limits/pinecone/pinecone-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Pinecone Finops](https://apis.io/finops/pinecone/pinecone-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.pinecone.io/)
-- [Pricing](https://www.pinecone.io/pricing/)
-- [Blog](https://www.pinecone.io/blog/)
-- [Newsroom](https://www.pinecone.io/newsroom/news/)
 - [Documentation](https://docs.pinecone.io/guides/get-started/overview)
-- [Getting Started](https://docs.pinecone.io/guides/get-started/overview)
-- [Features](https://docs.pinecone.io/guides/get-started/key-features)
-- [Glossary](https://docs.pinecone.io/guides/get-started/glossary)
-- [Examples](https://docs.pinecone.io/examples/notebooks)
-- [Integrations](https://docs.pinecone.io/integrations/overview)
-- [ChangeLog](https://docs.pinecone.io/release-notes/2024)
-- [Status](https://status.pinecone.io/)
-- [Login](https://app.pinecone.io)
+- [Getting started](https://docs.pinecone.io/guides/get-started/overview)
+- [Pricing](https://www.pinecone.io/pricing/)
+- [Changelog](https://docs.pinecone.io/release-notes/2024)
+- [Blog](https://www.pinecone.io/blog/)
 - [Security](https://www.pinecone.io/security/)
-- [Terms of Service](https://www.pinecone.io/legal/)
-- [Privacy Policy](https://www.pinecone.io/privacy/)
-- [SDKs](https://docs.pinecone.io/reference/pinecone-sdks)
-- [Spec Repository](https://github.com/pinecone-io/pinecone-api)
+- [Terms of service](https://www.pinecone.io/legal/)
+- [Privacy policy](https://www.pinecone.io/privacy/)
+- [Status](https://status.pinecone.io/)
 
-## Maintainers
+## API Evangelist rating
 
-- **FN:** Kin Lane
-- **Email:** kin@apievangelist.com
+**Kin Score 59.2** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.8 |
+| Contract quality | 58.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 55.3 |
+| Developer ergonomics | 44.0 |
+| Access clarity | 77.6 |
+
+**Agent readiness 42.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | flavored (partial credit) |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pinecone/](https://apis.io/providers/pinecone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pinecone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pinecone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
